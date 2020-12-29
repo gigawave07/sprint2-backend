@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">sprint2</string>
+    <!-- Facebook application ID and custom URL scheme (app ID prefixed by 'fb'). -->
+</resources>
