@@ -38,6 +38,7 @@ public class Car {
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "car_type_id", referencedColumnName = "id", columnDefinition = "BIGINT")
     private CarType carType;
+//
 
     @OneToOne(mappedBy = "car", cascade = CascadeType.ALL)
     @JsonBackReference
@@ -50,4 +51,52 @@ public class Car {
     @OneToMany(mappedBy = "car", cascade = CascadeType.ALL)
     @JsonBackReference
     private List<MemberCard> memberCardList;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getPlateNumber() {
+        return plateNumber;
+    }
+
+    public void setPlateNumber(String plateNumber) {
+        this.plateNumber = plateNumber;
+    }
+
+    public String getBrandName() {
+        return brandName;
+    }
+
+    public void setBrandName(String brandName) {
+        this.brandName = brandName;
+    }
+
+    public String getImagePlateNumber() {
+        return imagePlateNumber;
+    }
+
+    public void setImagePlateNumber(String imagePlateNumber) {
+        this.imagePlateNumber = imagePlateNumber;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public CarType getCarType() {
+        return carType;
+    }
+
+    public void setCarType(CarType carType) {
+        this.carType = carType;
+    }
 }
