@@ -1,4 +1,4 @@
-package com.sprint2;
+package com.sprint2.activity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -10,6 +10,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.sprint2.R;
 //import com.google.firebase.firestore.DocumentReference;
 
 public class LoginActivity extends AppCompatActivity {
@@ -17,9 +18,6 @@ public class LoginActivity extends AppCompatActivity {
     EditText edtEmail, edtPassword;
     Button btnLogin, btnBack;
     private DatabaseReference mDatabase;
-    public String username;
-    public String email;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,30 +25,10 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         mapping();
         mDatabase = FirebaseDatabase.getInstance().getReference();
-//        getDataBase();
         controlBtnBack();
         controlBtnLogin();
     }
 
-//    private void getDataBase() {
-//        final DocumentReference docRef = db.collection("cities").document("SF");
-//        docRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
-//            @Override
-//            public void onEvent(@Nullable DocumentSnapshot snapshot,
-//                                @Nullable FirebaseFirestoreException e) {
-//                if (e != null) {
-//                    Log.w(TAG, "Listen failed.", e);
-//                    return;
-//                }
-//
-//                if (snapshot != null && snapshot.exists()) {
-//                    Log.d(TAG, "Current data: " + snapshot.getData());
-//                } else {
-//                    Log.d(TAG, "Current data: null");
-//                }
-//            }
-//        });
-//    }
 
     private void controlBtnLogin() {
         btnLogin.setOnClickListener(new View.OnClickListener() {

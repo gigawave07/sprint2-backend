@@ -1,4 +1,4 @@
-package com.sprint2;
+package com.sprint2.activity;
 
 import android.content.Intent;
 import android.net.ConnectivityManager;
@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import com.sprint2.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    // Kiểm tra kết nối mạng 3G hoặc wifi
+    // Kiểm tra kết nối mạng 3G ho ặc wifi
     private void checkNetWork() {
         connectivityManager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
         myWifi = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
