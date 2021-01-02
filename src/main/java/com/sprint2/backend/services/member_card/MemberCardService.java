@@ -15,5 +15,5 @@ public interface MemberCardService {
 
     MemberCard findByCustomerName(String fullName);
 
-    MemberCard findByCustomerMail(String mail);
+    List<MemberCard> findByCustomerID(Long id);
 }
