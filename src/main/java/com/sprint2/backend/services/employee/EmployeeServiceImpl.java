@@ -47,4 +47,10 @@ public class EmployeeServiceImpl implements EmployeeService {
     public Employee findByPosition(String position) {
         return this.employeeRepository.findByPositionContaining(position);
     }
+
+    // Thống kê số lượng nhân viên
+    @Override
+    public Long getTotalEmployee() {
+        return this.employeeRepository.getTotalEmployee();
+    }
 }

@@ -42,4 +42,10 @@ public class MemberCardServiceImpl implements MemberCardService {
     public MemberCard findByCustomerMail(String mail) {
         return this.memberCardRepository.findByCar_Customer_Email(mail);
     }
+
+    // Thống kê tổng số lượng vé mỗi loại theo tuần tháng năm
+    @Override
+    public Object getTotalMemberCardType() {
+        return this.memberCardRepository.getTotalMemberCardType();
+    }
 }

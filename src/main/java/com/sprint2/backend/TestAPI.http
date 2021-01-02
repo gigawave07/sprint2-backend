@@ -1,0 +1,24 @@
+GET http://localhost:8080/statistic/total-car-type-parking-slot
+Accept: application/json
+
+###
+GET http://localhost:8080/statistic/total-customer
+Accept: application/json
+
+###
+GET http://localhost:8080/statistic/total-employee
+Accept: application/json
+
+###
+GET http://localhost:8080/statistic/total-car-parking
+Accept: application/json
+
+###
+GET http://localhost:8080/statistic/total-parking-slot
+Accept: application/json
+
+###
+GET http://localhost:8080/statistic/total-member-card-type
+Accept: application/json
+
+###

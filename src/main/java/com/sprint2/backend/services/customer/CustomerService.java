@@ -8,4 +8,7 @@ public interface CustomerService {
     List<Customer> findAll();
 
     Customer findByID(Long id);
+
+    // Thống kê số lượng khách hàng
+    Long getTotalCustomer();
 }

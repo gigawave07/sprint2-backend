@@ -37,4 +37,21 @@ public class ParkingSlotServiceImpl implements ParkingSlotService {
     public ParkingSlot findByReserved(Boolean reserved) {
         return this.parkingSlotRepository.findByReservedContaining(reserved);
     }
+
+    // Thống kê số lượng các hãng xe đang có tại bãi
+    @Override
+    public Object getTotalCarTypeParkingSlot() {
+        return this.parkingSlotRepository.getTotalCarTypeParkingSlot();
+    }
+
+    // Thống kê số lượng xe đang có tại bãi
+    @Override
+    public Long getTotalCarParking() {
+        return this.parkingSlotRepository.getTotalCarParking();
+    }
+
+    @Override
+    public Long getTotalParkingSlot() {
+        return this.parkingSlotRepository.getTotalParkingSlot();
+    }
 }

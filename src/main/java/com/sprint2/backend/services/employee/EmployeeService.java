@@ -18,4 +18,7 @@ public interface EmployeeService {
     Employee findByFullName(String fullName);
 
     Employee findByPosition(String position);
+
+    // Thống kê số lượng nhân viên
+    Long getTotalEmployee();
 }

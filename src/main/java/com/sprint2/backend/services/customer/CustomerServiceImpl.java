@@ -22,4 +22,10 @@ public class CustomerServiceImpl implements CustomerService {
     public Customer findByID(Long id) {
         return this.customerRepository.findById(id).orElse(null);
     }
+
+    // Thống kê số lượng khách hàng
+    @Override
+    public Long getTotalCustomer() {
+        return this.customerRepository.getTotalCustomer();
+    }
 }

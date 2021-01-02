@@ -14,4 +14,14 @@ public interface ParkingSlotService {
     ParkingSlot findByFloor(String floor);
 
     ParkingSlot findByReserved(Boolean reserved);
+
+
+    // Thống kê số lượng các hãng xe đang có tại bãi
+    Object getTotalCarTypeParkingSlot();
+
+    // Thống kê số lượng xe đang có tại bãi
+    Long getTotalCarParking();
+
+    // Thống kê tổng số lượng vị trí đỗ xe của bãi
+    Long getTotalParkingSlot();
 }
