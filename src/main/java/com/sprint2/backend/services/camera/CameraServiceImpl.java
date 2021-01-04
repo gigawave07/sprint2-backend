@@ -54,7 +54,7 @@ public class CameraServiceImpl implements CameraService{
     @Override
     public MessageFromCamera checkMemberOfCar(String numberPlate) {
         messageFromCamera.setPlateNumber(numberPlate);
-        if (numberPlate == null || numberPlate.equals("")){
+        if (numberPlate == null || numberPlate.equals("") || !numberPlate.matches("^([A-Z]|\\d){6,10}$")){
             this.messageFromCamera.setMessage("Can't read");
             return this.messageFromCamera;
         }
@@ -86,21 +86,4 @@ public class CameraServiceImpl implements CameraService{
         this.messageFromCamera.setMessage("Not in database");
         return this.messageFromCamera;
     }
-
-//    @Override
-//    public MessageFromCamera getMessageCamera(Car car) {
-//        MessageFromCamera newMessage = new MessageFromCamera();
-//        List<MemberCard> carMemberOfcar = this.memberCardRepository.getExpiryDateByCarId(car.getId());
-//        if (car == null){
-//            System.out.println("Không có member");
-//            return newMessage;
-//        }
-//        System.out.println("có member");
-//        if (carMemberOfcar == null){
-//            System.out.println("Xe "+ car.getPlateNumber()+ " đã quá hạn thẻ member !");
-//            return newMessage;
-//        }
-//        System.out.println("Xe ok");
-//        return newMessage;
-//    }
 }

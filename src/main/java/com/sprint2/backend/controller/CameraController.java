@@ -24,7 +24,6 @@ public class CameraController {
     public ResponseEntity<MessageFromCamera> mainTest(@RequestBody Image newImage) throws Exception {
         String plateNumber = this.cameraService.getNumberPlateFromImage(newImage);
         MessageFromCamera res = this.cameraService.checkMemberOfCar(plateNumber);
-        System.out.println(plateNumber);
         return new ResponseEntity<>(res,HttpStatus.OK);
     }
 }
