@@ -11,7 +11,6 @@ import com.sprint2.backend.repository.ParkingSlotRepository;
 import net.sf.javaanpr.configurator.Configurator;
 import net.sf.javaanpr.imageanalysis.CarSnapshot;
 import net.sf.javaanpr.intelligence.Intelligence;
-import org.aspectj.bridge.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,11 +30,15 @@ public class CameraServiceImpl implements CameraService{
 
     private File fileImg = new File("E:\\Hướng dẫn\\Video xin viec\\Giới thiệu\\1.image-car");
 
+    private MessageFromCamera messageFromCamera = new MessageFromCamera();
+
+
 
     @Override
     public String getNumberPlateFromImage(Image image) {
-        String numberPlate= "";
+        String numberPlate;
         String srcImg = fileImg.getAbsolutePath() + "\\" + image.getSrc();
+        this.messageFromCamera.setSrcImg(srcImg);
         try {
             Configurator.getConfigurator().loadConfiguration("src/main/resources/static/config.xml");
             Intelligence intel = new Intelligence();
@@ -43,31 +46,45 @@ public class CameraServiceImpl implements CameraService{
             numberPlate = intel.recognize(carSnap);
         } catch (Exception e) {
             e.printStackTrace();
-            numberPlate = "Can't read";
+            numberPlate = "";
         }
         return numberPlate;
     }
 
     @Override
-    public String checkMemberOfCar(String numberPlate) {
+    public MessageFromCamera checkMemberOfCar(String numberPlate) {
+        messageFromCamera.setPlateNumber(numberPlate);
+        if (numberPlate == null || numberPlate.equals("")){
+            this.messageFromCamera.setMessage("Can't read");
+            return this.messageFromCamera;
+        }
         Car carOnPlateNumber = this.carRepository.getCarByPlateNumber(numberPlate);
         if (carOnPlateNumber !=null){
             long idCar = carOnPlateNumber.getId();
             List<MemberCard> cardMemberOfcar = this.memberCardRepository.checkMemberCar(idCar);
             int memberCardTemp = cardMemberOfcar.size();
             if (memberCardTemp > 0){
-                MemberCard memberCardInExpiryDate = this.memberCardRepository.getExpiryDateOfCar(idCar);
-                ParkingSlot parkingSlotOfCar = this.parkingSlotRepository.getParkingSlotByCarId(idCar);
-                if (memberCardInExpiryDate!=null){
-                    parkingSlotOfCar.setStatus(!parkingSlotOfCar.getStatus());
-                    this.parkingSlotRepository.save(parkingSlotOfCar);
-                    return "Member in expiry day to : " + memberCardInExpiryDate.getEndDate();
+                try{
+                    MemberCard memberCardInExpiryDate = this.memberCardRepository.getExpiryDateOfCar(idCar);
+                    ParkingSlot parkingSlotOfCar = this.parkingSlotRepository.getParkingSlotByCarId(idCar);
+                    if (memberCardInExpiryDate!=null){
+                        parkingSlotOfCar.setStatus(!parkingSlotOfCar.getStatus());
+                        this.parkingSlotRepository.save(parkingSlotOfCar);
+                        this.messageFromCamera.setExpirationDate(memberCardInExpiryDate.getEndDate());
+                        this.messageFromCamera.setMessage("Member ok");
+                    } else {
+                        this.messageFromCamera.setMessage("Member not in expiry");
+                    }
+                } catch (Exception e){
+                    this.messageFromCamera.setMessage("Database error");
                 }
-                return "Member not in expiry";
+                return this.messageFromCamera;
             }
-            return "Not member";
+            this.messageFromCamera.setMessage("Not member");
+            return this.messageFromCamera;
         }
-        return "Not in database";
+        this.messageFromCamera.setMessage("Not in database");
+        return this.messageFromCamera;
     }
 
 //    @Override
