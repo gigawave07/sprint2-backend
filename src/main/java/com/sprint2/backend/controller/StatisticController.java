@@ -1,5 +1,7 @@
 package com.sprint2.backend.controller;
 
+import com.sprint2.backend.model.StatisticCarDTO;
+import com.sprint2.backend.services.car.CarService;
 import com.sprint2.backend.services.customer.CustomerService;
 import com.sprint2.backend.services.employee.EmployeeService;
 import com.sprint2.backend.services.member_card.MemberCardService;
@@ -8,10 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.text.ParseException;
 
 @RestController
 @RequestMapping("/statistic")
@@ -29,6 +30,9 @@ public class StatisticController {
 
     @Autowired
     public MemberCardService memberCardService;
+
+    @Autowired
+    public CarService carService;
 
     // Thống kê số lượng các hãng xe đang có tại bãi
     @RequestMapping(value = "/total-car-type-parking-slot", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
@@ -70,5 +74,19 @@ public class StatisticController {
     public ResponseEntity<?> getTotalMemberCardType() {
         Object totalMemberCardType = this.memberCardService.getTotalMemberCardType();
         return new ResponseEntity<>(totalMemberCardType, HttpStatus.OK);
+    }
+
+    // Thống kê số lượng xe của mỗi khách hàng
+    @RequestMapping(value = "/total-car-of-customer", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<?> getTotalCarOfCustomer() {
+        Object totalCarOfCustomer = this.carService.getTotalCarOfCustomer();
+        return new ResponseEntity<>(totalCarOfCustomer, HttpStatus.OK);
+    }
+
+    //  Thống kê số lượng khách hàng đăng ký trong khoảng thời gian
+    @RequestMapping(value = "/total-customer-register-period", method = RequestMethod.POST, produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<?> getToTalCustomerRegisterPeriod(@RequestBody StatisticCarDTO statisticCarDTO) throws ParseException {
+        Object toTalCustomerRegisterPeriod = this.carService.getToTalCustomerRegisterPeriod(statisticCarDTO.getFromDay(), statisticCarDTO.getToDay());
+        return new ResponseEntity<>(toTalCustomerRegisterPeriod, HttpStatus.OK);
     }
 }
