@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.sprint2"
-        minSdkVersion 23
+        minSdkVersion 24
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -47,5 +47,12 @@ dependencies {
 
     //Convert to JSON
     implementation 'com.google.code.gson:gson:2.8.6'
+
+    // QR code scanner
+    implementation 'com.journeyapps:zxing-android-embedded:4.0.0'
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+
+    // SQL library
+    compile files('libs/mysql-connector-java-5.1.23-bin.jar')
 
 }

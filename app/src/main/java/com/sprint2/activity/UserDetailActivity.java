@@ -15,6 +15,7 @@ import com.sprint2.entity.Customer;
 
 public class UserDetailActivity extends AppCompatActivity {
 
+
     ImageView imgQrCode;
     TextView textViewCustomerFullName, textViewLicensePlates, textViewFloor, textViewNumberSlot;
 

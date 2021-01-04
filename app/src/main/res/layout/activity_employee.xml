@@ -8,26 +8,57 @@
         android:orientation="horizontal"
         tools:context=".activity.EmployeeActivity">
     <ImageView
-            android:layout_marginTop="150dp"
+            android:src="@drawable/ic_launcher_background"
+            android:layout_marginTop="100dp"
             android:layout_centerHorizontal="true"
             android:layout_width="200dp"
             android:layout_height="200dp"/>
-    <TextView android:layout_marginTop="400dp"
-              android:layout_marginLeft="2dp"
-              android:layout_width="200dp"
-              android:layout_height="100dp"/>
+    <Button
+            android:id="@+id/btnQrScan"
+            android:text="Quét QR"
+            android:textSize="30dp"
+            android:layout_marginTop="310dp"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    <TextView
+            android:text="Tầng:"
+            android:textSize="30dp"
+            android:id="@+id/carFoor"
+            android:layout_marginTop="400dp"
+            android:layout_marginLeft="2dp"
+            android:layout_width="200dp"
+            android:layout_height="50dp"/>
 
-    <TextView android:layout_marginTop="400dp"
-              android:layout_marginLeft="207dp"
-              android:layout_width="200dp"
-              android:layout_height="100dp"/>
+    <TextView
+            android:text="Số:"
+            android:textSize="30dp"
+            android:id="@+id/carNum"
+            android:layout_marginTop="400dp"
+            android:layout_marginLeft="207dp"
+            android:layout_width="200dp"
+            android:layout_height="50dp"/>
+    <TextView
+            android:text="Tên:"
+            android:textSize="30dp"
+            android:id="@+id/customerName"
+            android:layout_marginTop="453dp"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"/>
+    <TextView
+            android:text="CMND:"
+            android:textSize="30dp"
+            android:id="@+id/identify"
+            android:layout_marginTop="520dp"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"/>
 
-    <TextView android:layout_marginTop="520dp"
-              android:layout_width="match_parent"
-              android:layout_height="100dp"/>
-
-    <TextView android:layout_marginTop="630dp"
-              android:layout_width="match_parent"
-              android:layout_height="100dp"/>
+    <TextView
+            android:text="Biển số xe:"
+            android:textSize="30dp"
+            android:id="@+id/customerCarId"
+            android:layout_marginTop="590dp"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"/>
 
 </RelativeLayout>

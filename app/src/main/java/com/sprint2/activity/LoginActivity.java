@@ -34,8 +34,15 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this, UserDetailActivity.class);
-                startActivity(intent);
+                if (edtEmail.getText().length() != 0 && edtPassword.getText().length()!=0){
+                    if (edtEmail.getText().toString().equals("customer") && edtPassword.getText().toString().equals("123123")) {
+                        Intent intent = new Intent(LoginActivity.this, UserDetailActivity.class);
+                        startActivity(intent);
+                    } else if (edtEmail.getText().toString().equals("employee") && edtPassword.getText().toString().equals("123123")) {
+                        Intent intent = new Intent(LoginActivity.this, EmployeeActivity.class);
+                        startActivity(intent);
+                    }
+                }
             }
         });
     }
