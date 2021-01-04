@@ -22,4 +22,9 @@ public class CustomerServiceImpl implements CustomerService {
     public Customer findByID(Long id) {
         return this.customerRepository.findById(id).orElse(null);
     }
+
+    @Override
+    public void updateCustomer(Customer customer) {
+        this.customerRepository.save(customer);
+    }
 }
