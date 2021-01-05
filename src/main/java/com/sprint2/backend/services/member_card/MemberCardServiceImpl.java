@@ -19,6 +19,11 @@ public class MemberCardServiceImpl implements MemberCardService {
     }
 
     @Override
+    public List<MemberCard> findAllMemberCardByEndDateExpires() {
+        return this.memberCardRepository.findAllMemberCardByEndDateExpires();
+    }
+
+    @Override
     public MemberCard findByID(Long id) {
         return this.memberCardRepository.findById(id).orElse(null);
     }
