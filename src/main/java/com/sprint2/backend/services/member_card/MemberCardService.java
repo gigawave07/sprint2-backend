@@ -1,5 +1,6 @@
 package com.sprint2.backend.services.member_card;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import com.sprint2.backend.entity.MemberCard;
@@ -20,4 +21,7 @@ public interface MemberCardService {
 
     // Thống kê tổng số lượng vé mỗi loại theo tuần tháng năm
     Object getTotalMemberCardType();
+
+    // Thống kê doanh thu trong khoảng thời gian (member card)
+    Object getTotalRevenueMemberCardPeriod(String fromDay, String toDay);
 }

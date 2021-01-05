@@ -1,12 +1,13 @@
 package com.sprint2.backend.services.member_card;
 
+import com.sprint2.backend.entity.MemberCard;
+import com.sprint2.backend.repository.MemberCardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
-
-import com.sprint2.backend.entity.MemberCard;
-import com.sprint2.backend.repository.MemberCardRepository;
 
 @Service
 public class MemberCardServiceImpl implements MemberCardService {
@@ -47,5 +48,14 @@ public class MemberCardServiceImpl implements MemberCardService {
     @Override
     public Object getTotalMemberCardType() {
         return this.memberCardRepository.getTotalMemberCardType();
+    }
+
+    // Thống kê doanh thu trong khoảng thời gian (member card)
+    @Override
+    public Object getTotalRevenueMemberCardPeriod(String fromDay, String toDay) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-d");
+        LocalDate localFromDay = LocalDate.parse(fromDay, formatter);
+        LocalDate localToDay = LocalDate.parse(toDay, formatter);
+        return this.memberCardRepository.getTotalRevenueMemberCardPeriod(localFromDay, localToDay);
     }
 }

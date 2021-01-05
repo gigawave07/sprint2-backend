@@ -1,3 +1,21 @@
+POST http://localhost:8080/statistic/total-revenue-ticket-period
+Content-Type: application/json
+
+{
+  "fromDayPayment": "2019-12-10",
+  "toDayPayment": "2022-09-26"
+}
+
+###
+POST http://localhost:8080/statistic/total-revenue-member-card-period
+Content-Type: application/json
+
+{
+  "fromDayPayment": "2019-12-10",
+  "toDayPayment": "2022-09-26"
+}
+
+###
 POST http://localhost:8080/statistic/total-customer-register-period
 Content-Type: application/json
 

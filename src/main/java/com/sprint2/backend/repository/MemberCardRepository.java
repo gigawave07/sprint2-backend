@@ -6,6 +6,8 @@ import org.springframework.stereotype.Repository;
 
 import com.sprint2.backend.entity.MemberCard;
 
+import java.time.LocalDate;
+
 @Repository
 public interface MemberCardRepository extends JpaRepository<MemberCard, Long> {
     MemberCard findByCar_PlateNumber(String plateNumber);
@@ -15,7 +17,17 @@ public interface MemberCardRepository extends JpaRepository<MemberCard, Long> {
     MemberCard findByCar_Customer_FullName(String fullName);
 
     // Thống kê tổng số lượng vé mỗi loại theo tuần tháng năm
-    @Query(nativeQuery = true, value = "select json_arrayagg(json_object('member_type_name',project2_parking_management.statistics_member_card_type.member_type_name, 'total_member_card_type',project2_parking_management.statistics_member_card_type.total_member_card_type)) from project2_parking_management.statistics_member_card_type;")
+    @Query(nativeQuery = true, value = "select json_arrayagg(json_object" +
+            "('member_type_name',project2_parking_management.statistics_member_card_type.member_type_name," +
+            "'total_member_card_type',project2_parking_management.statistics_member_card_type.total_member_card_type))" +
+            "from project2_parking_management.statistics_member_card_type;")
     Object getTotalMemberCardType();
-    
+
+    // Thống kê doanh thu trong khoảng thời gian (member card)
+    @Query(nativeQuery = true, value = "select json_arrayagg(json_object" +
+            "('date_payment', project2_parking_management.statistic_total_revenue_member_card.date_payment,\n" +
+            "'total_price', project2_parking_management.statistic_total_revenue_member_card.total_price))\n" +
+            "from project2_parking_management.statistic_total_revenue_member_card\n" +
+            "where project2_parking_management.statistic_total_revenue_member_card.date_payment between (?1) and (?2);")
+    Object getTotalRevenueMemberCardPeriod(LocalDate fromDay, LocalDate toDay);
 }

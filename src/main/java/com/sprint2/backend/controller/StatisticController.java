@@ -1,11 +1,13 @@
 package com.sprint2.backend.controller;
 
 import com.sprint2.backend.model.StatisticCarDTO;
+import com.sprint2.backend.model.StatisticRevenueDTO;
 import com.sprint2.backend.services.car.CarService;
 import com.sprint2.backend.services.customer.CustomerService;
 import com.sprint2.backend.services.employee.EmployeeService;
 import com.sprint2.backend.services.member_card.MemberCardService;
 import com.sprint2.backend.services.parking_slot.ParkingSlotService;
+import com.sprint2.backend.services.ticket.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -33,6 +35,9 @@ public class StatisticController {
 
     @Autowired
     public CarService carService;
+
+    @Autowired
+    public TicketService ticketService;
 
     // Thống kê số lượng các hãng xe đang có tại bãi
     @RequestMapping(value = "/total-car-type-parking-slot", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
@@ -86,7 +91,22 @@ public class StatisticController {
     //  Thống kê số lượng khách hàng đăng ký trong khoảng thời gian
     @RequestMapping(value = "/total-customer-register-period", method = RequestMethod.POST, produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<?> getToTalCustomerRegisterPeriod(@RequestBody StatisticCarDTO statisticCarDTO) throws ParseException {
-        Object toTalCustomerRegisterPeriod = this.carService.getToTalCustomerRegisterPeriod(statisticCarDTO.getFromDay(), statisticCarDTO.getToDay());
+        Object toTalCustomerRegisterPeriod = this.customerService.getToTalCustomerRegisterPeriod(statisticCarDTO.getFromDay(), statisticCarDTO.getToDay());
         return new ResponseEntity<>(toTalCustomerRegisterPeriod, HttpStatus.OK);
     }
+
+    // Thống kê doanh thu trong khoảng thời gian (member card)
+    @RequestMapping(value = "/total-revenue-member-card-period", method = RequestMethod.POST, produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<?> getTotalRevenueMemberCardPeriod(@RequestBody StatisticRevenueDTO revenueDTO) {
+        Object totalRevenueMemberCardPeriod = this.memberCardService.getTotalRevenueMemberCardPeriod(revenueDTO.getFromDayPayment(), revenueDTO.getToDayPayment());
+        return new ResponseEntity<>(totalRevenueMemberCardPeriod, HttpStatus.OK);
+    }
+
+    // Thống kê doanh thu trong khoảng thời gian (ticket)
+    @RequestMapping(value = "/total-revenue-ticket-period", method = RequestMethod.POST, produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<?> getTotalRevenueTicketPeriod(@RequestBody StatisticRevenueDTO revenueDTO) {
+        Object totalRevenueTicketPeriod = this.ticketService.getTotalRevenueTicketPeriod(revenueDTO.getFromDayPayment(), revenueDTO.getToDayPayment());
+        return new ResponseEntity<>(totalRevenueTicketPeriod, HttpStatus.OK);
+    }
+
 }
