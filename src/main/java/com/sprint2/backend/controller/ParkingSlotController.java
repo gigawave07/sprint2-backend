@@ -70,7 +70,7 @@ public class ParkingSlotController {
      * @param slotNumber
      * @param floor
      * @return parkingSlot
-     * Create by MaiHTQ
+     * Create by MaiHTQ 
      */
     @GetMapping("/find-parking-slot-by-slot-number-floor/{slotNumber}/{floor}")
     public ResponseEntity<ParkingSlot> getParkingSlotById(@PathVariable String slotNumber, @PathVariable String floor) {
