@@ -8,4 +8,9 @@ public interface CarService {
     List<Car> findAll();
 
     Car findByID(Long id);
+
+    // --------------------Vinh begin -----------------------
+    List<Car> getListCar(Long customerId);
+    // --------------------Vinh end -------------------------
+
 }

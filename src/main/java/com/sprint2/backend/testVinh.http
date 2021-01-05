@@ -1,0 +1,8 @@
+GET http://localhost:8080/car/scanQrCode/1
+Accept: application/json
+
+###
+GET http://localhost:8080/car/getListCar/1
+Accept: application/json
+
+###

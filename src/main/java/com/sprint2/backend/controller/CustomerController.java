@@ -1,9 +1,23 @@
 package com.sprint2.backend.controller;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RestController;
+import com.sprint2.backend.entity.Customer;
+import com.sprint2.backend.services.customer.CustomerService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-@RestController("/customer")
+@RestController
+@RequestMapping("/customer")
 @CrossOrigin
 public class CustomerController {
+    // --------------------Vinh begin -----------------------
+    @Autowired
+    private CustomerService customerService;
+
+    @GetMapping("/getCustomerDetail/{customerId}")
+    public ResponseEntity<Customer> getCustomerDetail(@PathVariable Long customerId) {
+        return ResponseEntity.ok(this.customerService.findByID(customerId));
+    }
+    // --------------------Vinh end -------------------------
 }

@@ -22,4 +22,11 @@ public class CarServiceImpl implements CarService{
     public Car findByID(Long id) {
         return this.carRepository.findById(id).orElse(null);
     }
+
+    // --------------------Vinh begin -----------------------
+    @Override
+    public List<Car> getListCar(Long customerId) {
+        return this.carRepository.findAllByCustomerId(customerId);
+    }
+    // --------------------Vinh end -------------------------
 }
