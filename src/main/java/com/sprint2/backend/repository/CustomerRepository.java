@@ -7,4 +7,5 @@ import com.sprint2.backend.entity.Customer;
 
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
+    Customer findByIdentityNumber(String identityNumber);
 }
