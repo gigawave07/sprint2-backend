@@ -10,4 +10,12 @@ public interface ParkingSlotRepository extends JpaRepository<ParkingSlot, Long> 
     ParkingSlot findByFloorContaining(String floor);
 
     ParkingSlot findByReservedContaining(Boolean reserved);
+
+
+    /**
+     * Lành
+     */
+    ParkingSlot findBySlotNumber(String slotNumber);
+
+    ParkingSlot findByFloorAndSlotNumber(String floor, String slotNumber);
 }

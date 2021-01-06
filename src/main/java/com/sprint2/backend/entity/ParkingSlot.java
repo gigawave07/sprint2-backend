@@ -27,8 +27,11 @@ public class ParkingSlot {
     @Column(name = "status", columnDefinition = "BIT")
     private Boolean status = false;
 
-    // relationship
+    @Column(name = "slot_number", columnDefinition = "VARCHAR(50)")
+    private String slotNumber;
 
+
+    // relationship
     @OneToOne
     @JoinColumn(name = "car_id", referencedColumnName = "id", columnDefinition = "BIGINT")
     private Car car;

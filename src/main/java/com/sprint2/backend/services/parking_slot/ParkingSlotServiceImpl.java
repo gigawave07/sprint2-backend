@@ -3,6 +3,7 @@ package com.sprint2.backend.services.parking_slot;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.sprint2.backend.entity.ParkingSlot;
@@ -36,5 +37,30 @@ public class ParkingSlotServiceImpl implements ParkingSlotService {
     @Override
     public ParkingSlot findByReserved(Boolean reserved) {
         return this.parkingSlotRepository.findByReservedContaining(reserved);
+    }
+
+    /**
+     * Lành
+     */
+    @Override
+    public List<ParkingSlot> findAllNeed() {
+        List<ParkingSlot> parkingSlotListExists = this.parkingSlotRepository.findAll();
+        List<ParkingSlot> parkingSlotListDisplay = new ArrayList<>();
+        for (ParkingSlot parkingSlot : parkingSlotListExists) {
+            if (!parkingSlot.getReserved() && !parkingSlot.getStatus()) {
+                parkingSlotListDisplay.add(parkingSlot);
+            }
+        }
+        return parkingSlotListDisplay;
+    }
+
+    @Override
+    public ParkingSlot findBySlotNumber(String slotNumber) {
+        return this.parkingSlotRepository.findBySlotNumber(slotNumber);
+    }
+
+    @Override
+    public ParkingSlot findByFloorAndSlotNumber(String floor, String slotNumber) {
+        return this.parkingSlotRepository.findByFloorAndSlotNumber(floor, slotNumber);
     }
 }

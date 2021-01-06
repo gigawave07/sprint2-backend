@@ -8,4 +8,8 @@ public interface CarService {
     List<Car> findAll();
 
     Car findByID(Long id);
+
+
+    // Lành
+    List<Car> findPlateNumber(String plateNumber);
 }

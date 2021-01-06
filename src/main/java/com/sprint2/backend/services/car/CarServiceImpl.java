@@ -22,4 +22,11 @@ public class CarServiceImpl implements CarService{
     public Car findByID(Long id) {
         return this.carRepository.findById(id).orElse(null);
     }
+
+
+    //Lành
+    @Override
+    public List<Car> findPlateNumber(String plateNumber) {
+        return this.carRepository.findCarByPlateNumber(plateNumber);
+    }
 }
