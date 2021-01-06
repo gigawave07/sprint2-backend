@@ -12,4 +12,6 @@ import lombok.Setter;
 public class StatisticCarDTO {
     public String fromDay;
     public String toDay;
+    public String monthParam;
+    public String yearParam;
 }

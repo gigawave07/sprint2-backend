@@ -58,4 +58,28 @@ public class MemberCardServiceImpl implements MemberCardService {
         LocalDate localToDay = LocalDate.parse(toDay, formatter);
         return this.memberCardRepository.getTotalRevenueMemberCardPeriod(localFromDay, localToDay);
     }
+
+    // Thống kê số vé theo tuần (member card)
+    @Override
+    public Object getTotalMemberCardWeek(String monthParam, String yearParam) {
+        return this.memberCardRepository.getTotalMemberCardWeek(monthParam, yearParam);
+    }
+
+    // Thống kê số vé theo tháng (member card)
+    @Override
+    public Object getTotalMemberCardMonth(String monthParam, String yearParam) {
+        return this.memberCardRepository.getTotalMemberCardMonth(monthParam, yearParam);
+    }
+
+    // Thống kê số vé theo năm (member card)
+    @Override
+    public Object getTotalMemberCardYear(String yearParam) {
+        return this.memberCardRepository.getTotalMemberCardYear(yearParam);
+    }
+
+    // Thống kê số vé theo tuần tháng năm
+//    @Override
+//    public Object getTotalMemberCard(String monthParam, String yearParam) {
+//        return this.memberCardRepository.getTotalMemberCard(monthParam, yearParam);
+//    }
 }

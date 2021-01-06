@@ -109,4 +109,32 @@ public class StatisticController {
         return new ResponseEntity<>(totalRevenueTicketPeriod, HttpStatus.OK);
     }
 
+    // Thống kê số vé theo tuần (member card)
+    @RequestMapping(value = "/total-member-card-week", method = RequestMethod.POST, produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<?> getTotalMemberCardWeek(@RequestBody StatisticCarDTO carDTO) {
+        Object totalMemberCardWeek = this.memberCardService.getTotalMemberCardWeek(carDTO.getMonthParam(), carDTO.getYearParam());
+        return new ResponseEntity<>(totalMemberCardWeek, HttpStatus.OK);
+    }
+
+    // Thống kê số vé theo tháng (member card)
+    @RequestMapping(value = "/total-member-card-month", method = RequestMethod.POST, produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<?> getTotalMemberCardMonth(@RequestBody StatisticCarDTO carDTO) {
+        Object totalMemberCardMonth = this.memberCardService.getTotalMemberCardMonth(carDTO.getMonthParam(), carDTO.getYearParam());
+        return new ResponseEntity<>(totalMemberCardMonth, HttpStatus.OK);
+    }
+
+    // Thống kê số vé theo năm (member card)
+    @RequestMapping(value = "/total-member-card-year", method = RequestMethod.POST, produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<?> getTotalMemberCardYear(@RequestBody StatisticCarDTO carDTO) {
+        Object totalMemberCardYear = this.memberCardService.getTotalMemberCardYear(carDTO.getYearParam());
+        return new ResponseEntity<>(totalMemberCardYear, HttpStatus.OK);
+    }
+
+    // Thống kê số vé theo tuần tháng năm
+//    @RequestMapping(value = "/total-member-card-statistic", method = RequestMethod.POST, produces = {MediaType.APPLICATION_JSON_VALUE})
+//    public ResponseEntity<?> getTotalMemberCard(@RequestBody StatisticCarDTO carDTO) {
+//        Object totalMemberCard = this.memberCardService.getTotalMemberCard(carDTO.getMonthParam(), carDTO.getYearParam());
+//        return new ResponseEntity<>(totalMemberCard, HttpStatus.OK);
+//    }
+
 }
