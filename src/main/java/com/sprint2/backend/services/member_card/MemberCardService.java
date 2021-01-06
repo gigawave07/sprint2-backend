@@ -7,6 +7,8 @@ import com.sprint2.backend.entity.MemberCard;
 public interface MemberCardService {
     List<MemberCard> findAll();
 
+    List<MemberCard> findAllMemberCardByEndDateExpires();
+
     MemberCard findByID(Long id);
 
     void save(MemberCard memberCard);

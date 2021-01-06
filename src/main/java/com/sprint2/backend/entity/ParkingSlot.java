@@ -1,5 +1,6 @@
 package com.sprint2.backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,6 +18,9 @@ public class ParkingSlot {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", columnDefinition = "BIGINT")
     private Long id;
+
+    @Column(name = "slot_number", columnDefinition = "VARCHAR(50)")
+    private String slotNumber;
 
     @Column(name = "floor", columnDefinition = "VARCHAR(50)")
     private String floor;

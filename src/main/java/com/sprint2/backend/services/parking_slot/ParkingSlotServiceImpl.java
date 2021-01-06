@@ -1,5 +1,7 @@
 package com.sprint2.backend.services.parking_slot;
 
+import com.sprint2.backend.entity.SlotType;
+import com.sprint2.backend.repository.SlotTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +14,8 @@ import com.sprint2.backend.repository.ParkingSlotRepository;
 public class ParkingSlotServiceImpl implements ParkingSlotService {
     @Autowired
     private ParkingSlotRepository parkingSlotRepository;
-
+    @Autowired
+    private SlotTypeRepository slotTypeRepository;
     @Override
     public List<ParkingSlot> findAll() {
         return this.parkingSlotRepository.findAll();
@@ -36,5 +39,10 @@ public class ParkingSlotServiceImpl implements ParkingSlotService {
     @Override
     public ParkingSlot findByReserved(Boolean reserved) {
         return this.parkingSlotRepository.findByReservedContaining(reserved);
+    }
+
+    @Override
+    public List<SlotType> findAllSlotType() {
+        return this.slotTypeRepository.findAll();
     }
 }
