@@ -49,4 +49,7 @@ public class AppAccount {
     @OneToOne(mappedBy = "appAccount", cascade = CascadeType.ALL)
     @JsonBackReference
     private Customer customer;
+
+    @Column(name = "email", columnDefinition = "VARCHAR(50)")
+    private String email;
 }
