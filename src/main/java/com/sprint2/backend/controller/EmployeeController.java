@@ -1,9 +1,9 @@
-package com.sprint2.backend.controllers;
+package com.sprint2.backend.controller;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController("/account")
+@RestController("/employee")
 @CrossOrigin
-public class AppAccountController {
+public class EmployeeController {
 }
