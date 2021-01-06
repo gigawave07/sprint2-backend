@@ -50,4 +50,10 @@ public class Car {
     @OneToMany(mappedBy = "car", cascade = CascadeType.ALL)
     @JsonBackReference
     private List<MemberCard> memberCardList;
+
+    // custom constructor
+
+    public Car(String plateNumber) {
+        this.plateNumber = plateNumber;
+    }
 }

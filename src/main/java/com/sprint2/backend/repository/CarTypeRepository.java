@@ -7,4 +7,5 @@ import com.sprint2.backend.entity.CarType;
 
 @Repository
 public interface CarTypeRepository extends JpaRepository<CarType, Long> {
+    CarType findByCarTypeNameContains(String name);
 }
