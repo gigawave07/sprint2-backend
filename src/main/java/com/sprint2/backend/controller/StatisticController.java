@@ -110,9 +110,27 @@ public class StatisticController {
     }
 
     // Thống kê số vé theo tuần (member card)
-    @RequestMapping(value = "/total-member-card-week", method = RequestMethod.POST, produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<?> getTotalMemberCardWeek(@RequestBody StatisticCarDTO carDTO) {
-        Object totalMemberCardWeek = this.memberCardService.getTotalMemberCardWeek(carDTO.getMonthParam(), carDTO.getYearParam());
+    @RequestMapping(value = "/total-member-card-week1", method = RequestMethod.POST, produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<?> getTotalMemberCardWeek1(@RequestBody StatisticCarDTO carDTO) {
+        Object totalMemberCardWeek = this.memberCardService.getTotalMemberCardWeek1(carDTO.getMonthParam(), carDTO.getYearParam());
+        return new ResponseEntity<>(totalMemberCardWeek, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/total-member-card-week2", method = RequestMethod.POST, produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<?> getTotalMemberCardWeek2(@RequestBody StatisticCarDTO carDTO) {
+        Object totalMemberCardWeek = this.memberCardService.getTotalMemberCardWeek2(carDTO.getMonthParam(), carDTO.getYearParam());
+        return new ResponseEntity<>(totalMemberCardWeek, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/total-member-card-week3", method = RequestMethod.POST, produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<?> getTotalMemberCardWeek3(@RequestBody StatisticCarDTO carDTO) {
+        Object totalMemberCardWeek = this.memberCardService.getTotalMemberCardWeek3(carDTO.getMonthParam(), carDTO.getYearParam());
+        return new ResponseEntity<>(totalMemberCardWeek, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/total-member-card-week4", method = RequestMethod.POST, produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<?> getTotalMemberCardWeek4(@RequestBody StatisticCarDTO carDTO) {
+        Object totalMemberCardWeek = this.memberCardService.getTotalMemberCardWeek4(carDTO.getMonthParam(), carDTO.getYearParam());
         return new ResponseEntity<>(totalMemberCardWeek, HttpStatus.OK);
     }
 
@@ -129,12 +147,5 @@ public class StatisticController {
         Object totalMemberCardYear = this.memberCardService.getTotalMemberCardYear(carDTO.getYearParam());
         return new ResponseEntity<>(totalMemberCardYear, HttpStatus.OK);
     }
-
-    // Thống kê số vé theo tuần tháng năm
-//    @RequestMapping(value = "/total-member-card-statistic", method = RequestMethod.POST, produces = {MediaType.APPLICATION_JSON_VALUE})
-//    public ResponseEntity<?> getTotalMemberCard(@RequestBody StatisticCarDTO carDTO) {
-//        Object totalMemberCard = this.memberCardService.getTotalMemberCard(carDTO.getMonthParam(), carDTO.getYearParam());
-//        return new ResponseEntity<>(totalMemberCard, HttpStatus.OK);
-//    }
 
 }

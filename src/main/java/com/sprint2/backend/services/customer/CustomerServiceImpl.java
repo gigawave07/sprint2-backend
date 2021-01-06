@@ -1,5 +1,7 @@
 package com.sprint2.backend.services.customer;
 
+import com.sprint2.backend.entity.Customer;
+import com.sprint2.backend.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -7,9 +9,6 @@ import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-
-import com.sprint2.backend.entity.Customer;
-import com.sprint2.backend.repository.CustomerRepository;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {

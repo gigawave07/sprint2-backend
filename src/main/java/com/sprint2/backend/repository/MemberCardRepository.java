@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
-import java.util.List;
 
 @Repository
 public interface MemberCardRepository extends JpaRepository<MemberCard, Long> {
@@ -38,17 +37,36 @@ public interface MemberCardRepository extends JpaRepository<MemberCard, Long> {
             "from project2_parking_management.statistic_member_card_time\n" +
             "where (dayofmonth(project2_parking_management.statistic_member_card_time.date) between '01' and '07'\n" +
             "    and month(project2_parking_management.statistic_member_card_time.date) = :monthParam \n" +
-            "    and year(project2_parking_management.statistic_member_card_time.date) = :yearParam )\n" +
-            "   or (dayofmonth(project2_parking_management.statistic_member_card_time.date) between '08' and '14'\n" +
-            "    and month(project2_parking_management.statistic_member_card_time.date) = :monthParam \n" +
-            "    and year(project2_parking_management.statistic_member_card_time.date) = :yearParam)\n" +
-            "   or (dayofmonth(project2_parking_management.statistic_member_card_time.date) between '15' and '21'\n" +
-            "    and month(project2_parking_management.statistic_member_card_time.date) = :monthParam \n" +
-            "    and year(project2_parking_management.statistic_member_card_time.date) = :yearParam)\n" +
-            "   or (dayofmonth(project2_parking_management.statistic_member_card_time.date) between '22' and '31'\n" +
+            "    and year(project2_parking_management.statistic_member_card_time.date) = :yearParam )")
+    Object getTotalMemberCardWeek1(String monthParam, String yearParam);
+
+    @Query(nativeQuery = true, value = "select json_arrayagg(json_object(" +
+            "'date', project2_parking_management.statistic_member_card_time.date,\n" +
+            "'total_member_card', project2_parking_management.statistic_member_card_time.total_member_card_day))\n" +
+            "from project2_parking_management.statistic_member_card_time\n" +
+            "where (dayofmonth(project2_parking_management.statistic_member_card_time.date) between '08' and '14'\n" +
             "    and month(project2_parking_management.statistic_member_card_time.date) = :monthParam \n" +
             "    and year(project2_parking_management.statistic_member_card_time.date) = :yearParam)")
-    Object getTotalMemberCardWeek(String monthParam, String yearParam);
+    Object getTotalMemberCardWeek2(String monthParam, String yearParam);
+
+    @Query(nativeQuery = true, value = "select json_arrayagg(json_object(" +
+            "'date', project2_parking_management.statistic_member_card_time.date,\n" +
+            "'total_member_card', project2_parking_management.statistic_member_card_time.total_member_card_day))\n" +
+            "from project2_parking_management.statistic_member_card_time\n" +
+            "where (dayofmonth(project2_parking_management.statistic_member_card_time.date) between '15' and '21'\n" +
+            "    and month(project2_parking_management.statistic_member_card_time.date) = :monthParam \n" +
+            "    and year(project2_parking_management.statistic_member_card_time.date) = :yearParam)")
+    Object getTotalMemberCardWeek3(String monthParam, String yearParam);
+
+    @Query(nativeQuery = true, value = "select json_arrayagg(json_object(" +
+            "'date', project2_parking_management.statistic_member_card_time.date,\n" +
+            "'total_member_card', project2_parking_management.statistic_member_card_time.total_member_card_day))\n" +
+            "from project2_parking_management.statistic_member_card_time\n" +
+            "where (dayofmonth(project2_parking_management.statistic_member_card_time.date) between '22' and '31'\n" +
+            "    and month(project2_parking_management.statistic_member_card_time.date) = :monthParam \n" +
+            "    and year(project2_parking_management.statistic_member_card_time.date) = :yearParam)")
+    Object getTotalMemberCardWeek4(String monthParam, String yearParam);
+
 
     // Thống kê số vé theo tháng (member card)
     @Query(nativeQuery = true, value = "select json_arrayagg(json_object(" +
@@ -67,25 +85,4 @@ public interface MemberCardRepository extends JpaRepository<MemberCard, Long> {
             "where year(project2_parking_management.statistic_member_card_time.date) = :yearParam")
     Object getTotalMemberCardYear(String yearParam);
 
-    // Thống kê số vé theo tuần tháng năm
-//    @Query(nativeQuery = true, value = "select json_arrayagg(json_object(" +
-//            "'date', project2_parking_management.statistic_member_card_time.date,\n" +
-//            "'total_member_card', project2_parking_management.statistic_member_card_time.total_member_card_day))\n" +
-//            "from project2_parking_management.statistic_member_card_time\n" +
-//            "where (dayofmonth(project2_parking_management.statistic_member_card_time.date) between '01' and '07'\n" +
-//            "    and month(project2_parking_management.statistic_member_card_time.date) = :monthParam \n" +
-//            "    and year(project2_parking_management.statistic_member_card_time.date) = :yearParam )\n" +
-//            "   or (dayofmonth(project2_parking_management.statistic_member_card_time.date) between '08' and '14'\n" +
-//            "    and month(project2_parking_management.statistic_member_card_time.date) = :monthParam \n" +
-//            "    and year(project2_parking_management.statistic_member_card_time.date) = :yearParam )\n" +
-//            "   or (dayofmonth(project2_parking_management.statistic_member_card_time.date) between '15' and '21'\n" +
-//            "    and month(project2_parking_management.statistic_member_card_time.date) = :monthParam \n" +
-//            "    and year(project2_parking_management.statistic_member_card_time.date) = :yearParam )\n" +
-//            "   or (dayofmonth(project2_parking_management.statistic_member_card_time.date) between '22' and '31'\n" +
-//            "    and month(project2_parking_management.statistic_member_card_time.date) = :monthParam \n" +
-//            "    and year(project2_parking_management.statistic_member_card_time.date) = :yearParam )\n" +
-//            "   or (month(project2_parking_management.statistic_member_card_time.date) = :monthParam \n" +
-//            "    and year(project2_parking_management.statistic_member_card_time.date) = :yearParam )\n" +
-//            "   or year(project2_parking_management.statistic_member_card_time.date) = :yearParam ;")
-//    Object getTotalMemberCard(String monthParam, String yearParam);
 }

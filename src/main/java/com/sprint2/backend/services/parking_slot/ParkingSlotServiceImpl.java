@@ -1,12 +1,11 @@
 package com.sprint2.backend.services.parking_slot;
 
+import com.sprint2.backend.entity.ParkingSlot;
+import com.sprint2.backend.repository.ParkingSlotRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
-import com.sprint2.backend.entity.ParkingSlot;
-import com.sprint2.backend.repository.ParkingSlotRepository;
 
 @Service
 public class ParkingSlotServiceImpl implements ParkingSlotService {

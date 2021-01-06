@@ -1,12 +1,11 @@
 package com.sprint2.backend.services.employee;
 
+import com.sprint2.backend.entity.Employee;
+import com.sprint2.backend.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
-import com.sprint2.backend.entity.Employee;
-import com.sprint2.backend.repository.EmployeeRepository;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {

@@ -1,9 +1,9 @@
 package com.sprint2.backend.services.customer;
 
+import com.sprint2.backend.entity.Customer;
+
 import java.text.ParseException;
 import java.util.List;
-
-import com.sprint2.backend.entity.Customer;
 
 public interface CustomerService {
     List<Customer> findAll();

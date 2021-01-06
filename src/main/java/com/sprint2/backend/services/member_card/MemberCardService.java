@@ -24,7 +24,13 @@ public interface MemberCardService {
     Object getTotalRevenueMemberCardPeriod(String fromDay, String toDay);
 
     //     Thống kê số vé theo tuần (member card)
-    Object getTotalMemberCardWeek(String monthParam, String yearParam);
+    Object getTotalMemberCardWeek1(String monthParam, String yearParam);
+
+    Object getTotalMemberCardWeek2(String monthParam, String yearParam);
+
+    Object getTotalMemberCardWeek3(String monthParam, String yearParam);
+
+    Object getTotalMemberCardWeek4(String monthParam, String yearParam);
 
     //     Thống kê số vé theo tháng (member card)
     Object getTotalMemberCardMonth(String monthParam, String yearParam);
@@ -32,6 +38,4 @@ public interface MemberCardService {
     //     Thống kê số vé theo năm (member card)
     Object getTotalMemberCardYear(String yearParam);
 
-    // Thống kê số vé theo tuần tháng năm
-//     Object getTotalMemberCard(String monthParam, String yearParam);
 }

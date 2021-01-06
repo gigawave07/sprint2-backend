@@ -61,8 +61,23 @@ public class MemberCardServiceImpl implements MemberCardService {
 
     // Thống kê số vé theo tuần (member card)
     @Override
-    public Object getTotalMemberCardWeek(String monthParam, String yearParam) {
-        return this.memberCardRepository.getTotalMemberCardWeek(monthParam, yearParam);
+    public Object getTotalMemberCardWeek1(String monthParam, String yearParam) {
+        return this.memberCardRepository.getTotalMemberCardWeek1(monthParam, yearParam);
+    }
+
+    @Override
+    public Object getTotalMemberCardWeek2(String monthParam, String yearParam) {
+        return this.memberCardRepository.getTotalMemberCardWeek2(monthParam, yearParam);
+    }
+
+    @Override
+    public Object getTotalMemberCardWeek3(String monthParam, String yearParam) {
+        return this.memberCardRepository.getTotalMemberCardWeek3(monthParam, yearParam);
+    }
+
+    @Override
+    public Object getTotalMemberCardWeek4(String monthParam, String yearParam) {
+        return this.memberCardRepository.getTotalMemberCardWeek4(monthParam, yearParam);
     }
 
     // Thống kê số vé theo tháng (member card)
@@ -77,9 +92,4 @@ public class MemberCardServiceImpl implements MemberCardService {
         return this.memberCardRepository.getTotalMemberCardYear(yearParam);
     }
 
-    // Thống kê số vé theo tuần tháng năm
-//    @Override
-//    public Object getTotalMemberCard(String monthParam, String yearParam) {
-//        return this.memberCardRepository.getTotalMemberCard(monthParam, yearParam);
-//    }
 }
