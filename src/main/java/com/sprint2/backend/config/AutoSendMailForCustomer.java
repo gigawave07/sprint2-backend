@@ -165,7 +165,7 @@ public class AutoSendMailForCustomer {
                                 "Nếu không thanh toán vé sẽ được hủy\n" +
                                 "        theo quy định của công ty.</p>\n" +
                                 "      <p>Click vào <a style=\"color: green\" " +
-                                "href=\"http://localhost:4200\">đây</a> để đăng nhập nhanh vào hệ thống" +
+                                "href=\"http://localhost:4200\">đây</a> để đăng nhập nhanh vào hệ thống " +
                                 "của chúng tôi.</p>\n" +
                                 "      <p class=\"autoMail\">P/s : Đây là thư thông báo tự động. " +
                                 "Quý khách vui lòng không trả lời thư này!</p>\n" +
