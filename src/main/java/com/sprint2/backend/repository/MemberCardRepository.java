@@ -12,4 +12,6 @@ public interface MemberCardRepository extends JpaRepository<MemberCard, Long> {
     MemberCard findByCar_Customer_Email(String mail);
 
     MemberCard findByCar_Customer_FullName(String fullName);
+
+
 }

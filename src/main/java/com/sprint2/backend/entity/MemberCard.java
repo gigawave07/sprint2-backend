@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -22,10 +23,10 @@ public class MemberCard {
     private Long id;
 
     @Column(name = "start_date", columnDefinition = "DATETIME")
-    private LocalDateTime startDate;
+    private LocalDate startDate;
 
     @Column(name = "end_date", columnDefinition = "DATETIME")
-    private LocalDateTime endDate;
+    private LocalDate endDate;
 
     @Column(name = "price", columnDefinition = "DOUBLE")
     private Double price;

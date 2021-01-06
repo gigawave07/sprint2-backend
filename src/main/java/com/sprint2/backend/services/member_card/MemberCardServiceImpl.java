@@ -1,8 +1,14 @@
 package com.sprint2.backend.services.member_card;
 
+import com.sprint2.backend.entity.Car;
+import com.sprint2.backend.model.CarDTO;
+import com.sprint2.backend.model.CustomerDTO;
+import com.sprint2.backend.model.MemberCardDTO;
+import com.sprint2.backend.repository.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import com.sprint2.backend.entity.MemberCard;
@@ -12,6 +18,8 @@ import com.sprint2.backend.repository.MemberCardRepository;
 public class MemberCardServiceImpl implements MemberCardService {
     @Autowired
     private MemberCardRepository memberCardRepository;
+    @Autowired
+    private CarRepository carRepository;
 
     @Override
     public List<MemberCard> findAll() {
@@ -24,10 +32,15 @@ public class MemberCardServiceImpl implements MemberCardService {
     }
 
     @Override
-    public void save(MemberCard memberCard) {
+    public void saveMemberCard (CustomerDTO customerDTO) {
+        Car car = carRepository.findCarById(customerDTO.getCar_id());
+        MemberCard memberCard = new MemberCard();
+        memberCard.setEndDate(customerDTO.getEndDate());
+        memberCard.setStartDate(customerDTO.getStartDate());
+        memberCard.setMemberCardType(customerDTO.getMemberCardType());
+        memberCard.setCar(car);
         this.memberCardRepository.save(memberCard);
     }
-
     @Override
     public MemberCard findByPlateNumber(String plateNumber) {
         return this.memberCardRepository.findByCar_PlateNumber(plateNumber);

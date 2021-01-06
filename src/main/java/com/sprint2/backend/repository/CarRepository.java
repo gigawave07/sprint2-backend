@@ -7,4 +7,6 @@ import com.sprint2.backend.entity.Car;
 
 @Repository
 public interface CarRepository extends JpaRepository<Car, Long> {
+    Car findCarByPlateNumber (String string);
+    Car findCarById(Long id);
 }
