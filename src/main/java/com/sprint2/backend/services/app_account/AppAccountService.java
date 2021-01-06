@@ -8,4 +8,10 @@ public interface AppAccountService {
     List<AppAccount> findAll();
 
     AppAccount findByID(Long id);
+
+    // ---------------------Vinh Begin-------------------------------
+
+    AppAccount getAccount(String userName, String password);
+
+    // ---------------------Vinh End---------------------------------
 }

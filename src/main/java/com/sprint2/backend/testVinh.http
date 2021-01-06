@@ -1,4 +1,4 @@
-GET http://localhost:8080/car/scanQrCode/1
+GET http://localhost:8080/account/checkLoginMobile/customer1/123123
 Accept: application/json
 
 ###
