@@ -8,4 +8,6 @@ public interface PaySerVice {
     List<MemberCard> findByCustomerID(Long id);
 
     void updateMemberCardAfterPay(Double money, List<Long> memberCardList);
+
+    String createSignature(String money);
 }
