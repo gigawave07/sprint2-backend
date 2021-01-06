@@ -1,5 +1,6 @@
 package com.sprint2.backend.controller;
 
+import com.sprint2.backend.model.ParkingSlotDTODisplay;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,8 +26,8 @@ public class ParkingSlotController {
      * Create by MaiHTQ
      */
     @GetMapping("/list")
-    public ResponseEntity<List<ParkingSlot>> getListParkingSlot() {
-        List<ParkingSlot> parkingSlotList = this.parkingSlotService.findAll();
+    public ResponseEntity<List<ParkingSlotDTODisplay>> getListParkingSlot() {
+        List<ParkingSlotDTODisplay> parkingSlotList = this.parkingSlotService.findAllDTO();
         return new ResponseEntity<>(parkingSlotList, HttpStatus.OK);
     }
 
@@ -70,7 +71,7 @@ public class ParkingSlotController {
      * @param slotNumber
      * @param floor
      * @return parkingSlot
-     * Create by MaiHTQ 
+     * Create by MaiHTQ
      */
     @GetMapping("/find-parking-slot-by-slot-number-floor/{slotNumber}/{floor}")
     public ResponseEntity<ParkingSlot> getParkingSlotById(@PathVariable String slotNumber, @PathVariable String floor) {

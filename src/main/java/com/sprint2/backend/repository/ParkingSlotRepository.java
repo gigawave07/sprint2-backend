@@ -11,5 +11,5 @@ import java.util.List;
 public interface ParkingSlotRepository extends JpaRepository<ParkingSlot, Long> {
     List<ParkingSlot> findByFloor(String floor);
 
-    ParkingSlot findParkingSlotBySlotNumberAndFloor (String slotName, String floor);
+    ParkingSlot findParkingSlotBySlotNumberAndFloor (String slotNumber, String floor);
 }

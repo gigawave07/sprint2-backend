@@ -1,15 +1,18 @@
 package com.sprint2.backend.services.parking_slot;
 
-import com.sprint2.backend.model.ParkingSlotDTO;
+import com.sprint2.backend.model.ParkingSlotDTODisplay;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import com.sprint2.backend.entity.ParkingSlot;
-import com.sprint2.backend.repository.ParkingSlotRepository;
-import com.sprint2.backend.entity.SlotType;
 import com.sprint2.backend.repository.SlotTypeRepository;
+import com.sprint2.backend.repository.ParkingSlotRepository;
+import com.sprint2.backend.entity.ParkingSlot;
+import com.sprint2.backend.entity.SlotType;
+import com.sprint2.backend.model.ParkingSlotDTO;
+
 
 @Service
 public class ParkingSlotServiceImpl implements ParkingSlotService {
@@ -22,6 +25,24 @@ public class ParkingSlotServiceImpl implements ParkingSlotService {
     @Override
     public List<ParkingSlot> findAll() {
         return this.parkingSlotRepository.findAll();
+    }
+
+    @Override
+    public List<ParkingSlotDTODisplay> findAllDTO() {
+        List<ParkingSlotDTODisplay> parkingSlotDTOList = new ArrayList<>();
+        List<ParkingSlot> parkingSlotList = this.parkingSlotRepository.findAll();
+        for (ParkingSlot parkingSlot : parkingSlotList) {
+            ParkingSlotDTODisplay parkingSlotDTO = new ParkingSlotDTODisplay();
+            parkingSlotDTO.setFloor(parkingSlot.getFloor());
+            parkingSlotDTO.setSlotNumber(Long.parseLong(parkingSlot.getSlotNumber()));
+            if (parkingSlot.getReserved()) {
+                parkingSlotDTO.setReversed(1L);
+            } else {
+                parkingSlotDTO.setReversed(0L);
+            }
+            parkingSlotDTOList.add(parkingSlotDTO);
+        }
+        return parkingSlotDTOList;
     }
 
     @Override

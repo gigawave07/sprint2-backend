@@ -5,9 +5,12 @@ import java.util.List;
 import com.sprint2.backend.entity.ParkingSlot;
 import com.sprint2.backend.entity.SlotType;
 import com.sprint2.backend.model.ParkingSlotDTO;
+import com.sprint2.backend.model.ParkingSlotDTODisplay;
 
 public interface ParkingSlotService {
     List<ParkingSlot> findAll();
+
+    List<ParkingSlotDTODisplay> findAllDTO();
 
     ParkingSlot findByID(Long id);
 
