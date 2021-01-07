@@ -33,7 +33,8 @@ public class MainActivity extends AppCompatActivity {
         connectivityManager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
         myWifi = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
         my3G = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
-        if (myWifi == null || my3G == null) {
+        boolean isNetWorkConnected = myWifi == null || my3G == null;
+        if (isNetWorkConnected) {
             // Hiển thị ra màn hình thông báo
             Toast.makeText(getApplicationContext(), CHECK_NETWORK, Toast.LENGTH_LONG).show();
         }

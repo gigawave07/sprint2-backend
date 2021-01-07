@@ -85,7 +85,8 @@ public class LoginActivity extends AppCompatActivity {
                 } else {
                     Gson gson = new Gson();
                     AppAccount appAccount = gson.fromJson(response.toString(), AppAccount.class);
-                    switch (appAccount.getAppRole().getId().toString()) {
+                    String strAccount = appAccount.getAppRole().getId().toString();
+                    switch (strAccount) {
                         case "2":
                             Intent intent = new Intent(LoginActivity.this, EmployeeActivity.class);
                             startActivity(intent);

@@ -77,13 +77,16 @@ public class UserDetailActivity extends AppCompatActivity {
         Customer customer = gson.fromJson(response.toString(), Customer.class);
         url2 += customer.getId();
         getNumCar(url2);
-        if (customer.getFullName() != null) {
+        boolean isCustomerNameNull = customer.getFullName() != null;
+        if (isCustomerNameNull) {
             customerDetailName.setText(customer.getFullName());
         }
-        if (customer.getIdentityNumber() != null) {
+        boolean isCustomerIdentifyNumberNull = customer.getIdentityNumber() != null;
+        if (isCustomerIdentifyNumberNull) {
             customerDetailIdentify.setText(customer.getIdentityNumber());
         }
-        if (customer.getBirthday() != null) {
+        boolean isCustomerBirthDayNull = customer.getBirthday() != null;
+        if (isCustomerBirthDayNull) {
             customerDetailBirthDay.setText(customer.getBirthday());
         }
     }
