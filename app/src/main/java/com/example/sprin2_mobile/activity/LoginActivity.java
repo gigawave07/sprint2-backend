@@ -26,7 +26,7 @@ public class LoginActivity extends AppCompatActivity {
 
     EditText edtEmail, edtPassword;
     Button btnLogin, btnBack;
-    String URL = "http://10.0.2.2:8080/account/checkLoginMobile/";
+    String URL = "http://10.0.2.2:8080/account/checkLogin-mobile/";
 
 
     @Override
@@ -47,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
                 if (edtEmail.getText().length() != 0 && edtPassword.getText().length() != 0) {
                     URL += edtEmail.getText().toString() + "/" + edtPassword.getText().toString();
                     getAccount();
-                    URL = "http://10.0.2.2:8080/account/checkLoginMobile/";
+                    URL = "http://10.0.2.2:8080/account/checkLogin-mobile/";
                 }
             }
         });
@@ -62,7 +62,6 @@ public class LoginActivity extends AppCompatActivity {
             public void onResponse(JSONObject response) {
                 Gson gson = new Gson();
                 AppAccount appAccount = gson.fromJson(response.toString(), AppAccount.class);
-                Log.e("", appAccount.getAppRole().getId().toString());
                 if (appAccount.getAppRole().getId().toString().equals("1")) {
 
                 } else if (appAccount.getAppRole().getId().toString().equals("2")) {

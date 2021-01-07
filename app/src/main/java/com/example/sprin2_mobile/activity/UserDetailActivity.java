@@ -22,8 +22,8 @@ public class UserDetailActivity extends AppCompatActivity {
 
     TextView cusDetailName, cusDetailIdentify, cusDetailBirthDay, cusDetailNumCar;
     Button cusDetailBack, cusDetailCarList;
-    String URL1 = "http://10.0.2.2:8080/customer/getCustomerDetail/";
-    String URL2 = "http://10.0.2.2:8080/car/amountOfCar/";
+    String URL1 = "http://10.0.2.2:8080/customer/get-customer-detail/";
+    String URL2 = "http://10.0.2.2:8080/car/amount-of-car/";
 
 
     @Override
@@ -64,7 +64,7 @@ public class UserDetailActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
             }
         });
-        URL1 = "http://10.0.2.2:8080/customer/getCustomerDetail/";
+        URL1 = "http://10.0.2.2:8080/customer/get-customer-detail/";
         requestQueue.add(objectRequestCustomer);
 
     }
@@ -73,7 +73,7 @@ public class UserDetailActivity extends AppCompatActivity {
         Gson gson = new Gson();
         Customer customer = gson.fromJson(response.toString(), Customer.class);
         URL2 += customer.getId();
-        cusDetailNumCar.setText(getNumCar());
+        getNumCar();
         if (customer.getFullName() != null) {
             cusDetailName.setText(customer.getFullName());
         } else {
@@ -92,15 +92,14 @@ public class UserDetailActivity extends AppCompatActivity {
 
     }
 
-    private String getNumCar() {
-        final String[] result = {""};
+    private void getNumCar() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         JsonObjectRequest objectRequestCar = new JsonObjectRequest(
                 Request.Method.GET, URL2, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                Log.e("Numcar: ", response.toString());
-                result[0] = response.toString();
+                Log.e("","asdddddddddddddddddddd");
+                cusDetailNumCar.setText(response.toString());
             }
         }, new Response.ErrorListener() {
             @Override
@@ -108,9 +107,8 @@ public class UserDetailActivity extends AppCompatActivity {
             }
         }
         );
-        URL2 = "http://10.0.2.2:8080/car/amountOfCar/";
+        URL2 = "http://10.0.2.2:8080/car/amount-of-car/";
         requestQueue.add(objectRequestCar);
-        return result[0];
     }
 
     private void controlCarList() {
