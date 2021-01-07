@@ -82,7 +82,7 @@ public class ParkingSlotServiceImpl implements ParkingSlotService {
      * @param floor
      * @return list
      * Create by MaiHTQ
-     */ 
+     */
     @Override
     public List<ParkingSlotDTODisplay> findParkingSlotByFloor(String floor) {
         List<ParkingSlotDTODisplay> parkingSlotDTOList = new ArrayList<>();
@@ -125,4 +125,29 @@ public class ParkingSlotServiceImpl implements ParkingSlotService {
         return this.parkingSlotRepository.findParkingSlotBySlotNumberAndFloor(slotNumber, floor);
     }
     // MaiHTQ end
+
+    /**
+     * Lành
+     */
+    @Override
+    public List<ParkingSlot> findAllNeed() {
+        List<ParkingSlot> parkingSlotListExists = this.parkingSlotRepository.findAll();
+        List<ParkingSlot> parkingSlotListDisplay = new ArrayList<>();
+        for (ParkingSlot parkingSlot : parkingSlotListExists) {
+            if (!parkingSlot.getReserved() && !parkingSlot.getStatus()) {
+                parkingSlotListDisplay.add(parkingSlot);
+            }
+        }
+        return parkingSlotListDisplay;
+    }
+
+    @Override
+    public ParkingSlot findBySlotNumber(String slotNumber) {
+        return this.parkingSlotRepository.findBySlotNumber(slotNumber);
+    }
+
+    @Override
+    public ParkingSlot findByFloorAndSlotNumber(String floor, String slotNumber) {
+        return this.parkingSlotRepository.findByFloorAndSlotNumber(floor, slotNumber);
+    }
 }
