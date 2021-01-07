@@ -1,6 +1,5 @@
 package com.sprint2.backend.model;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class MessageFromCamera {
@@ -9,6 +8,8 @@ public class MessageFromCamera {
     private String plateNumber="";
     private LocalDateTime expirationDate;
     private String message;
+    private Boolean status=false;
+    private LocalDateTime entryLog;
 
     public long getId() {
         return id;
@@ -50,14 +51,19 @@ public class MessageFromCamera {
         this.message = message;
     }
 
-    @Override
-    public String toString() {
-        return "MessageFromCamera{" +
-                "id=" + id +
-                ", srcImg='" + srcImg + '\'' +
-                ", plateNumber='" + plateNumber + '\'' +
-                ", expirationDate=" + expirationDate +
-                ", message='" + message + '\'' +
-                '}';
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
+    }
+
+    public LocalDateTime getEntryLog() {
+        return entryLog;
+    }
+
+    public void setEntryLog(LocalDateTime entryLog) {
+        this.entryLog = entryLog; 
     }
 }
