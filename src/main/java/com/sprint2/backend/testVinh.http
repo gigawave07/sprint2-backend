@@ -1,4 +1,4 @@
-GET http://localhost:8080/account/checkLoginMobile/customer1/123123
+GET http://localhost:8080/customer/getCustomerDetail/1
 Accept: application/json
 
 ###

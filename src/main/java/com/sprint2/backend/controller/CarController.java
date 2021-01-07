@@ -25,5 +25,12 @@ public class CarController {
     public ResponseEntity<List<Car>> getListCar(@PathVariable Long customerId) {
         return ResponseEntity.ok(this.carService.getListCar(customerId));
     }
+
+    @GetMapping("amountOfCar/{customerId}")
+    public ResponseEntity<Integer> countCar(@PathVariable Long customerId) {
+        List<Car> carList = this.carService.getListCar(customerId);
+        return ResponseEntity.ok(carList.size());
+    }
     // --------------------Vinh end -------------------------
+
 }

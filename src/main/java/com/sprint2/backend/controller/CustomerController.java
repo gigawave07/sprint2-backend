@@ -15,9 +15,10 @@ public class CustomerController {
     @Autowired
     private CustomerService customerService;
 
-    @GetMapping("/getCustomerDetail/{customerId}")
-    public ResponseEntity<Customer> getCustomerDetail(@PathVariable Long customerId) {
-        return ResponseEntity.ok(this.customerService.findByID(customerId));
+    @GetMapping("/getCustomerDetail/{accountId}")
+    public ResponseEntity<Customer> getCustomerDetail(@PathVariable Long accountId) {
+        return ResponseEntity.ok(this.customerService.findByAccountId(accountId));
     }
+
     // --------------------Vinh end -------------------------
 }

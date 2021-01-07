@@ -8,4 +8,10 @@ public interface CustomerService {
     List<Customer> findAll();
 
     Customer findByID(Long id);
+
+    // ----------------------- Vinh Begin -------------------------
+
+    Customer findByAccountId(Long id);
+
+    // ----------------------- Vinh End -------------------------
 }
