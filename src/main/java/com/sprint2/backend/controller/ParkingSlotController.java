@@ -61,8 +61,8 @@ public class ParkingSlotController {
      * Create by MaiHTQ
      */
     @GetMapping("/search-floor/{floor}")
-    public ResponseEntity<List<ParkingSlot>> searchFloorParkingLot (@PathVariable String floor) {
-        List<ParkingSlot> parkingSlotList = this.parkingSlotService.findParkingSlotByFloor(floor);
+    public ResponseEntity<List<ParkingSlotDTODisplay>> searchFloorParkingLot (@PathVariable String floor) {
+        List<ParkingSlotDTODisplay> parkingSlotList = this.parkingSlotService.findParkingSlotByFloor(floor);
         return new ResponseEntity<>(parkingSlotList, HttpStatus.OK);
     }
 

@@ -18,7 +18,7 @@ public interface ParkingSlotService {
 
     List<SlotType> findAllSlotType();
 
-    List<ParkingSlot> findParkingSlotByFloor (String floor);
+    List<ParkingSlotDTODisplay> findParkingSlotByFloor (String floor);
 
     ParkingSlot findParkingSlotBySlotNumberAndFloor(String slotNumber, String floor);
 }

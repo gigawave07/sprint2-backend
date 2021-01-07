@@ -27,23 +27,6 @@ public class ParkingSlotServiceImpl implements ParkingSlotService {
         return this.parkingSlotRepository.findAll();
     }
 
-    @Override
-    public List<ParkingSlotDTODisplay> findAllDTO() {
-        List<ParkingSlotDTODisplay> parkingSlotDTOList = new ArrayList<>();
-        List<ParkingSlot> parkingSlotList = this.parkingSlotRepository.findAll();
-        for (ParkingSlot parkingSlot : parkingSlotList) {
-            ParkingSlotDTODisplay parkingSlotDTO = new ParkingSlotDTODisplay();
-            parkingSlotDTO.setFloor(parkingSlot.getFloor());
-            parkingSlotDTO.setSlotNumber(Long.parseLong(parkingSlot.getSlotNumber()));
-            if (parkingSlot.getReserved()) {
-                parkingSlotDTO.setReversed(1L);
-            } else {
-                parkingSlotDTO.setReversed(0L);
-            }
-            parkingSlotDTOList.add(parkingSlotDTO);
-        }
-        return parkingSlotDTOList;
-    }
 
     @Override
     public ParkingSlot findByID(Long id) {
@@ -53,6 +36,16 @@ public class ParkingSlotServiceImpl implements ParkingSlotService {
     /**
      * MaiHTQ start
      */
+    @Override
+    public List<ParkingSlotDTODisplay> findAllDTO() {
+        List<ParkingSlotDTODisplay> parkingSlotDTOList = new ArrayList<>();
+        List<ParkingSlot> parkingSlotList = this.parkingSlotRepository.findAll();
+        for (ParkingSlot parkingSlot : parkingSlotList) {
+            getInfoParkingSlotDTODisplay(parkingSlotDTOList, parkingSlot);
+        }
+        return parkingSlotDTOList;
+    }
+
     @Override
     public void save(ParkingSlotDTO parkingSlotDTO) {
         ParkingSlot parkingSlot = new ParkingSlot();
@@ -71,8 +64,27 @@ public class ParkingSlotServiceImpl implements ParkingSlotService {
     }
 
     @Override
-    public List<ParkingSlot> findParkingSlotByFloor(String floor) {
-        return this.parkingSlotRepository.findByFloor(floor);
+    public List<ParkingSlotDTODisplay> findParkingSlotByFloor(String floor) {
+        List<ParkingSlotDTODisplay> parkingSlotDTOList = new ArrayList<>();
+        List<ParkingSlot> parkingSlotList = this.parkingSlotRepository.findAll();
+        for (ParkingSlot parkingSlot : parkingSlotList) {
+            if (parkingSlot.getFloor().equals(floor)) {
+                getInfoParkingSlotDTODisplay(parkingSlotDTOList, parkingSlot);
+            }
+        }
+        return parkingSlotDTOList;
+    }
+
+    public void getInfoParkingSlotDTODisplay(List<ParkingSlotDTODisplay> parkingSlotDTOList, ParkingSlot parkingSlot) {
+        ParkingSlotDTODisplay parkingSlotDTO = new ParkingSlotDTODisplay();
+        parkingSlotDTO.setFloor(parkingSlot.getFloor());
+        parkingSlotDTO.setSlotNumber(Long.parseLong(parkingSlot.getSlotNumber()));
+        if (parkingSlot.getReserved()) {
+            parkingSlotDTO.setReversed(1L);
+        } else {
+            parkingSlotDTO.setReversed(0L);
+        }
+        parkingSlotDTOList.add(parkingSlotDTO);
     }
 
     @Override
