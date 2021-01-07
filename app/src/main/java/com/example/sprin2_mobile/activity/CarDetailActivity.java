@@ -1,50 +1,49 @@
-package com.sprint2.activity;
+package com.example.sprin2_mobile.activity;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+import com.example.sprin2_mobile.R;
+import com.example.sprin2_mobile.entity.Customer;
 import com.google.gson.Gson;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
-import com.sprint2.R;
-import com.sprint2.entity.Customer;
 
-public class UserDetailActivity extends AppCompatActivity {
 
+public class CarDetailActivity extends AppCompatActivity {
 
     ImageView imgQrCode;
-    TextView textViewCustomerFullName, textViewLicensePlates, textViewFloor, textViewNumberSlot;
-
-
+    TextView licensePlates, typeCar, floor, numberSlot;
+    Button carBack;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_detail);
-        mapping();
+        setContentView(R.layout.activity_car_detail);
         generateQrCode();
+        mapping();
     }
 
     private String getInformation() {
         Customer customer = new Customer();
-        textViewCustomerFullName.setText("Mai Thế Vinh");
-        textViewLicensePlates.setText("74G1-12607");
-        textViewFloor.setText("1");
-        textViewNumberSlot.setText("7");
-        customer.setName(textViewCustomerFullName.getText().toString());
-        customer.setLicensePlates(textViewLicensePlates.getText().toString());
-        customer.setNumberPhone("0334611971");
-        customer.setAddress("Đà Nẵng");
+//        textViewCustomerFullName.setText("Mai Thế Vinh");
+//        textViewLicensePlates.setText("74G1-12607");
+//        textViewFloor.setText("1");
+//        textViewNumberSlot.setText("7");
+//        customer.setName(textViewCustomerFullName.getText().toString());
+//        customer.setLicensePlates(textViewLicensePlates.getText().toString());
+//        customer.setNumberPhone("0334611971");
+//        customer.setAddress("Đà Nẵng");
 
         Gson gson = new Gson();
         String json = gson.toJson(customer);
         return json;
     }
 
-    // Tạo QR code với dữ liệu nhận được
     private void generateQrCode() {
 
         MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
@@ -61,9 +60,10 @@ public class UserDetailActivity extends AppCompatActivity {
 
     private void mapping() {
         imgQrCode = findViewById(R.id.imgQrCode);
-        textViewCustomerFullName = findViewById(R.id.customerFullName);
-        textViewLicensePlates = findViewById(R.id.licensePlates);
-        textViewFloor = findViewById(R.id.floor);
-        textViewNumberSlot = findViewById(R.id.numberSlot);
+        licensePlates = findViewById(R.id.licensePlates);
+        typeCar = findViewById(R.id.typeCar);
+        floor = findViewById(R.id.floor);
+        numberSlot = findViewById(R.id.numberSlot);
+        carBack = findViewById(R.id.carBack);
     }
 }

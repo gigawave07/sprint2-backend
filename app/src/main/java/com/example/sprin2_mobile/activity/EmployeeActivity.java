@@ -1,9 +1,10 @@
-package com.sprint2.activity;
+package com.example.sprin2_mobile.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import androidx.appcompat.app.AppCompatActivity;
+import com.example.sprin2_mobile.R;
 import com.google.zxing.integration.android.IntentIntegrator;
-import com.sprint2.R;
+
 
 public class EmployeeActivity extends AppCompatActivity {
 

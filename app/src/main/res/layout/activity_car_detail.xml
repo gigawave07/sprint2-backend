@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".activity.CarDetailActivity">
+    <ImageView
+            android:id="@+id/imgQrCode"
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"
+            android:layout_width="200dp"
+            android:layout_height="200dp"/>
+    <TextView
+
+            android:text="Biển kiểm soát"
+            android:textSize="30dp"
+            android:layout_marginTop="230dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    <TextView
+            android:id="@+id/licensePlates"
+            android:textSize="30dp"
+            android:layout_width="match_parent"
+            android:layout_marginTop="274dp"
+            android:layout_height="80dp"/>
+    <TextView
+            android:text="Loại xe"
+            android:textSize="30dp"
+            android:layout_marginTop="368dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    <TextView
+
+            android:id="@+id/typeCar"
+            android:textSize="30dp"
+            android:layout_width="match_parent"
+            android:layout_marginTop="413dp"
+            android:layout_height="80dp"/>
+    <TextView
+            android:text="Tầng:"
+            android:textSize="30dp"
+            android:layout_marginTop="503dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    <TextView
+            android:id="@+id/floor"
+            android:textSize="30dp"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="503dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    <TextView
+            android:text="Số:"
+            android:textSize="30dp"
+            android:layout_marginLeft="220dp"
+            android:layout_marginTop="503dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    <TextView
+            android:id="@+id/numberSlot"
+            android:textSize="30dp"
+            android:layout_marginLeft="260dp"
+            android:layout_marginTop="503dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    <Button
+            android:text="Trở lại"
+            android:id="@+id/carBack"
+            android:textSize="30dp"
+            android:layout_marginTop="580dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+</RelativeLayout>

@@ -2,78 +2,9 @@
 <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         tools:context=".activity.CarList">
-    <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        <Button android:text="Quay lại"
-                android:textSize="20dp"
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-        <Button android:text="Danh sách xe"
-                android:textSize="20dp"
-                android:layout_marginLeft="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-    </LinearLayout>
-
-    <TextView
-            android:text="Thông tin khách hàng"
-            android:textSize="40dp"
-            android:textColor="#2196F3"
-            android:gravity="center"
-            android:layout_marginTop="30dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-    <TextView
-            android:text="Tên khách hàng: Mai Thế Vinh"
-            android:textSize="25dp"
-            android:layout_marginTop="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-    <TextView
-            android:text="CMND: 197362335"
-            android:textSize="30dp"
-            android:layout_marginTop="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-    <TextView
-            android:text="Ngày sinh: 31/03/1997"
-            android:textSize="30dp"
-            android:layout_marginTop="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-    <TextView
-            android:text="Số lượng xe: 1"
-            android:textSize="30dp"
-            android:layout_marginTop="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-    <TextView
-            android:text="Loại vé: VIP tháng"
-            android:textSize="30dp"
-            android:layout_marginTop="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-    <TextView
-            android:text="Ngày bắt đầu: 15/01/2020"
-            android:textSize="30dp"
-            android:layout_marginTop="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-    <TextView
-            android:text="Ngày hết hạn 14/02/2020"
-            android:textSize="30dp"
-            android:layout_marginTop="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
 
 </LinearLayout>

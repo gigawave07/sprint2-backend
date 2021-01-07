@@ -1,4 +1,4 @@
-package com.sprint2.activity;
+package com.example.sprin2_mobile.activity;
 
 import android.content.Intent;
 import android.net.ConnectivityManager;
@@ -8,7 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
-import com.sprint2.R;
+import com.example.sprin2_mobile.R;
+
 
 public class MainActivity extends AppCompatActivity {
 

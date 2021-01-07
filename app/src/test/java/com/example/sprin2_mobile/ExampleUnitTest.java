@@ -1,4 +1,4 @@
-package com.sprint2;
+package com.example.sprin2_mobile;
 
 import org.junit.Test;
 
