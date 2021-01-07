@@ -27,7 +27,7 @@ public class CarServiceImpl implements CarService{
     // Quan start
     @Override
     public Car findByPlateNumber(String plateNumber) {
-        return carRepository.findByPlateNumberContains(plateNumber);
+        return carRepository.findByPlateNumber(plateNumber);
     }
 
     @Override

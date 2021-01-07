@@ -29,7 +29,7 @@ public class MemberCardServiceImpl implements MemberCardService {
     }
 
     @Override
-    public MemberCard findByPlateNumber(String plateNumber) {
+    public List<MemberCard> findByPlateNumber(String plateNumber) {
         return this.memberCardRepository.findByCar_PlateNumber(plateNumber);
     }
 

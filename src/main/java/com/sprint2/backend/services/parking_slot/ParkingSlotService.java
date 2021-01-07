@@ -21,5 +21,11 @@ public interface ParkingSlotService {
 
     ParkingSlot arrangeSlot(Car car);
 
-    List<ParkingSlot> findBySlotTypeAndStatus(SlotType slotType, Boolean status);
+    List<ParkingSlot> findBySlotTypeAndStatusAndReserved(SlotType slotType, Boolean status, Boolean reserved);
+
+    ParkingSlot findByCar(Car car);
+
+    Boolean parkRegisteredCar(Car car);
+
+    Boolean checkoutRegisteredCar(Car car);
 }

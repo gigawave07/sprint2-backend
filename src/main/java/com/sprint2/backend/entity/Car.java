@@ -1,6 +1,8 @@
 package com.sprint2.backend.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -40,15 +42,15 @@ public class Car {
     private CarType carType;
 
     @OneToOne(mappedBy = "car", cascade = CascadeType.ALL)
-    @JsonBackReference
+    @JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class)
     private ParkingSlot parkingSlot;
 
     @OneToMany(mappedBy = "car", cascade = CascadeType.ALL)
-    @JsonBackReference
+    @JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class)
     private List<Ticket> ticketList;
 
     @OneToMany(mappedBy = "car", cascade = CascadeType.ALL)
-    @JsonBackReference
+    @JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class)
     private List<MemberCard> memberCardList;
 
     // custom constructor

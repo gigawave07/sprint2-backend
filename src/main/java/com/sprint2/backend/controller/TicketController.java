@@ -1,7 +1,5 @@
 package com.sprint2.backend.controller;
 
-import com.sprint2.backend.entity.Ticket;
-import com.sprint2.backend.model.CarDTO;
 import com.sprint2.backend.model.MessageDTO;
 import com.sprint2.backend.model.TicketDTO;
 import com.sprint2.backend.services.ticket.TicketService;
@@ -23,18 +21,18 @@ public class TicketController {
         String message = ticketService.save(ticketDTO);
         switch (message) {
             case "succeed":
-                return ResponseEntity.ok(new MessageDTO("succeed"));
+                return ResponseEntity.ok(new MessageDTO("Xếp chỗ thành công"));
             case "no available slot":
-                return ResponseEntity.ok(new MessageDTO("no available slot"));
+                return ResponseEntity.ok(new MessageDTO("Không còn chỗ trống"));
             default:
-                return ResponseEntity.ok(new MessageDTO("car is already parked"));
+                return ResponseEntity.ok(new MessageDTO("Xe đã đỗ trong bãi"));
         }
     }
 
     @PostMapping("/close")
     public ResponseEntity<?> close(@RequestBody TicketDTO ticketDTO) {
-        return ticketService.close(ticketDTO) ? ResponseEntity.ok(new MessageDTO("succeed")) :
-                ResponseEntity.ok(new MessageDTO("Car is not parked"));
+        return ticketService.close(ticketDTO) ? ResponseEntity.ok(new MessageDTO("Rời bãi thành công")) :
+                ResponseEntity.ok(new MessageDTO("Xe không đỗ trong bãi"));
     }
     // Quan end
 }

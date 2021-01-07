@@ -36,6 +36,7 @@ public class TicketServiceImpl implements TicketService {
         return this.ticketRepository.findById(id).orElse(null);
     }
 
+    // Quan start
     @Override
     public Ticket convert(TicketDTO ticketDTO) {
         Ticket ticket = new Ticket();
@@ -45,8 +46,8 @@ public class TicketServiceImpl implements TicketService {
             car = carService.convert(ticketDTO.getCar());
         }
 
-        CarType carType = carTypeRepository.findById(
-                ticketDTO.getCar().getCarType().getId()).orElse(null);
+        CarType carType = carTypeRepository.findByCarTypeNameContains(
+                ticketDTO.getCar().getCarType().getCarTypeName());
         car.setCarType(carType);
 
         ticket.setCar(car);
@@ -82,7 +83,7 @@ public class TicketServiceImpl implements TicketService {
         // get current member card
         List<MemberCard> memberCardList = car.getMemberCardList();
         MemberCard memberCard = null;
-        if (memberCardList.size() != 0) {
+        if (memberCardList != null && memberCardList.size() != 0) {
             memberCard = memberCardList.get(memberCardList.size() - 1);
         }
 
@@ -109,6 +110,7 @@ public class TicketServiceImpl implements TicketService {
         List<Ticket> ticketList = car.getTicketList();
         Ticket currentTicket = ticketList.get(ticketList.size() - 1);
         currentTicket.setPrice(ticket.getPrice());
+        currentTicket.setExitDate(ticket.getExitDate());
         ticketRepository.save(currentTicket);
 
         parkingSlot.setStatus(false);
@@ -117,6 +119,6 @@ public class TicketServiceImpl implements TicketService {
 
         return true;
     }
-
+    // Quan end
 
 }
