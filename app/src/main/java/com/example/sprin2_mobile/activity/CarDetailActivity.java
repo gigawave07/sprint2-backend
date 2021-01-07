@@ -20,6 +20,7 @@ public class CarDetailActivity extends AppCompatActivity {
     ImageView imgQrCode;
     TextView licensePlates, typeCar, floor, numberSlot;
     Button carBack;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,27 +30,15 @@ public class CarDetailActivity extends AppCompatActivity {
     }
 
     private String getInformation() {
-        Customer customer = new Customer();
-//        textViewCustomerFullName.setText("Mai Thế Vinh");
-//        textViewLicensePlates.setText("74G1-12607");
-//        textViewFloor.setText("1");
-//        textViewNumberSlot.setText("7");
-//        customer.setName(textViewCustomerFullName.getText().toString());
-//        customer.setLicensePlates(textViewLicensePlates.getText().toString());
-//        customer.setNumberPhone("0334611971");
-//        customer.setAddress("Đà Nẵng");
-
         Gson gson = new Gson();
-        String json = gson.toJson(customer);
-        return json;
+        return gson.toJson(new Customer());
     }
 
     private void generateQrCode() {
-
         MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
         try {
             String customer = getInformation();
-            BitMatrix bitMatrix = multiFormatWriter.encode(customer.toString(), BarcodeFormat.QR_CODE, 200, 200);
+            BitMatrix bitMatrix = multiFormatWriter.encode(customer, BarcodeFormat.QR_CODE, 200, 200);
             BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
             Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);
             imgQrCode.setImageBitmap(bitmap);

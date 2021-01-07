@@ -13,6 +13,7 @@ import com.example.sprin2_mobile.R;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final String CHECK_NETWORK = "Hãy kiểm tra kết nối mạng";
     Button btnMainLogin;
     ConnectivityManager connectivityManager;
     NetworkInfo myWifi, my3G;
@@ -26,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
         controlBtnMainLogin();
     }
 
-
     // Kiểm tra kết nối mạng 3G ho ặc wifi
     private void checkNetWork() {
         connectivityManager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
@@ -34,9 +34,8 @@ public class MainActivity extends AppCompatActivity {
         my3G = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
         if (myWifi == null || my3G == null) {
             // Hiển thị ra màn hình thông báo
-            Toast.makeText(getApplicationContext(), "Hãy kiểm tra kết nối mạng", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), CHECK_NETWORK, Toast.LENGTH_LONG).show();
         }
-
     }
 
     // Set sự kiện khi nhấn login sẽ qua activity login
