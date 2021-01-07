@@ -8,7 +8,7 @@ import com.sprint2.backend.repository.CarRepository;
 import com.sprint2.backend.repository.CarTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+//Ngan's tasks
 import java.util.List;
 @Service
 public class CarTypeServiceImpl implements CarTypeService {
@@ -34,3 +34,4 @@ public class CarTypeServiceImpl implements CarTypeService {
 //        this.carTypeRepository.save(cartype);
     }
 }
+//End Ngan's tasks

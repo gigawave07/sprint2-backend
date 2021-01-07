@@ -8,5 +8,7 @@ import com.sprint2.backend.entity.MemberCardType;
 
 @Repository
 public interface MemberCardTypeRepository extends JpaRepository<MemberCardType, Long> {
+    //Ngan's tasks
     MemberCardType findMemberCardTypeByMemberTypeName (String string);
+    //Ngan's tasks
 }

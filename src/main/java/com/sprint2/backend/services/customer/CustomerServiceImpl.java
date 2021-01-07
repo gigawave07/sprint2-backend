@@ -8,13 +8,11 @@ import com.sprint2.backend.services.car.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
+    //Ngan's tasks
     @Autowired
     private CustomerRepository customerRepository;
     @Autowired
@@ -93,4 +91,5 @@ public class CustomerServiceImpl implements CustomerService {
         }
         return null;
     }
+    //End Ngan's tasks
 }

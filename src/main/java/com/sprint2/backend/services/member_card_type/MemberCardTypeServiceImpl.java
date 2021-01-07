@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 @Service
 public class MemberCardTypeServiceImpl implements MemberCardTypeService {
+    //Ngan's tasks
     @Autowired
     CarRepository carRepository;
     @Autowired
@@ -29,4 +30,9 @@ public class MemberCardTypeServiceImpl implements MemberCardTypeService {
         return memberCardTypeRepository.findMemberCardTypeByMemberTypeName(string);
     }
 
+    @Override
+    public MemberCardType findById(Long id) {
+        return memberCardTypeRepository.findById(id).orElse(null);
+    }
+    //End Ngan's tasks
 }

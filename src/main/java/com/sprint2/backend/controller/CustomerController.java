@@ -19,9 +19,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+//Ngan's tasks
 @RestController
 @RequestMapping("/customer")
-@CrossOrigin
+@CrossOrigin(allowedHeaders = "*",value = "*")
 public class CustomerController {
     @Autowired
     CustomerService customerService;
@@ -58,6 +59,7 @@ public class CustomerController {
         } else {
             customerService.saveCustomer(customerDTO);
             carService.saveCar(customerDTO);
+//            customerDTO.setMemberCardType(memberCardTypeService.findById(customerDTO.getMemberCardTypeId()));
             memberCardService.saveMemberCard(customerDTO);
             return new ResponseEntity<>(HttpStatus.OK);
         }
@@ -73,3 +75,4 @@ public class CustomerController {
         return new ResponseEntity<>(memberCardTypeList, HttpStatus.OK);
     }
 }
+//End Ngan's tasks

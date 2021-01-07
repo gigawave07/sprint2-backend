@@ -7,11 +7,11 @@ import com.sprint2.backend.entity.MemberCard;
 
 @Repository
 public interface MemberCardRepository extends JpaRepository<MemberCard, Long> {
+    //Ngan's tasks
     MemberCard findByCar_PlateNumber(String plateNumber);
 
     MemberCard findByCar_Customer_Email(String mail);
 
     MemberCard findByCar_Customer_FullName(String fullName);
-
-
+    //Ngan's tasks
 }

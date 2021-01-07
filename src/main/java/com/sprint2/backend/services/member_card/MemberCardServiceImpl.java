@@ -1,26 +1,24 @@
 package com.sprint2.backend.services.member_card;
-
 import com.sprint2.backend.entity.Car;
-import com.sprint2.backend.model.CarDTO;
 import com.sprint2.backend.model.CustomerDTO;
-import com.sprint2.backend.model.MemberCardDTO;
 import com.sprint2.backend.repository.CarRepository;
+import com.sprint2.backend.repository.MemberCardTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDate;
 import java.util.List;
 
 import com.sprint2.backend.entity.MemberCard;
 import com.sprint2.backend.repository.MemberCardRepository;
 
+//Ngan's tasks
 @Service
 public class MemberCardServiceImpl implements MemberCardService {
     @Autowired
     private MemberCardRepository memberCardRepository;
     @Autowired
     private CarRepository carRepository;
-
+    @Autowired
+     private MemberCardTypeRepository memberCardTypeRepository;
     @Override
     public List<MemberCard> findAll() {
         return this.memberCardRepository.findAll();
@@ -33,13 +31,14 @@ public class MemberCardServiceImpl implements MemberCardService {
 
     @Override
     public void saveMemberCard (CustomerDTO customerDTO) {
-        Car car = carRepository.findCarById(customerDTO.getCar_id());
+        Car car = carRepository.findCarByPlateNumber(customerDTO.getPlateNumber());
         MemberCard memberCard = new MemberCard();
+        memberCard.setCar(car);
         memberCard.setEndDate(customerDTO.getEndDate());
         memberCard.setStartDate(customerDTO.getStartDate());
-        memberCard.setMemberCardType(customerDTO.getMemberCardType());
-        memberCard.setCar(car);
+        memberCard.setMemberCardType(this.memberCardTypeRepository.findById(customerDTO.getMemberCardType()).orElse(null));
         this.memberCardRepository.save(memberCard);
+//        this.carRepository.save(car);
     }
     @Override
     public MemberCard findByPlateNumber(String plateNumber) {
@@ -56,3 +55,4 @@ public class MemberCardServiceImpl implements MemberCardService {
         return this.memberCardRepository.findByCar_Customer_Email(mail);
     }
 }
+//End Ngan's task

@@ -10,6 +10,7 @@ import com.sprint2.backend.entity.Customer;
 import java.util.List;
 
 public interface CustomerRepository extends JpaRepository<Customer,Long> {
+    //Ngan's tasks
     @Query(value = "select * from customer where customer.full_name like %?1%", nativeQuery = true)
     List<Customer> getCustomersByName (String string);
 
@@ -23,5 +24,6 @@ public interface CustomerRepository extends JpaRepository<Customer,Long> {
     List<Customer> getCustomersByEmail (String string);
 
     Customer findCustomerByCustomerCode(String customerCode);
+    //End Ngan's tasks
 
 }
