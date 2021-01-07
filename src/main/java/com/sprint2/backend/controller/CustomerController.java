@@ -24,9 +24,8 @@ public class CustomerController {
     // Update Customer
     @PutMapping("/update")
     public ResponseEntity<?> updateCustomer(@Validated @RequestBody InformationCustomerDTO customerDTO, BindingResult bindingResult) {
-        System.out.println(customerDTO.getImageAvatar());
         if (bindingResult.hasErrors()) {
-            return new ResponseEntity<>("khánh ml", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("error", HttpStatus.BAD_REQUEST);
         }
         this.customerService.updateCustomer(customerDTO);
         return new ResponseEntity<>(HttpStatus.OK);
