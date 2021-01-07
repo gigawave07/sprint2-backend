@@ -1,6 +1,7 @@
 package com.sprint2.backend.controller;
 
 import com.sprint2.backend.entity.Customer;
+import com.sprint2.backend.model.MessageDTO;
 import com.sprint2.backend.services.customer.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,9 +16,13 @@ public class CustomerController {
     @Autowired
     private CustomerService customerService;
 
-    @GetMapping("/getCustomerDetail/{accountId}")
-    public ResponseEntity<Customer> getCustomerDetail(@PathVariable Long accountId) {
-        return ResponseEntity.ok(this.customerService.findByAccountId(accountId));
+    @GetMapping("/get-customer-detail/{accountId}")
+    public ResponseEntity<?> getCustomerDetail(@PathVariable Long accountId) {
+        Customer customer = null;
+        if (accountId != null) {
+            customer = this.customerService.findByAccountId(accountId);
+        }
+        return customer != null ? ResponseEntity.ok(customer) : ResponseEntity.ok(new MessageDTO("not found"));
     }
 
     // --------------------Vinh end -------------------------

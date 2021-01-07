@@ -1,6 +1,7 @@
 package com.sprint2.backend.controller;
 
 import com.sprint2.backend.entity.AppAccount;
+import com.sprint2.backend.model.MessageDTO;
 import com.sprint2.backend.services.app_account.AppAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,9 +15,13 @@ public class AppAccountController {
     @Autowired
     private AppAccountService appAccountService;
 
-    @GetMapping("checkLoginMobile/{userName}/{password}")
-    public ResponseEntity<AppAccount> checkLoginMobile(@PathVariable String userName, @PathVariable String password) {
-        return ResponseEntity.ok(this.appAccountService.getAccount(userName, password));
+    @GetMapping("checkLogin-mobile/{userName}/{password}")
+    public ResponseEntity<?> checkLoginMobile(@PathVariable String userName, @PathVariable String password) {
+        AppAccount appAccount = null;
+        if (userName!=null && password != null){
+            appAccount = this.appAccountService.getAccount(userName, password);
+        }
+        return appAccount != null ? ResponseEntity.ok(appAccount) : ResponseEntity.ok(new MessageDTO("not found")) ;
     }
     // ------------------------------Vinh End ----------------------------------
 }

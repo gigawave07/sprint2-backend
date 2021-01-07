@@ -1,4 +1,4 @@
-GET http://localhost:8080/customer/getCustomerDetail/1
+GET http://localhost:8080/car/amountOfCar/1
 Accept: application/json
 
 ###
