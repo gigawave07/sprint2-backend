@@ -5,18 +5,22 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
+
+// Đin
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CustomerDTO {
+public class InformationCustomerDTO {
     Long id;
     String fullName;
     Boolean gender;
     String email;
-    String birthday;
+    LocalDate birthday;
     String phone;
     String address;
     String identityNumber;
     String imageAvatar;
 }
+// End

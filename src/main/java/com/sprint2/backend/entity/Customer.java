@@ -28,7 +28,6 @@ public class Customer {
     @Column(name = "customer_code", columnDefinition = "VARCHAR(50)")
     private String customerCode;
 
-    @Pattern(regexp = "^khanh$",message = "Mày không phải khánh bê đê")
     @Column(name = "full_name", columnDefinition = "VARCHAR(50)")
     private String fullName;
 

@@ -1,43 +1,47 @@
 package com.sprint2.backend.controller;
 
 import com.sprint2.backend.entity.Customer;
-import com.sprint2.backend.model.CustomerDTO;
+import com.sprint2.backend.model.InformationCustomerDTO;
+import com.sprint2.backend.model.ListEntryLogDTO;
 import com.sprint2.backend.services.customer.CustomerService;
-import javafx.util.Builder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 
 @RestController
 @RequestMapping("/customer")
 @CrossOrigin
 public class CustomerController {
+    //-- Đin ---
     @Autowired
     CustomerService customerService;
-    @GetMapping("/find-by-id/{id}")
-    public ResponseEntity<Customer> getById(@PathVariable Long id){
-        return new ResponseEntity<>(this.customerService.findByID(id), HttpStatus.OK);
-    }
+
+    // Update Customer
     @PutMapping("/update")
-    public ResponseEntity<?> updateCustomer(@Validated @RequestBody CustomerDTO customerDTO, BindingResult bindingResult){
-        System.out.println(customerDTO.getId());
-        Customer customer = this.customerService.findByID(customerDTO.getId());
-        customer.setAddress(customerDTO.getAddress());
-        customer.setFullName(customerDTO.getFullName());
-        customer.setGender(customerDTO.getGender());
-        customer.setEmail(customerDTO.getEmail());
-        customer.setPhone(customerDTO.getPhone());
-        customer.setIdentityNumber(customerDTO.getIdentityNumber());
-        customer.setImageAvatar(customerDTO.getImageAvatar());
-        if (bindingResult.hasErrors()){
-            return new ResponseEntity<>("khánh ml",HttpStatus.BAD_REQUEST);
+    public ResponseEntity<?> updateCustomer(@Validated @RequestBody InformationCustomerDTO customerDTO, BindingResult bindingResult) {
+        System.out.println(customerDTO.getImageAvatar());
+        if (bindingResult.hasErrors()) {
+            return new ResponseEntity<>("khánh ml", HttpStatus.BAD_REQUEST);
         }
-        this.customerService.updateCustomer(customer);
+        this.customerService.updateCustomer(customerDTO);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    //Tìm kiếm customer theo account
+    @GetMapping("/find-by-account/{accountId}")
+    public ResponseEntity<Customer> getByAccount(@PathVariable Long accountId) {
+        return new ResponseEntity<>(this.customerService.findByAppAccount(accountId), HttpStatus.OK);
+    }
+
+    // Hiển thị lịch sử xe ra vào của khách hàng và phân trang
+    @GetMapping("/list-entry-log/{accountId}/{pageable}")
+    public ResponseEntity<Page<ListEntryLogDTO>> getListEntryLog(@PathVariable Long accountId, @PathVariable int pageable) {
+        return new ResponseEntity<>(this.customerService.findListEntryLog(accountId, pageable), HttpStatus.OK);
+    }
+    // End
 }
