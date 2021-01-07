@@ -7,11 +7,14 @@ import com.google.api.client.json.jackson2.JacksonFactory;
 import com.sprint2.backend.config.JwtTokenProvider;
 import com.sprint2.backend.entity.AppAccount;
 import com.sprint2.backend.entity.AppRole;
+import com.sprint2.backend.entity.Customer;
+import com.sprint2.backend.entity.Invoice;
 import com.sprint2.backend.model.LoginRequest;
 import com.sprint2.backend.model.TokenDTO;
 import com.sprint2.backend.model.UserDTO;
 import com.sprint2.backend.model.UserDetailsImpl;
 import com.sprint2.backend.repository.AppAccountRepository;
+import com.sprint2.backend.repository.CustomerRepository;
 import com.sprint2.backend.services.app_role.AppRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -34,7 +37,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @CrossOrigin(origins = "*")
-@RestController("/app-account")
+@RestController
 public class AppAccountController {
     public static String GOOGLE_CLIENT_ID = "103585693874-0bjkl21cmmjf8d9n09io95ciuveiievl.apps.googleusercontent.com";
     public static String PASSWORD = "123";
@@ -57,6 +60,9 @@ public class AppAccountController {
 
     @Autowired
     JavaMailSender javaMailSender;
+
+    @Autowired
+    private CustomerRepository customerRepository;
 
     @PostMapping("/login")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
@@ -86,12 +92,12 @@ public class AppAccountController {
         final GoogleIdToken googleIdToken = GoogleIdToken.parse(verifier.getJsonFactory(), tokenDTO.getValue());
         final GoogleIdToken.Payload payload = googleIdToken.getPayload();
         AppAccount appAccount;
-        String userName;
-        userName = (String) payload.get("name");
-        if (userRepository.existsByUsername(userName)) {
-            appAccount = userRepository.findByUsername(userName);
+        String email;
+        email = (String) payload.get("email");
+        if (userRepository.existsByUsername(email)) {
+            appAccount = userRepository.findByUsername(email);
         } else {
-            appAccount = saveAccount(userName);
+            appAccount = saveAccount(email);
         }
         UserDTO userDTO = login(appAccount);
         return new ResponseEntity<>(userDTO, HttpStatus.OK);
@@ -137,36 +143,82 @@ public class AppAccountController {
     private AppAccount saveAccount(String value) {
         AppAccount appAccount = new AppAccount();
         appAccount.setUsername(value);
-        appAccount.setEmail(value);
         appAccount.setPassword(passwordEncoder.encode(PASSWORD));
-        AppRole appRole = roleService.findById(2L);
+        AppRole appRole = roleService.findById(3L);
         appAccount.setAppRole(appRole);
+
+        Customer customer = new Customer();
+
+
         return userRepository.save(appAccount);
+
     }
 
     @GetMapping("/send")
-    public ResponseEntity<String> sendEmail(@RequestParam("to") String to){
-        AppAccount appAccount = userRepository.findAppAccountByEmail(to);
-        if(appAccount != null){
+    public ResponseEntity<String> sendEmail(@RequestParam("to") String to) {
+        AppAccount appAccount = userRepository.findByUsername(to);
+        if (appAccount != null) {
             SimpleMailMessage msg = new SimpleMailMessage();
             msg.setTo(to);
             emailInput = to;
             msg.setSubject("Mã xác nhận đặt lại mật khẩu.");
             int randomCode = ((int) Math.floor(Math.random() * 8999) + 10000);
-            msg.setText("Mã xác nhận của bạn là: "+ randomCode);
+            msg.setText("Mã xác nhận của bạn là: " + randomCode);
             javaMailSender.send(msg);
-            return new ResponseEntity<>(randomCode+"",HttpStatus.OK);
+            return new ResponseEntity<>(randomCode + "", HttpStatus.OK);
         }
-        return new ResponseEntity<>( null,HttpStatus.OK);
+        return new ResponseEntity<>(null, HttpStatus.OK);
     }
+
     @GetMapping("/resetPassWord")
-    public ResponseEntity<Boolean> resetPassWord(@RequestParam("password") String password){
-        AppAccount appAccount = userRepository.findAppAccountByEmail(emailInput);
-        if(appAccount == null){
+    public ResponseEntity<Boolean> resetPassWord(@RequestParam("password") String password) {
+        AppAccount appAccount = userRepository.findByUsername(emailInput);
+        if (appAccount == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         appAccount.setPassword(passwordEncoder.encode(password));
         userRepository.save(appAccount);
-        return new ResponseEntity<>(true,HttpStatus.OK);
+        return new ResponseEntity<>(true, HttpStatus.OK);
+    }
+
+    @GetMapping("/find-by/{username}")
+    public ResponseEntity<AppAccount> findByName(@PathVariable("username") String username) {
+        AppAccount appAccount = userRepository.findByUsername(username);
+        if (appAccount == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(appAccount, HttpStatus.OK);
+    }
+
+    @GetMapping("/register")
+    public ResponseEntity<Boolean> saveUser(@RequestParam("username") String username, @RequestParam("password") String password) {
+        if (userRepository.existsByUsername(username)) {
+            return new ResponseEntity<>(false, HttpStatus.OK);
+        }
+        AppAccount appAccount = new AppAccount();
+        appAccount.setPassword(passwordEncoder.encode(password));
+        appAccount.setAppRole(roleService.findById(3L));
+        appAccount.setUsername(username);
+        appAccount.setVerificationCode("N/A");
+        appAccount.setEnabled(true);
+        userRepository.save(appAccount);
+
+        Customer customer = new Customer();
+//        customer.setCustomerCode(null);
+//        customer.setFullName(null);
+        customer.setEmail(username);
+//        customer.setBirthday(null);
+//        customer.setFullName(null);
+//        customer.setPhone(null);
+//        customer.setGender(null);
+//        customer.setIdentityNumber(null);
+//        customer.setImageAvatar(null);
+//        customer.setCreateDate(null);
+        customer.setAppAccount(appAccount);
+//        customer.setInvoiceList(null);
+//        customer.setCarList(null);
+        customerRepository.save(customer);
+
+        return new ResponseEntity<>(true, HttpStatus.OK);
     }
 }
