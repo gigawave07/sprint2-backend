@@ -15,7 +15,7 @@ public class AppAccountController {
     @Autowired
     private AppAccountService appAccountService;
 
-    @GetMapping("checkLogin-mobile/{userName}/{password}")
+    @GetMapping("check-login-mobile/{userName}/{password}")
     public ResponseEntity<?> checkLoginMobile(@PathVariable String userName, @PathVariable String password) {
         AppAccount appAccount = null;
         if (userName!=null && password != null){
