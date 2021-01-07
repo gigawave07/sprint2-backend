@@ -5,9 +5,17 @@ import org.springframework.stereotype.Repository;
 
 import com.sprint2.backend.entity.Employee;
 
+import java.util.List;
+
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee, Long> {
-    Employee findByFullNameContaining(String fullName);
+    List<Employee> findEmployeeByFullNameContaining(String fullName);
+    List <Employee> findEmployeeByPositionContaining(String position);
+    List <Employee> findEmployeeByIdContaining(Long id);
 
-    Employee findByPositionContaining(String position);
+//    List<Employee> findAllByStatusTrueAndFullNameContainingOrPositionContaining(String fullName, String position);
+
+    // ----------------------- Validate ton tai ---------------------------
+    List<Employee> findEmployeeByEmployeeCode (String employeeCode);
+//    List<Employee> findAllByStatusTrue();
 }
