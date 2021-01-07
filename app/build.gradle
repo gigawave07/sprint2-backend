@@ -44,4 +44,7 @@ dependencies {
     // lombok
     compileOnly 'org.projectlombok:lombok:1.18.16'
     annotationProcessor 'org.projectlombok:lombok:1.18.16'
+    // RecyclerView
+    //noinspection GradleCompatible
+    implementation 'com.android.support:recyclerview-v7:24.2.1'
 }

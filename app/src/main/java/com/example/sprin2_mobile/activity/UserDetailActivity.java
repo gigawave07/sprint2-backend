@@ -28,6 +28,7 @@ public class UserDetailActivity extends AppCompatActivity {
     TextView customerDetailNumCar;
     Button customerDetailBack;
     Button customerDetailCarList;
+    String customerId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +77,7 @@ public class UserDetailActivity extends AppCompatActivity {
         Gson gson = new Gson();
         Customer customer = gson.fromJson(response.toString(), Customer.class);
         url2 += customer.getId();
+        customerId = customer.getId();
         getNumCar(url2);
         boolean isCustomerNameNull = customer.getFullName() != null;
         if (isCustomerNameNull) {
@@ -114,6 +116,7 @@ public class UserDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(UserDetailActivity.this, CarList.class);
+                intent.putExtra("customerId", customerId);
                 startActivity(intent);
             }
         });
