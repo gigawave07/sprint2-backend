@@ -21,7 +21,7 @@ public class ParkingSlotController {
     private ParkingSlotService parkingSlotService;
 
     // Mai start
-    /**
+    /** 
      * Display parking slot list
      * @return parkingSlotList
      * Create by MaiHTQ
