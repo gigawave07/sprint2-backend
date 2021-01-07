@@ -9,7 +9,12 @@ public interface CarService {
 
     Car findByID(Long id);
 
-    // Thống kê số lượng xe của mỗi khách hàng
+
+    /**
+     * Nguyen Quang Danh
+     *
+     * @return Thống kê số lượng xe của mỗi khách hàng
+     */
     Object getTotalCarOfCustomer();
 
 }

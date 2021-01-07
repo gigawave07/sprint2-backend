@@ -19,6 +19,11 @@ public interface EmployeeService {
 
     Employee findByPosition(String position);
 
-    // Thống kê số lượng nhân viên
+
+    /**
+     * Nguyen Quang Danh
+     *
+     * @return Thống kê số lượng nhân viên
+     */
     Long getTotalEmployee();
 }

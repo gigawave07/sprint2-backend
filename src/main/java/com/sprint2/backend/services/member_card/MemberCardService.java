@@ -17,25 +17,68 @@ public interface MemberCardService {
 
     MemberCard findByCustomerMail(String mail);
 
-    // Thống kê tổng số lượng vé mỗi loại theo tuần tháng năm
+
+    /**
+     * Nguyen Quang Danh
+     * Begin
+     *
+     * @return Thống kê tổng số lượng vé mỗi loại theo tuần tháng năm
+     */
     Object getTotalMemberCardType();
 
-    // Thống kê doanh thu trong khoảng thời gian (member card)
+
+    /**
+     * @param fromDay
+     * @param toDay
+     * @return Thống kê doanh thu trong khoảng thời gian (member card)
+     */
     Object getTotalRevenueMemberCardPeriod(String fromDay, String toDay);
 
-    //     Thống kê số vé theo tuần (member card)
+
+    /**
+     * @param monthParam
+     * @param yearParam
+     * @return Thống kê số vé tuần 1 (member card)
+     */
     Object getTotalMemberCardWeek1(String monthParam, String yearParam);
 
+    /**
+     * @param monthParam
+     * @param yearParam
+     * @return Thống kê số vé tuần 2 (member card)
+     */
     Object getTotalMemberCardWeek2(String monthParam, String yearParam);
 
+    /**
+     * @param monthParam
+     * @param yearParam
+     * @return Thống kê số vé tuần 3 (member card)
+     */
     Object getTotalMemberCardWeek3(String monthParam, String yearParam);
 
+    /**
+     * @param monthParam
+     * @param yearParam
+     * @return Thống kê số vé tuần 4 (member card)
+     */
     Object getTotalMemberCardWeek4(String monthParam, String yearParam);
 
-    //     Thống kê số vé theo tháng (member card)
+
+    /**
+     * @param monthParam
+     * @param yearParam
+     * @return Thống kê số vé theo tháng (member card)
+     */
     Object getTotalMemberCardMonth(String monthParam, String yearParam);
 
-    //     Thống kê số vé theo năm (member card)
+
+    /**
+     * Nguyen Quang Danh
+     * End
+     *
+     * @param yearParam
+     * @return Thống kê số vé theo năm (member card)
+     */
     Object getTotalMemberCardYear(String yearParam);
 
 }

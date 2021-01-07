@@ -47,7 +47,12 @@ public class EmployeeServiceImpl implements EmployeeService {
         return this.employeeRepository.findByPositionContaining(position);
     }
 
-    // Thống kê số lượng nhân viên
+
+    /**
+     * Nguyen Quang Danh
+     *
+     * @return Thống kê số lượng nhân viên
+     */
     @Override
     public Long getTotalEmployee() {
         return this.employeeRepository.getTotalEmployee();

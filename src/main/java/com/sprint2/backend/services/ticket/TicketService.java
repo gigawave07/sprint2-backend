@@ -10,6 +10,13 @@ public interface TicketService {
 
     Ticket findByID(Long id);
 
-    // Thống kê doanh thu trong khoảng thời gian (ticket)
+
+    /**
+     * Nguyen Quang Danh
+     *
+     * @param fromEnterDay
+     * @param toExitDay
+     * @return Thống kê doanh thu trong khoảng thời gian (ticket)
+     */
     Object getTotalRevenueTicketPeriod(String fromEnterDay, String toExitDay);
 }

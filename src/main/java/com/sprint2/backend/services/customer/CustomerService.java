@@ -10,9 +10,20 @@ public interface CustomerService {
 
     Customer findByID(Long id);
 
-    // Thống kê số lượng khách hàng
+
+    /**
+     * Nguyen Quang Danh
+     *
+     * @return Thống kê số lượng khách hàng
+     */
     Long getTotalCustomer();
 
-    //  Thống kê số lượng khách hàng đăng ký trong khoảng thời gian
+
+    /**
+     * @param fromDay
+     * @param toDay
+     * @return Thống kê số lượng khách hàng đăng ký trong khoảng thời gian
+     * @throws ParseException
+     */
     Object getToTalCustomerRegisterPeriod(String fromDay, String toDay) throws ParseException;
 }

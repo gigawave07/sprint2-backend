@@ -16,12 +16,25 @@ public interface ParkingSlotService {
     ParkingSlot findByReserved(Boolean reserved);
 
 
-    // Thống kê số lượng các hãng xe đang có tại bãi
+    /**
+     * Nguyen Quang Danh
+     * Begin
+     *
+     * @return Thống kê số lượng các hãng xe đang có tại bãi
+     */
     Object getTotalCarTypeParkingSlot();
 
-    // Thống kê số lượng xe đang có tại bãi
+
+    /**
+     * @return Thống kê số lượng xe đang có tại bãi
+     */
     Long getTotalCarParking();
 
-    // Thống kê tổng số lượng vị trí đỗ xe của bãi
+
+    /**
+     * End
+     *
+     * @return Thống kê tổng số lượng vị trí đỗ xe của bãi
+     */
     Long getTotalParkingSlot();
 }

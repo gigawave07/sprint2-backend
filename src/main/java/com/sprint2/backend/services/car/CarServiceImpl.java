@@ -22,12 +22,16 @@ public class CarServiceImpl implements CarService {
         return this.carRepository.findById(id).orElse(null);
     }
 
-    // Thống kê số lượng xe của mỗi khách hàng
+
+    /**
+     * Nguyen Quang Danh
+     *
+     * @return Thống kê số lượng xe của mỗi khách hàng
+     */
     @Override
     public Object getTotalCarOfCustomer() {
         return this.carRepository.getTotalCarOfCustomer();
     }
-
 
 
 }

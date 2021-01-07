@@ -24,7 +24,14 @@ public class TicketServiceImpl implements TicketService {
         return this.ticketRepository.findById(id).orElse(null);
     }
 
-    // Thống kê doanh thu trong khoảng thời gian (ticket)
+
+    /**
+     * Nguyen Quang Danh
+     *
+     * @param fromEnterDay
+     * @param toExitDay
+     * @return Thống kê doanh thu trong khoảng thời gian (ticket)
+     */
     @Override
     public Object getTotalRevenueTicketPeriod(String fromEnterDay, String toExitDay) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-d");
@@ -33,5 +40,5 @@ public class TicketServiceImpl implements TicketService {
         return this.ticketRepository.getTotalRevenueTicketPeriod(localFromEnterDay, localToExitDay);
     }
 
-    
+
 }

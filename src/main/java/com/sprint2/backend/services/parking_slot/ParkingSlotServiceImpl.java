@@ -37,18 +37,32 @@ public class ParkingSlotServiceImpl implements ParkingSlotService {
         return this.parkingSlotRepository.findByReservedContaining(reserved);
     }
 
-    // Thống kê số lượng các hãng xe đang có tại bãi
+
+    /**
+     * Nguyen Quang Danh
+     * Begin
+     *
+     * @return Thống kê số lượng các hãng xe đang có tại bãi
+     */
     @Override
     public Object getTotalCarTypeParkingSlot() {
         return this.parkingSlotRepository.getTotalCarTypeParkingSlot();
     }
 
-    // Thống kê số lượng xe đang có tại bãi
+
+    /**
+     * @return Thống kê số lượng xe đang có tại bãi
+     */
     @Override
     public Long getTotalCarParking() {
         return this.parkingSlotRepository.getTotalCarParking();
     }
 
+    /**
+     * End
+     *
+     * @return Thống kê số lượng vị trí đỗ xe của bãi
+     */
     @Override
     public Long getTotalParkingSlot() {
         return this.parkingSlotRepository.getTotalParkingSlot();

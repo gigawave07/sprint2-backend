@@ -44,13 +44,24 @@ public class MemberCardServiceImpl implements MemberCardService {
         return this.memberCardRepository.findByCar_Customer_Email(mail);
     }
 
-    // Thống kê tổng số lượng vé mỗi loại theo tuần tháng năm
+
+    /**
+     * Nguyen Quang Danh
+     * Begin
+     *
+     * @return Thống kê tổng số lượng vé mỗi loại theo tuần tháng năm
+     */
     @Override
     public Object getTotalMemberCardType() {
         return this.memberCardRepository.getTotalMemberCardType();
     }
 
-    // Thống kê doanh thu trong khoảng thời gian (member card)
+
+    /**
+     * @param fromDay
+     * @param toDay
+     * @return Thống kê doanh thu trong khoảng thời gian (member card)
+     */
     @Override
     public Object getTotalRevenueMemberCardPeriod(String fromDay, String toDay) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-d");
@@ -59,34 +70,66 @@ public class MemberCardServiceImpl implements MemberCardService {
         return this.memberCardRepository.getTotalRevenueMemberCardPeriod(localFromDay, localToDay);
     }
 
-    // Thống kê số vé theo tuần (member card)
+
+    /**
+     * @param monthParam
+     * @param yearParam
+     * @return Thống kê số vé tuần 1 (member card)
+     */
     @Override
     public Object getTotalMemberCardWeek1(String monthParam, String yearParam) {
         return this.memberCardRepository.getTotalMemberCardWeek1(monthParam, yearParam);
     }
 
+    /**
+     * @param monthParam
+     * @param yearParam
+     * @return Thống kê số vé tuần 2 (member card)
+     */
     @Override
     public Object getTotalMemberCardWeek2(String monthParam, String yearParam) {
         return this.memberCardRepository.getTotalMemberCardWeek2(monthParam, yearParam);
     }
 
+    /**
+     * @param monthParam
+     * @param yearParam
+     * @return Thống kê số vé tuần 3 (member card)
+     */
     @Override
     public Object getTotalMemberCardWeek3(String monthParam, String yearParam) {
         return this.memberCardRepository.getTotalMemberCardWeek3(monthParam, yearParam);
     }
 
+    /**
+     * @param monthParam
+     * @param yearParam
+     * @return Thống kê số vé tuần 4 (member card)
+     */
     @Override
     public Object getTotalMemberCardWeek4(String monthParam, String yearParam) {
         return this.memberCardRepository.getTotalMemberCardWeek4(monthParam, yearParam);
     }
 
-    // Thống kê số vé theo tháng (member card)
+
+    /**
+     * @param monthParam
+     * @param yearParam
+     * @return Thống kê số vé theo tháng (member card)
+     */
     @Override
     public Object getTotalMemberCardMonth(String monthParam, String yearParam) {
         return this.memberCardRepository.getTotalMemberCardMonth(monthParam, yearParam);
     }
 
-    // Thống kê số vé theo năm (member card)
+
+    /**
+     * Nguyen Quang Danh
+     * End
+     *
+     * @param yearParam
+     * @return Thống kê số vé theo năm (member card)
+     */
     @Override
     public Object getTotalMemberCardYear(String yearParam) {
         return this.memberCardRepository.getTotalMemberCardYear(yearParam);

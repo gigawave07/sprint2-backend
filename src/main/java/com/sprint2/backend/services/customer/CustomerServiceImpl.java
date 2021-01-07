@@ -25,13 +25,24 @@ public class CustomerServiceImpl implements CustomerService {
         return this.customerRepository.findById(id).orElse(null);
     }
 
-    // Thống kê số lượng khách hàng
+
+    /**
+     * Nguyen Quang Danh
+     *
+     * @return Thống kê số lượng khách hàng
+     */
     @Override
     public Long getTotalCustomer() {
         return this.customerRepository.getTotalCustomer();
     }
 
-    //  Thống kê số lượng khách hàng đăng ký trong khoảng thời gian
+
+    /**
+     * @param fromDay
+     * @param toDay
+     * @return Thống kê số lượng khách hàng đăng ký trong khoảng thời gian
+     * @throws ParseException
+     */
     @Override
     public Object getToTalCustomerRegisterPeriod(String fromDay, String toDay) throws ParseException {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-d");
