@@ -18,6 +18,8 @@ public class AppAccountController {
     @GetMapping("check-login-mobile/{userName}/{password}")
     public ResponseEntity<?> checkLoginMobile(@PathVariable String userName, @PathVariable String password) {
         AppAccount appAccount = null;
+        System.out.println(userName!=null);
+        System.out.println(password!=null);
         if (userName!=null && password != null){
             appAccount = this.appAccountService.getAccount(userName, password);
         }

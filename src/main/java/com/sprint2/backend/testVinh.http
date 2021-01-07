@@ -1,8 +1,8 @@
-GET http://localhost:8080/account/checkLogin-mobile/customer1/123123
+GET http://localhost:8080/account/check-login-mobile/asdasdas/12123123
 Accept: application/json
 
 ###
-GET http://localhost:8080/car/getListCar/1
+GET http://localhost:8080/car/get-list-car/1
 Accept: application/json
 
 ###
