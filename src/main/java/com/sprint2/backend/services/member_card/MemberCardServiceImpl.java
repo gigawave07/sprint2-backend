@@ -45,6 +45,11 @@ public class MemberCardServiceImpl implements MemberCardService {
     }
 
 
+    @Override
+    public List<MemberCard> findAll() {
+        return this.memberCardRepository.findAll();
+    }
+
     /**
      * Nguyen Quang Danh
      * Begin
