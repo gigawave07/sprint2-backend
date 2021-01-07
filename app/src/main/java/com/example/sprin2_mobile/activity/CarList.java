@@ -9,10 +9,20 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.sprin2_mobile.R;
+import com.example.sprin2_mobile.entity.Car;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CarList extends AppCompatActivity {
 
@@ -28,22 +38,34 @@ public class CarList extends AppCompatActivity {
     }
 
     private void getListCar() {
+        Log.e("", " ----------------------------------------------------");
         String url = URL_GET_LIST_CAR;
         url += getCustomerId();
+//        url += "4";
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
-                Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(url, new Response.Listener<JSONArray>() {
             @Override
-            public void onResponse(JSONObject response) {
-
-                Log.e("", response.toString());
+            public void onResponse(JSONArray response) {
+                try {
+                    List<Car> carList = new ArrayList<>();
+                    Car car;
+                    Gson gson = new Gson();
+                    for (int i = 0; i < response.length(); i++) {
+                        JSONObject temp = response.getJSONObject(i);
+                        car = gson.fromJson(temp.toString(), Car.class);
+                        carList.add(car);
+                    }
+                    Log.e("", carList.toString());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
             }
         });
-        requestQueue.add(jsonObjectRequest);
+        requestQueue.add(jsonArrayRequest);
     }
 
 
