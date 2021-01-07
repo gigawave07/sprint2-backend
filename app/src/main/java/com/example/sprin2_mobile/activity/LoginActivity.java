@@ -18,9 +18,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.sprin2_mobile.R;
 import com.example.sprin2_mobile.entity.AppAccount;
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import lombok.SneakyThrows;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 
@@ -28,7 +26,7 @@ public class LoginActivity extends AppCompatActivity {
 
     EditText edtEmail, edtPassword;
     Button btnLogin, btnBack;
-    String URL = "http://192.168.1.4:8080/account/checkLoginMobile/";
+    String URL = "http://10.0.2.2:8080/account/checkLoginMobile/";
 
 
     @Override
@@ -49,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
                 if (edtEmail.getText().length() != 0 && edtPassword.getText().length() != 0) {
                     URL += edtEmail.getText().toString() + "/" + edtPassword.getText().toString();
                     getAccount();
-                    URL = "http://192.168.1.4:8080/account/checkLoginMobile/";
+                    URL = "http://10.0.2.2:8080/account/checkLoginMobile/";
                 }
             }
         });
@@ -64,16 +62,18 @@ public class LoginActivity extends AppCompatActivity {
             public void onResponse(JSONObject response) {
                 Gson gson = new Gson();
                 AppAccount appAccount = gson.fromJson(response.toString(), AppAccount.class);
-                if (appAccount.getAppRole().getId().toString().equals("1")){
+                Log.e("", appAccount.getAppRole().getId().toString());
+                if (appAccount.getAppRole().getId().toString().equals("1")) {
 
-                } else if (appAccount.getAppRole().getId().toString().equals("2")){
+                } else if (appAccount.getAppRole().getId().toString().equals("2")) {
                     Intent intent = new Intent(LoginActivity.this, EmployeeActivity.class);
                     startActivity(intent);
-                } else if (appAccount.getAppRole().getId().toString().equals("3")){
+                } else if (appAccount.getAppRole().getId().toString().equals("3")) {
                     Intent intent = new Intent(LoginActivity.this, UserDetailActivity.class);
                     intent.putExtra("accountId", appAccount.getId().toString());
                     startActivity(intent);
-                };
+                }
+                ;
             }
         }, new Response.ErrorListener() {
             @Override

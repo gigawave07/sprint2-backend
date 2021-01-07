@@ -22,8 +22,9 @@ public class UserDetailActivity extends AppCompatActivity {
 
     TextView cusDetailName, cusDetailIdentify, cusDetailBirthDay, cusDetailNumCar;
     Button cusDetailBack, cusDetailCarList;
-    String URL1 = "http://192.168.1.4:8080/customer/getCustomerDetail/";
-    String URL2 = "http://192.168.1.4:8080/car/amountOfCar/";
+    String URL1 = "http://10.0.2.2:8080/customer/getCustomerDetail/";
+    String URL2 = "http://10.0.2.2:8080/car/amountOfCar/";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +64,7 @@ public class UserDetailActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
             }
         });
-        URL1 = "http://192.168.1.4:8080/customer/getCustomerDetail/";
+        URL1 = "http://10.0.2.2:8080/customer/getCustomerDetail/";
         requestQueue.add(objectRequestCustomer);
 
     }
@@ -72,7 +73,6 @@ public class UserDetailActivity extends AppCompatActivity {
         Gson gson = new Gson();
         Customer customer = gson.fromJson(response.toString(), Customer.class);
         URL2 += customer.getId();
-        Log.e("", URL2);
         cusDetailNumCar.setText(getNumCar());
         if (customer.getFullName() != null) {
             cusDetailName.setText(customer.getFullName());
@@ -108,7 +108,7 @@ public class UserDetailActivity extends AppCompatActivity {
             }
         }
         );
-        URL2 = "http://192.168.1.4:8080/car/amountOfCar/";
+        URL2 = "http://10.0.2.2:8080/car/amountOfCar/";
         requestQueue.add(objectRequestCar);
         return result[0];
     }
