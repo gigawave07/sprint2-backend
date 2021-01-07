@@ -40,7 +40,7 @@ public class PayServiceImpl implements PaySerVice {
      * */
     @Override
     public List<MemberCard> findByCustomerID(Long id) {
-        return this.memberCardRepository.findByCar_Customer_Id(id);
+        return this.memberCardRepository.findByCarCustomerId(id);
     }
 
     /*
