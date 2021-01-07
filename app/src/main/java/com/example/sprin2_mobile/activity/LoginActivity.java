@@ -24,17 +24,19 @@ import org.json.JSONObject;
 
 public class LoginActivity extends AppCompatActivity {
 
-    public static final String BACK_MESSAGE = "Bạn có chắc muốn thoát không?";
-    public static final String OPTION_BACK = "Hãy chọn lựa chọn Có hoặc Không";
-    public static final String USERNAME_NOT_EMPTY = "Không được bỏ trống tên tài khoản";
-    public static final String PASSWORD_NOT_EMPTY = "Không được bỏ trống mật khẩu";
-    public static final String ACCOUNT_NOT_EMPTY = "Không được bỏ trống tên tài khoản và mật khẩu";
-    public static final String BASE_URL = "http://10.0.2.2:8080/account/check-login-mobile/";
-    public static final String WRONG_ACCOUNT = "Tên tài khoản hoặc mật khẩu không chính xác, vui lòng nhập lại";
-    public static final String YES_OPTION = "Có";
-    public static final String NO_OPTION = "Không";
-    EditText edtEmail, edtPassword;
-    Button btnLogin, btnBack;
+    private static final String BACK_MESSAGE = "Bạn có chắc muốn thoát không?";
+    private static final String OPTION_BACK = "Hãy chọn lựa chọn Có hoặc Không";
+    private static final String USERNAME_NOT_EMPTY = "Không được bỏ trống tên tài khoản";
+    private static final String PASSWORD_NOT_EMPTY = "Không được bỏ trống mật khẩu";
+    private static final String ACCOUNT_NOT_EMPTY = "Không được bỏ trống tên tài khoản và mật khẩu";
+    private static final String BASE_URL = "http://10.0.2.2:8080/account/check-login-mobile/";
+    private static final String WRONG_ACCOUNT = "Tên tài khoản hoặc mật khẩu không chính xác, vui lòng nhập lại";
+    private static final String YES_OPTION = "Có";
+    private static final String NO_OPTION = "Không";
+    EditText edtEmail;
+    EditText edtPassword;
+    Button btnLogin;
+    Button btnBack;
 
 
     @Override
@@ -102,7 +104,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
         requestQueue.add(objectRequest);
-
     }
 
     private void controlBtnBack() {

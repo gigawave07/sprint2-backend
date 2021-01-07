@@ -13,10 +13,11 @@ import com.example.sprin2_mobile.R;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static final String CHECK_NETWORK = "Hãy kiểm tra kết nối mạng";
+    private static final String CHECK_NETWORK = "Hãy kiểm tra kết nối mạng";
     Button btnMainLogin;
     ConnectivityManager connectivityManager;
-    NetworkInfo myWifi, my3G;
+    NetworkInfo myWifi;
+    NetworkInfo my3G;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

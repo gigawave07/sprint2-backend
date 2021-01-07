@@ -20,10 +20,14 @@ import org.json.JSONObject;
 
 public class UserDetailActivity extends AppCompatActivity {
 
-    public static final String URL_GET_CUSTOMER_INFORMATION = "http://10.0.2.2:8080/customer/get-customer-detail/";
-    public static final String URL_GET_CAR_QUANTITY = "http://10.0.2.2:8080/car/amount-of-car/";
-    TextView customerDetailName, customerDetailIdentify, customerDetailBirthDay, customerDetailNumCar;
-    Button customerDetailBack, customerDetailCarList;
+    private static final String URL_GET_CUSTOMER_INFORMATION = "http://10.0.2.2:8080/customer/get-customer-detail/";
+    private static final String URL_GET_CAR_QUANTITY = "http://10.0.2.2:8080/car/amount-of-car/";
+    TextView customerDetailName;
+    TextView customerDetailIdentify;
+    TextView customerDetailBirthDay;
+    TextView customerDetailNumCar;
+    Button customerDetailBack;
+    Button customerDetailCarList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

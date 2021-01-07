@@ -18,7 +18,10 @@ import com.journeyapps.barcodescanner.BarcodeEncoder;
 public class CarDetailActivity extends AppCompatActivity {
 
     ImageView imgQrCode;
-    TextView licensePlates, typeCar, floor, numberSlot;
+    TextView licensePlates;
+    TextView typeCar;
+    TextView floor;
+    TextView numberSlot;
     Button carBack;
 
     @Override
