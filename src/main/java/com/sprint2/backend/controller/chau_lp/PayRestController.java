@@ -9,7 +9,6 @@ import java.util.List;
 
 import com.sprint2.backend.entity.MemberCard;
 import com.sprint2.backend.services.pay.PaySerVice;
-import com.sprint2.backend.model.MessageDTO;
 
 @RestController
 @RequestMapping("/chau")
@@ -30,23 +29,13 @@ public class PayRestController {
     }
 
     /*
-     * update member card after customer pay
+     * update member card and send mail after customer pay
      * @param money, memberCardList
      * void
      * */
-    @GetMapping("/pay/{money}/{memberCardList}")
-    public void updateMemberCardAfterPay(@PathVariable Double money, @PathVariable List<Long> memberCardList) {
-        this.paySerVice.updateMemberCardAfterPay(money, memberCardList);
-    }
-
-    /*
-     * create signature for MoMo
-     * @param money, requestID
-     * @return MessageDTO
-     * */
-    @GetMapping("/create-signature/{money}")
-    public ResponseEntity<MessageDTO> createSignatureForMoMo(@PathVariable String money) {
-        MessageDTO messageDTO = new MessageDTO(this.paySerVice.createSignature(money));
-        return new ResponseEntity<>(messageDTO, HttpStatus.OK);
+    @GetMapping("/pay/{money}/{listIDMemberCard}")
+    public void updateMemberCardAndSendMailAfterCustomerPay(@PathVariable Double money,
+                                                    @PathVariable List<Long> listIDMemberCard) {
+        this.paySerVice.updateMemberCardAndSendMailAfterCustomerPay(money, listIDMemberCard);
     }
 }
