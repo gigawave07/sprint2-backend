@@ -64,6 +64,6 @@ public class MessageFromCamera {
     }
 
     public void setEntryLog(LocalDateTime entryLog) {
-        this.entryLog = entryLog; 
+        this.entryLog = entryLog;
     }
 }

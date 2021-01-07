@@ -77,6 +77,9 @@ public class CameraServiceImpl implements CameraService {
                         EntryLog entryLog = new EntryLog();
                         entryLog.setMemberCard(memberCardInExpiryDate);
                         List<EntryLog> entryLogList = this.entryLogRepository.getEntryLogByMemberCard(memberCardInExpiryDate.getId());
+                        if (entryLogList == null  && entryLogList.size() == 0){
+                            this.entryLogRepository.save(entryLog);
+                        }
                         if ( this.messageFromCamera.getStatus()){
                             entryLog.setEnterDate(LocalDateTime.now());
                         } else {
