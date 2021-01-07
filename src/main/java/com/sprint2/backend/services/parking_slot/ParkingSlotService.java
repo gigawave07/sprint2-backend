@@ -21,4 +21,12 @@ public interface ParkingSlotService {
     List<ParkingSlotDTODisplay> findParkingSlotByFloor (String floor);
 
     ParkingSlot findParkingSlotBySlotNumberAndFloor(String slotNumber, String floor);
+
+    //Lành
+
+    List<ParkingSlot> findAllNeed();
+
+    ParkingSlot findByFloorAndSlotNumber(String floor, String slotNumber);
+
+    ParkingSlot findBySlotNumber(String slotNumber);
 }
