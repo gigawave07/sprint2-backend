@@ -40,6 +40,6 @@ public class MemberCardServiceImpl implements MemberCardService {
 
     @Override
     public List<MemberCard> findByCustomerID(Long id) {
-        return this.memberCardRepository.findByCar_Customer_Id(id);
+        return this.memberCardRepository.findByCarCustomerId(id);
     }
 }
