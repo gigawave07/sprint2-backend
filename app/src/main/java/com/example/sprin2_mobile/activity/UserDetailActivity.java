@@ -112,7 +112,7 @@ public class UserDetailActivity extends AppCompatActivity {
     private void controlCarList() {
         customerDetailCarList.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 Intent intent = new Intent(UserDetailActivity.this, CarList.class);
                 startActivity(intent);
             }
@@ -122,7 +122,7 @@ public class UserDetailActivity extends AppCompatActivity {
     private void controlBack() {
         customerDetailBack.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 Intent intent = new Intent(UserDetailActivity.this, LoginActivity.class);
                 startActivity(intent);
             }

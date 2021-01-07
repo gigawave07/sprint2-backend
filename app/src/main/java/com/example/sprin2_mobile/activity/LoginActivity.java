@@ -52,7 +52,7 @@ public class LoginActivity extends AppCompatActivity {
     private void controlBtnLogin() {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 String url = BASE_URL;
                 if (edtEmail.getText().length() != 0 && edtPassword.getText().length() != 0) {
                     url += edtEmail.getText().toString() + "/" + edtPassword.getText().toString();
@@ -63,7 +63,7 @@ public class LoginActivity extends AppCompatActivity {
                 } else if (edtPassword.getText().length() == 0) {
                     Toast.makeText(LoginActivity.this, PASSWORD_NOT_EMPTY,
                             Toast.LENGTH_LONG).show();
-                } else if (edtEmail.getText().length() == 0 && edtPassword.getText().length() == 0) {
+                } else if (edtEmail.getText().length() != 0 || edtPassword.getText().length() != 0) {} else {
                     Toast.makeText(LoginActivity.this, ACCOUNT_NOT_EMPTY,
                             Toast.LENGTH_LONG).show();
                 }
