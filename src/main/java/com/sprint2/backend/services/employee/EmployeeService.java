@@ -19,16 +19,6 @@ public interface EmployeeService {
     void deleteEmployee(Long id);
 
 
-    //------------------- Validate ton tai --------------------------
-//    List<Employee> findEmployeeByCode(String code);
-
-    //------------------- Account - Role --------------------------
-    void saveAccount(AppAccount appAccount);
-
-    AppAccount findByNameAppAccount(String appAccount);
-
-    AppRole findByNameAppRole(String appRole);
-
     List<AppRole> findAllByRole();
     //-------------------------- Search -------------------------------
     List<Employee> findEmployeeByFullNameContaining (String fullName);
@@ -37,7 +27,4 @@ public interface EmployeeService {
 
     List<Employee> findEmployeeByPositionContaining (String position);
 
-//    List<Employee> findAllEmployeeByStatus();
-
-//    List<Employee> searchEmployee(String fullName, String position);
 }
