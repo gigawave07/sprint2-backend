@@ -33,6 +33,11 @@ public class MemberCardServiceImpl implements MemberCardService {
     private ParkingSlotRepository parkingSlotRepository;
 
 
+    @Override
+    public List<MemberCard> findAll() {
+        return this.memberCardRepository.findAll();
+    }
+
     /**
      * Lành
      */

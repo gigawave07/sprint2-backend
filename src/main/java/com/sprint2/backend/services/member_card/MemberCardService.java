@@ -8,6 +8,8 @@ import com.sprint2.backend.entity.MemberCard;
 
 
 public interface MemberCardService {
+    List<MemberCard> findAll();
+
     List<MemberCardListDTO> findAllMemberCardDTO();
 
     MemberCard findByCustomerName(String fullName);
