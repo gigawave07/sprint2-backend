@@ -22,4 +22,14 @@ public class CustomerServiceImpl implements CustomerService {
     public Customer findByID(Long id) {
         return this.customerRepository.findById(id).orElse(null);
     }
+
+    /**
+     * nguyen quoc khanh
+     * @param id
+     * @return
+     */
+    @Override
+    public Customer findCustomerByAppAccountId(Long id) {
+        return this.customerRepository.findCustomerByAppAccountId(id);
+    }
 }
