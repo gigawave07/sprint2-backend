@@ -18,7 +18,7 @@ public interface MemberCardRepository extends JpaRepository<MemberCard, Long> {
             "inner join customer " +
             "on car.customer_id = customer.id " +
             "where customer_id = ?1", nativeQuery = true)
-    List<MemberCard> findByCarCustomerId(Long id);
+    List<MemberCard> findByCustomerId(Long id);
 
     MemberCard findByCar_Customer_FullName(String fullName);
 }

@@ -14,6 +14,4 @@ public interface MemberCardService {
     MemberCard findByPlateNumber(String plateNumber);
 
     MemberCard findByCustomerName(String fullName);
-
-    List<MemberCard> findByCustomerID(Long id);
 }

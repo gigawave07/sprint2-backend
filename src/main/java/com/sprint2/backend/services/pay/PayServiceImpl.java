@@ -5,14 +5,11 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
-import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.crypto.Mac;
-import javax.crypto.spec.SecretKeySpec;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
@@ -40,7 +37,7 @@ public class PayServiceImpl implements PaySerVice {
      * */
     @Override
     public List<MemberCard> findByCustomerID(Long id) {
-        return this.memberCardRepository.findByCarCustomerId(id);
+        return this.memberCardRepository.findByCustomerId(id);
     }
 
     /*
@@ -49,13 +46,22 @@ public class PayServiceImpl implements PaySerVice {
      * void
      * */
     @Override
-    public void updateMemberCardAfterPay(Double money, List<Long> memberCardList) {
-        List<MemberCard> memberCardListAfterPay = new ArrayList<>();
-        Customer customer = null;
-        Invoice invoice = new Invoice();
+    public void updateMemberCardAndSendMailAfterCustomerPay(Double money, List<Long> listIDMemberCard) {
 
-        // update member card :
-        for (Long element : memberCardList) {
+        // update member card and create list member card for send email :
+        List<MemberCard> memberCardListAfterPay = updateMemberCard(money, listIDMemberCard);
+
+        // create invoice :
+        createInvoice(money, listIDMemberCard);
+
+        // send mail notification for customer after pay complete :
+        sendMailNotificationForCustomer(memberCardListAfterPay);
+    }
+
+    private List<MemberCard> updateMemberCard(Double money, List<Long> listIDMemberCard) {
+        List<MemberCard> memberCardListAfterPay = new ArrayList<>();
+
+        for (Long element : listIDMemberCard) {
             MemberCard memberCard = this.memberCardRepository.findById(element).orElse(null);
             if (memberCard != null) {
                 memberCardListAfterPay.add(memberCard);
@@ -67,19 +73,26 @@ public class PayServiceImpl implements PaySerVice {
                     memberCard.setEndDate(memberCard.getEndDate().plusYears(1));
                 }
                 this.memberCardRepository.save(memberCard);
-
-                // create invoice :
-                if (customer == null) {
-                    customer = memberCard.getCar().getCustomer();
-                    invoice.setTotalAmount(money);
-                    invoice.setCustomer(customer);
-                    invoice.setPayDate(LocalDateTime.now());
-                    this.invoiceRepository.save(invoice);
-                }
             }
         }
 
-        // send mail notification for customer after pay complete :
+        return memberCardListAfterPay;
+    }
+
+    private void createInvoice(Double money, List<Long> listIDMemberCard) {
+        MemberCard memberCardUseCreatInvoice =
+                this.memberCardRepository.findById(listIDMemberCard.get(0)).orElse(null);
+        if (memberCardUseCreatInvoice != null) {
+            Invoice invoice = new Invoice();
+            Customer customer = memberCardUseCreatInvoice.getCar().getCustomer();
+            invoice.setTotalAmount(money);
+            invoice.setCustomer(customer);
+            invoice.setPayDate(LocalDateTime.now());
+            this.invoiceRepository.save(invoice);
+        }
+    }
+
+    private void sendMailNotificationForCustomer(List<MemberCard> memberCardListAfterPay) {
         try {
             MimeMessage message = this.emailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
@@ -207,42 +220,5 @@ public class PayServiceImpl implements PaySerVice {
         } catch (MessagingException messaging) {
             messaging.printStackTrace();
         }
-    }
-
-    /*
-     * create signature for MoMo
-     * @param money, requestID
-     * @return Signature
-     * */
-    @Override
-    public String createSignature(String money) {
-        String requestID = String.valueOf(System.currentTimeMillis()).substring(0, 10);
-        String signature;
-        String data = "partnerCode=MOMOBKUN20180529&accessKey=klm05TvNBzhg7h7j&requestId=" + requestID
-                + "&amount=" + money +
-                "&orderId=" + requestID + "&orderInfo=test thanh toan&returnUrl=https://momo.vn/" +
-                "&notifyUrl=https://momo.vn/&extraData=merchantName=Payment";
-        try {
-            SecretKeySpec signingKey =
-                    new SecretKeySpec("at67qH6mk8w5Y1nAyMoYKMWACiEi2bsa".getBytes(StandardCharsets.UTF_8),
-                            "HmacSHA256");
-            Mac mac = Mac.getInstance("HmacSHA256");
-            mac.init(signingKey);
-            byte[] rawHmac = mac.doFinal(data.getBytes(StandardCharsets.UTF_8));
-            byte[] hexArray = {(byte) '0', (byte) '1', (byte) '2', (byte) '3', (byte) '4', (byte) '5',
-                    (byte) '6', (byte) '7', (byte) '8', (byte) '9', (byte) 'a', (byte) 'b', (byte) 'c',
-                    (byte) 'd', (byte) 'e', (byte) 'f'};
-            byte[] hexChars = new byte[rawHmac.length * 2];
-            for (int j = 0; j < rawHmac.length; j++) {
-                int v = rawHmac[j] & 0xFF;
-                hexChars[j * 2] = hexArray[v >>> 4];
-                hexChars[j * 2 + 1] = hexArray[v & 0x0F];
-            }
-            signature = new String(hexChars);
-            signature = signature + "," + requestID;
-        } catch (Exception ex) {
-            throw new RuntimeException(ex);
-        }
-        return signature;
     }
 }

@@ -37,9 +37,4 @@ public class MemberCardServiceImpl implements MemberCardService {
     public MemberCard findByCustomerName(String fullName) {
         return this.memberCardRepository.findByCar_Customer_FullName(fullName);
     }
-
-    @Override
-    public List<MemberCard> findByCustomerID(Long id) {
-        return this.memberCardRepository.findByCarCustomerId(id);
-    }
 }
