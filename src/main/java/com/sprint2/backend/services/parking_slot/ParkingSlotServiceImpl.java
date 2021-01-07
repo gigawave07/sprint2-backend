@@ -1,6 +1,5 @@
 package com.sprint2.backend.services.parking_slot;
 
-import com.sprint2.backend.model.ParkingSlotDTODisplay;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +11,7 @@ import com.sprint2.backend.repository.ParkingSlotRepository;
 import com.sprint2.backend.entity.ParkingSlot;
 import com.sprint2.backend.entity.SlotType;
 import com.sprint2.backend.model.ParkingSlotDTO;
+import com.sprint2.backend.model.ParkingSlotDTODisplay;
 
 
 @Service
@@ -33,8 +33,12 @@ public class ParkingSlotServiceImpl implements ParkingSlotService {
         return this.parkingSlotRepository.findById(id).orElse(null);
     }
 
+
+    // MaiHTQ start
     /**
-     * MaiHTQ start
+     * Find All list
+     * @return parkingSlotDTOList
+     * Create by MaiHTQ
      */
     @Override
     public List<ParkingSlotDTODisplay> findAllDTO() {
@@ -46,6 +50,11 @@ public class ParkingSlotServiceImpl implements ParkingSlotService {
         return parkingSlotDTOList;
     }
 
+    /**
+     * Create new position parking slot
+     * @param parkingSlotDTO
+     * Create by MaiHTQ
+     */
     @Override
     public void save(ParkingSlotDTO parkingSlotDTO) {
         ParkingSlot parkingSlot = new ParkingSlot();
@@ -58,11 +67,22 @@ public class ParkingSlotServiceImpl implements ParkingSlotService {
         this.parkingSlotRepository.save(parkingSlot);
     }
 
+    /**
+     * Find All Slot Type
+     * @return list slot type
+     * Create by MaiHTQ
+     */
     @Override
     public List<SlotType> findAllSlotType() {
         return this.slotTypeRepository.findAll();
     }
 
+    /**
+     * Search floor
+     * @param floor
+     * @return list
+     * Create by MaiHTQ
+     */
     @Override
     public List<ParkingSlotDTODisplay> findParkingSlotByFloor(String floor) {
         List<ParkingSlotDTODisplay> parkingSlotDTOList = new ArrayList<>();
@@ -75,6 +95,12 @@ public class ParkingSlotServiceImpl implements ParkingSlotService {
         return parkingSlotDTOList;
     }
 
+    /**
+     * Get Information Parking Slot DTO
+     * @param parkingSlotDTOList
+     * @param parkingSlot
+     * Create by MaiHTQ
+     */
     public void getInfoParkingSlotDTODisplay(List<ParkingSlotDTODisplay> parkingSlotDTOList, ParkingSlot parkingSlot) {
         ParkingSlotDTODisplay parkingSlotDTO = new ParkingSlotDTODisplay();
         parkingSlotDTO.setFloor(parkingSlot.getFloor());
@@ -87,11 +113,16 @@ public class ParkingSlotServiceImpl implements ParkingSlotService {
         parkingSlotDTOList.add(parkingSlotDTO);
     }
 
+    /**
+     * Validate Exists
+     * @param slotNumber
+     * @param floor
+     * @return parking slot
+     * Create by MaiHTQ
+     */
     @Override
     public ParkingSlot findParkingSlotBySlotNumberAndFloor(String slotNumber, String floor) {
         return this.parkingSlotRepository.findParkingSlotBySlotNumberAndFloor(slotNumber, floor);
     }
-    /**
-     * MaiHTQ end
-     */
+    // MaiHTQ end
 }

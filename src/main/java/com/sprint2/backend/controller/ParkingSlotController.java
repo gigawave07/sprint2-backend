@@ -1,6 +1,5 @@
 package com.sprint2.backend.controller;
 
-import com.sprint2.backend.model.ParkingSlotDTODisplay;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +11,7 @@ import com.sprint2.backend.entity.ParkingSlot;
 import com.sprint2.backend.entity.SlotType;
 import com.sprint2.backend.services.parking_slot.ParkingSlotService;
 import com.sprint2.backend.model.ParkingSlotDTO;
+import com.sprint2.backend.model.ParkingSlotDTODisplay;
 
 @RestController
 @RequestMapping("/parking-slot")
@@ -20,6 +20,7 @@ public class ParkingSlotController {
     @Autowired
     private ParkingSlotService parkingSlotService;
 
+    // Mai start
     /**
      * Display parking slot list
      * @return parkingSlotList
@@ -78,4 +79,5 @@ public class ParkingSlotController {
         ParkingSlot parkingSlot = this.parkingSlotService.findParkingSlotBySlotNumberAndFloor(slotNumber, floor);
         return new ResponseEntity<>(parkingSlot, HttpStatus.OK);
     }
+    // Mai End
 }
