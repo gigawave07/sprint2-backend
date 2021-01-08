@@ -11,7 +11,7 @@ public interface MemberCardService {
 
     void save(MemberCard memberCard);
 
-    MemberCard findByPlateNumber(String plateNumber);
+    List<MemberCard> findByPlateNumber(String plateNumber);
 
     MemberCard findByCustomerName(String fullName);
 

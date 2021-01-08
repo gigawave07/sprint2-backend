@@ -1,5 +1,7 @@
 package com.sprint2.backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,10 +29,14 @@ public class ParkingSlot {
     @Column(name = "status", columnDefinition = "BIT")
     private Boolean status = false;
 
+    @Column(name = "slot_number", columnDefinition = "VARCHAR(50)")
+    private String slotNumber;
+
     // relationship
 
     @OneToOne
     @JoinColumn(name = "car_id", referencedColumnName = "id", columnDefinition = "BIGINT")
+    @JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class)
     private Car car;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)

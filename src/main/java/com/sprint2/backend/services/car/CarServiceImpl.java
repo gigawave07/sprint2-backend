@@ -1,5 +1,6 @@
 package com.sprint2.backend.services.car;
 
+import com.sprint2.backend.model.CarDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,4 +23,22 @@ public class CarServiceImpl implements CarService{
     public Car findByID(Long id) {
         return this.carRepository.findById(id).orElse(null);
     }
+
+    // Quan start
+    @Override
+    public Car findByPlateNumber(String plateNumber) {
+        return carRepository.findByPlateNumber(plateNumber);
+    }
+
+    @Override
+    public void save(Car car) {
+        this.carRepository.save(car);
+    }
+
+    @Override
+    public Car convert(CarDTO carDTO) {
+        return new Car(carDTO.getPlateNumber());
+    }
+
+    // Quan end
 }
