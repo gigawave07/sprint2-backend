@@ -13,7 +13,6 @@ import java.util.List;
 
 @Repository
 public interface ParkingSlotRepository extends JpaRepository<ParkingSlot, Long> {
-    ParkingSlot findByFloorContaining(String floor);
 
     ParkingSlot findByReservedContaining(Boolean reserved);
 
@@ -30,6 +29,11 @@ public interface ParkingSlotRepository extends JpaRepository<ParkingSlot, Long> 
     ParkingSlot findByCar_PlateNumber(String plateNumber);
 
     ParkingSlot findByCar_Id(Long id);
+
+    List<ParkingSlot> findByFloor(String floor);
+
+    @Query(value = "select floor from parking_slot group by floor", nativeQuery = true)
+    List<String> getAllFloor();
 
     // Quan end
 

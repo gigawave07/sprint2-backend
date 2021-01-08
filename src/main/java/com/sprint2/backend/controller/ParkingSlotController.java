@@ -47,8 +47,23 @@ public class ParkingSlotController {
     }
 
     @GetMapping("/find-slot-by-car-id/{id}")
-    public ResponseEntity<?> findSlotByCarId (@PathVariable Long id) {
+    public ResponseEntity<?> findSlotByCarId(@PathVariable Long id) {
         return ResponseEntity.ok(parkingSlotService.findByCar_Id(id));
+    }
+
+    @GetMapping("/find-by-floor/{floor}")
+    public ResponseEntity<?> findByFloor(@PathVariable String floor) {
+        return ResponseEntity.ok(parkingSlotService.findByFloor(floor));
+    }
+
+    @GetMapping("/find-by-id/{id}")
+    public ResponseEntity<?> findById(@PathVariable Long id) {
+        return ResponseEntity.ok(parkingSlotService.findByID(id));
+    }
+
+    @GetMapping("/find-all-floor")
+    public ResponseEntity<?> findAllFloor() {
+        return ResponseEntity.ok(parkingSlotService.getAllFloor());
     }
     // Quan end
 

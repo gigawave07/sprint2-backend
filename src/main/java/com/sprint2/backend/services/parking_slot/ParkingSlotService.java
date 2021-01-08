@@ -13,9 +13,9 @@ public interface ParkingSlotService {
 
     void save(ParkingSlot parkingSlot);
 
-    ParkingSlot findByFloor(String floor);
-
     ParkingSlot findByReserved(Boolean reserved);
+
+    // Quan start
 
     ParkingSlot findByFloorAndSlotNumber(String floor, String slotNumber);
 
@@ -32,7 +32,9 @@ public interface ParkingSlotService {
     ParkingSlot findByCar_PlateNumber(String plateNumber);
     ParkingSlot findByCar_Id(Long id);
 
-
+    List<ParkingSlot> findByFloor(String floor);
+    List<String> getAllFloor();
+    // Quan end
 
     /**
      * Nguyen Quang Danh
