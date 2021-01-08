@@ -39,6 +39,7 @@ public class ParkingSlotServiceImpl implements ParkingSlotService {
         return this.parkingSlotRepository.findByReservedContaining(reserved);
     }
 
+
     /**
      * Lành
      */

@@ -15,8 +15,9 @@ public interface ParkingSlotService {
 
     ParkingSlot findByReserved(Boolean reserved);
 
-    //Lành
 
+
+    //Lành
     List<ParkingSlot> findAllNeed();
 
     ParkingSlot findByFloorAndSlotNumber(String floor, String slotNumber);
