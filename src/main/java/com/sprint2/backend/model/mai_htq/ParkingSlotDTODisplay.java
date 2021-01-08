@@ -1,4 +1,4 @@
-package com.sprint2.backend.model;
+package com.sprint2.backend.model.mai_htq;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
