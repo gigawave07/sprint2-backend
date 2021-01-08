@@ -50,4 +50,3 @@ public class AppAccount {
     @JsonBackReference
     private Customer customer;
 }
-

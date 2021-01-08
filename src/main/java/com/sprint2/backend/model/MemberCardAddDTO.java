@@ -1,4 +1,4 @@
-package com.sprint2.backend.dto;
+package com.sprint2.backend.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

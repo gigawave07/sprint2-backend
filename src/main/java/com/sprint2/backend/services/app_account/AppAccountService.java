@@ -1,8 +1,8 @@
 package com.sprint2.backend.services.app_account;
 
-import java.util.List;
-
 import com.sprint2.backend.entity.AppAccount;
+
+import java.util.List;
 
 public interface AppAccountService {
     List<AppAccount> findAll();

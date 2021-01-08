@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-public class TicketServiceImpl implements TicketService{
+public class TicketServiceImpl implements TicketService {
     @Autowired
     TicketRepository ticketRepository;
 

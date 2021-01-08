@@ -1,15 +1,11 @@
-package com.sprint2.backend.services.car;
-
-import java.util.List;
+package com.sprint2.backend.services.lanh_nqn.car;
 
 import com.sprint2.backend.entity.Car;
+
+import java.util.List;
 
 public interface CarService {
     List<Car> findAll();
 
-    Car findByID(Long id);
-
-
-    // Lành
     List<Car> findPlateNumber(String plateNumber);
 }

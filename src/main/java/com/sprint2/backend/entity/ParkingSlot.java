@@ -18,9 +18,6 @@ public class ParkingSlot {
     @Column(name = "id", columnDefinition = "BIGINT")
     private Long id;
 
-    @Column(name = "slot_number", columnDefinition = "VARCHAR(50)")
-    private String slotNumber;
-
     @Column(name = "floor", columnDefinition = "VARCHAR(50)")
     private String floor;
 
@@ -29,6 +26,10 @@ public class ParkingSlot {
 
     @Column(name = "status", columnDefinition = "BIT")
     private Boolean status = false;
+
+    @Column(name = "slot_number", columnDefinition = "VARCHAR(50)")
+    private String slotNumber;
+
 
     // relationship
     @OneToOne
