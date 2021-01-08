@@ -25,22 +25,21 @@ public class EmailServicesImpl implements EmailServices {
      */
     @Override
     public void sendVerificationEmail(AppAccount appAccount, String siteURL) throws UnsupportedEncodingException, MessagingException {
-        String subject = "Email xác nhận";
+        String subject = "Email xác nhận đổi mật khẩu";
         String senderName = "C06 Parking team";
-        String mailContent = "<div style=\"background-color: orange; width: 80%;color: white;height: 50px;\">";
-        mailContent += " <h2 style=\"position: relative;top:10px;left: 2px\">C06 Parking team</h2>";
+        String mailContent = "<div>";
+        mailContent += "<img src=\"https://firebasestorage.googleapis.com/v0/b/sprint2-72d39.appspot.com/o/avatar%2Fyour-logo_1610003482974?alt=media&token=27846c7c-d5e5-4b0e-a01d-a855b7d8fec0\"/>";
         mailContent += "</div>";
-        mailContent += "</div>";
-        mailContent += " <h1 style=\"color: #26bb84\"> Chào " + appAccount.getUsername() + "</h1>";
+        mailContent += " <h1 style=\"color: #26bb84\"> Chào " + appAccount.getCustomer().getFullName() + "</h1>";
         mailContent += "<p style=\"font-weight: bolder\">Bạn đã yêu cầu đổi mật khẩu trên hệ thống quản lý bãi đỗ xe của C06 Parking team. Nếu\n" +
                 "        bạn không có yêu cầu hoặc\n" +
-                "        có sự nhầm lẫn nào thì bạn có thể bỏ qua email này.</p>";
+                "        có sự nhầm lẫn nào bạn có thể bỏ qua email này.</p>";
         mailContent += "  <p style=\"color: #03A9F4\"> Sử dụng mã phía dưới để xác nhận đổi mật khẩu</p>";
         mailContent += "<div  style=\"color: white; background-color: blue;width: 20%;height: 35px; font-weight: bolder;text-align: center\">";
         mailContent += " <p style=\"position: relative;top: 5px;font-size: 20px\">" + appAccount.getVerificationCode() + "</p>";
         mailContent += "</div>";
         mailContent += "</div>";
-        mailContent += "<p> Nếu có nhầm lẫn hoặc sai sót gì bạn có thể liên hệ với chúng tôi qua email c0620g1@gmail.com</p>";
+        mailContent += "<p> Nếu có nhầm lẫn hoặc sai sót, bạn có thể liên hệ với chúng tôi qua email c0620g1@gmail.com</p>";
         mailContent += "<hr>";
         mailContent += "<h2 style=\"color: lightpink\">Trân trọng, C06 Parking team</h2>";
         mailContent += "<img style=\"width: 200px\"\n" +
