@@ -10,7 +10,7 @@ import com.sprint2.backend.entity.Invoice;
 public interface InvoiceService {
     List<Invoice> findAll();
 
-    Page<Invoice> findAllByCustomerID(Pageable pageable, Long id);
+    Page<Invoice> findAllByCustomerID(Long  id, int page);
 
     void save(Invoice invoice);
 }
