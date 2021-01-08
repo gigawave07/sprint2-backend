@@ -54,6 +54,7 @@ public class Customer {
 
     // relationship
 
+//    @OneToOne(cascade = CascadeType.ALL)
     @OneToOne
     @JoinColumn(name = "app_account_id", referencedColumnName = "id", columnDefinition = "BIGINT")
     private AppAccount appAccount;
@@ -65,4 +66,5 @@ public class Customer {
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     @JsonBackReference
     private List<Car> carList;
+
 }
