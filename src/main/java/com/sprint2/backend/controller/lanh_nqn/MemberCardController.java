@@ -18,7 +18,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/api")
+@RequestMapping("/lanh/member-card")
 public class MemberCardController {
     @Autowired
     private MemberCardService memberCardService;
@@ -35,7 +35,7 @@ public class MemberCardController {
     /**
      * Lành
      */
-    @PostMapping("/member-cards")
+    @PostMapping("/add")
     public ResponseEntity<?> addMemberCard(@RequestBody MemberCardAddDTO memberCardAddDTO) {
         this.memberCardService.save(memberCardAddDTO);
         return new ResponseEntity<>(HttpStatus.OK);
