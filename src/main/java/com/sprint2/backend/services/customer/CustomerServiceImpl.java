@@ -1,6 +1,9 @@
 package com.sprint2.backend.services.customer;
 
-import com.sprint2.backend.entity.Customer;
+import com.sprint2.backend.entity.*;
+import com.sprint2.backend.model.InformationCustomerDTO;
+import com.sprint2.backend.model.ListEntryLogDTO;
+import com.sprint2.backend.repository.AppAccountRepository;
 import com.sprint2.backend.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -12,6 +15,7 @@ import org.springframework.stereotype.Service;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -41,6 +45,11 @@ public class CustomerServiceImpl implements CustomerService {
             customer.setBirthday(customerDTO.getBirthday());
             this.customerRepository.save(customer);
         }
+    }
+
+    @Override
+    public Customer findByID(Long id) {
+        return this.customerRepository.findById(id).orElse(null);
     }
 
     // Tìm kiếm customer theo appAccount
