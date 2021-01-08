@@ -1,6 +1,8 @@
 package com.sprint2.backend.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -39,64 +41,21 @@ public class Car {
     @JoinColumn(name = "car_type_id", referencedColumnName = "id", columnDefinition = "BIGINT")
     private CarType carType;
 
-
     @OneToOne(mappedBy = "car", cascade = CascadeType.ALL)
-    @JsonBackReference
+    @JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class)
     private ParkingSlot parkingSlot;
 
     @OneToMany(mappedBy = "car", cascade = CascadeType.ALL)
-    @JsonBackReference
+    @JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class)
     private List<Ticket> ticketList;
 
     @OneToMany(mappedBy = "car", cascade = CascadeType.ALL)
-    @JsonBackReference
+    @JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class)
     private List<MemberCard> memberCardList;
 
-    public Long getId() {
-        return id;
-    }
+    // custom constructor
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getPlateNumber() {
-        return plateNumber;
-    }
-
-    public void setPlateNumber(String plateNumber) {
+    public Car(String plateNumber) {
         this.plateNumber = plateNumber;
-    }
-
-    public String getBrandName() {
-        return brandName;
-    }
-
-    public void setBrandName(String brandName) {
-        this.brandName = brandName;
-    }
-
-    public String getImagePlateNumber() {
-        return imagePlateNumber;
-    }
-
-    public void setImagePlateNumber(String imagePlateNumber) {
-        this.imagePlateNumber = imagePlateNumber;
-    }
-
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-
-    public CarType getCarType() {
-        return carType;
-    }
-
-    public void setCarType(CarType carType) {
-        this.carType = carType;
     }
 }

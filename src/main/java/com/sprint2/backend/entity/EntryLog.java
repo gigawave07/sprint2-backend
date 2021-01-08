@@ -1,5 +1,7 @@
 package com.sprint2.backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,5 +31,6 @@ public class EntryLog {
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "member_card_id", referencedColumnName = "id", columnDefinition = "BIGINT")
+    @JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class)
     private MemberCard memberCard;
 }
