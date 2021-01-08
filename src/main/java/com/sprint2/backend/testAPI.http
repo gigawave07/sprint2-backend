@@ -42,6 +42,7 @@ Content-Type: application/json
   "slotNumber": "50"
 }
 
+
 ###
 POST http://localhost:8080/car/get-info
 Content-Type: application/json
