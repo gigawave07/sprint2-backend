@@ -1,58 +1,83 @@
-GET http://localhost:8080/car/find-all-type
+POST http://localhost:8080/statistic/total-member-card-year
+Content-Type: application/json
+
+{
+  "yearParam": "2020"
+}
+
+###
+POST http://localhost:8080/statistic/total-member-card-month
+Content-Type: application/json
+
+{
+  "monthParam": "7",
+  "yearParam": "2020"
+}
+
+###
+POST http://localhost:8080/statistic/total-member-card-week
+Content-Type: application/json
+
+{
+  "monthParam": "5",
+  "yearParam": "2020"
+}
+
+###
+
+###
+POST http://localhost:8080/statistic/total-revenue-ticket-period
+Content-Type: application/json
+
+{
+  "fromDayPayment": "2019-12-10",
+  "toDayPayment": "2022-09-26"
+}
+
+###
+POST http://localhost:8080/statistic/total-revenue-member-card-period
+Content-Type: application/json
+
+{
+  "fromDayPayment": "2019-12-10",
+  "toDayPayment": "2022-09-26"
+}
+
+###
+POST http://localhost:8080/statistic/total-customer-register-period
+Content-Type: application/json
+
+{
+  "fromDay": "2020-12-10",
+  "toDay": "2021-09-26"
+}
+
+###
+GET http://localhost:8080/statistic/total-car-type-parking-slot
 Accept: application/json
 
 ###
-POST http://localhost:8080/ticket/close
-Content-Type: application/json
-
-{
-  "enterDate": "02021-01-06T03:19",
-  "exitDate": "2021-01-07T03:19",
-  "price": 1000,
-  "car": {
-    "plateNumber": "74G - 12607",
-    "carType": {
-      "id": 1
-    }
-  }
-}
+GET http://localhost:8080/statistic/total-customer
+Accept: application/json
 
 ###
-POST http://localhost:8080/ticket/save
-Content-Type: application/json
-
-{
-  "enterDate": null,
-  "exitDate": null,
-  "price": 0,
-  "car": {
-    "plateNumber": "74G - 12607",
-    "carType": {
-      "id": 1
-    }
-  }
-}
+GET http://localhost:8080/statistic/total-employee
+Accept: application/json
 
 ###
-POST http://localhost:8080/parking-slot/find-by-floor-slot-number
-Content-Type: application/json
-
-{
-  "floor": "5",
-  "slotNumber": "50"
-}
-
+GET http://localhost:8080/statistic/total-car-parking
+Accept: application/json
 
 ###
-POST http://localhost:8080/car/get-info
-Content-Type: application/json
-
-{
-  "plateNumber": "55S - 55555"
-}
+GET http://localhost:8080/statistic/total-parking-slot
+Accept: application/json
 
 ###
-GET http://localhost:8080/parking-slot/get-all
+GET http://localhost:8080/statistic/total-member-card-type
+Accept: application/json
+
+###
+GET http://localhost:8080/statistic/total-car-of-customer
 Accept: application/json
 
 ###
