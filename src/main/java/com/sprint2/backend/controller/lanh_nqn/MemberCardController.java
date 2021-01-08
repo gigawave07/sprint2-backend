@@ -41,6 +41,7 @@ public class MemberCardController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    
 
     @GetMapping("/list")
     public ResponseEntity<List<MemberCardListDTO>> getMemberCardListDemo() {
