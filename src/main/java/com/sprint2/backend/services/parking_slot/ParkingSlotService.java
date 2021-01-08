@@ -28,4 +28,8 @@ public interface ParkingSlotService {
     Boolean parkRegisteredCar(Car car);
 
     Boolean checkoutRegisteredCar(Car car);
+
+    ParkingSlot findByCar_PlateNumber(String plateNumber);
+    ParkingSlot findByCar_Id(Long id);
+
 }

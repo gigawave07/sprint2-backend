@@ -31,7 +31,7 @@ public class CameraServiceImpl implements CameraService {
     @Autowired
     private EntryLogRepository entryLogRepository;
 
-    private File fileImg = new File("E:\\Hướng dẫn\\Video xin viec\\Giới thiệu\\1.image-car");
+    private File fileImg = new File("C:\\Users\\GIGA\\Desktop\\sprint-2\\car_plate_image");
 
     private MessageFromCamera messageFromCamera = new MessageFromCamera();
 

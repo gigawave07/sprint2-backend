@@ -45,6 +45,11 @@ public class ParkingSlotController {
         return parkingSlotService.checkoutRegisteredCar(car) ? ResponseEntity.ok(new MessageDTO("Xe ra bãi thành công")) :
                 ResponseEntity.ok(new MessageDTO("Xe không đậu trong bãi"));
     }
+
+    @GetMapping("/find-slot-by-car-id/{id}")
+    public ResponseEntity<?> findSlotByCarId (@PathVariable Long id) {
+        return ResponseEntity.ok(parkingSlotService.findByCar_Id(id));
+    }
     // Quan end
 
 }

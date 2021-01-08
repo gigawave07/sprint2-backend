@@ -25,5 +25,10 @@ public interface ParkingSlotRepository extends JpaRepository<ParkingSlot, Long> 
     List<ParkingSlot> findBySlotTypeAndStatusAndReserved(SlotType slotType, Boolean status, Boolean reserved);
 
     ParkingSlot findByCar(Car car);
+
+    ParkingSlot findByCar_PlateNumber(String plateNumber);
+
+    ParkingSlot findByCar_Id(Long id);
+
     // Quan end
 }

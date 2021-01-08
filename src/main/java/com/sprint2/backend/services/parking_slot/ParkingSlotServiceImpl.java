@@ -140,6 +140,16 @@ public class ParkingSlotServiceImpl implements ParkingSlotService {
         return true;
     }
 
+    @Override
+    public ParkingSlot findByCar_PlateNumber(String plateNumber) {
+        return parkingSlotRepository.findByCar_PlateNumber(plateNumber);
+    }
+
+    @Override
+    public ParkingSlot findByCar_Id(Long id) {
+        return parkingSlotRepository.findByCar_Id(id);
+    }
+
 
     // Quan end
 }
