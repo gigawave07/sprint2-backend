@@ -33,6 +33,11 @@ public class MemberCardServiceImpl implements MemberCardService {
     private ParkingSlotRepository parkingSlotRepository;
 
 
+    @Override
+    public List<MemberCard> findAll() {
+        return this.memberCardRepository.findAll();
+    }
+
     /**
      * Lành
      */
@@ -91,5 +96,10 @@ public class MemberCardServiceImpl implements MemberCardService {
         memberCard.setPrice(memberCardAddDTO.getPrice());
         memberCard.setCar(this.carRepository.findByPlateNumber(memberCardAddDTO.getPlateNumber()));
         this.memberCardRepository.save(memberCard);
+    }
+
+    @Override
+    public MemberCard findByCustomerName(String fullName) {
+        return this.memberCardRepository.findByCar_Customer_FullName(fullName);
     }
 }
