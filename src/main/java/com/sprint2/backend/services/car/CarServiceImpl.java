@@ -1,5 +1,7 @@
 package com.sprint2.backend.services.car;
 
+import com.sprint2.backend.entity.Car;
+import com.sprint2.backend.repository.CarRepository;
 import com.sprint2.backend.model.CarDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,4 +43,17 @@ public class CarServiceImpl implements CarService{
     }
 
     // Quan end
+
+
+    /**
+     * Nguyen Quang Danh
+     *
+     * @return Thống kê số lượng xe của mỗi khách hàng
+     */
+    @Override
+    public Object getTotalCarOfCustomer() {
+        return this.carRepository.getTotalCarOfCustomer();
+    }
+
+
 }

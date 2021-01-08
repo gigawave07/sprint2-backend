@@ -1,9 +1,9 @@
 package com.sprint2.backend.services.ticket;
 
-import java.util.List;
-
 import com.sprint2.backend.entity.Ticket;
 import com.sprint2.backend.model.TicketDTO;
+
+import java.util.List;
 
 
 public interface TicketService {
@@ -16,4 +16,14 @@ public interface TicketService {
     String save(TicketDTO ticketDTO);
 
     Boolean close(TicketDTO ticketDTO);
+
+
+    /**
+     * Nguyen Quang Danh
+     *
+     * @param fromEnterDay
+     * @param toExitDay
+     * @return Thống kê doanh thu trong khoảng thời gian (ticket)
+     */
+    Object getTotalRevenueTicketPeriod(String fromEnterDay, String toExitDay);
 }

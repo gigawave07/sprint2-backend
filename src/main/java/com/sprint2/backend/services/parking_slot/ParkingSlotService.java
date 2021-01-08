@@ -28,4 +28,27 @@ public interface ParkingSlotService {
     Boolean parkRegisteredCar(Car car);
 
     Boolean checkoutRegisteredCar(Car car);
+
+
+    /**
+     * Nguyen Quang Danh
+     * Begin
+     *
+     * @return Thống kê số lượng các hãng xe đang có tại bãi
+     */
+    Object getTotalCarTypeParkingSlot();
+
+
+    /**
+     * @return Thống kê số lượng xe đang có tại bãi
+     */
+    Long getTotalCarParking();
+
+
+    /**
+     * End
+     *
+     * @return Thống kê tổng số lượng vị trí đỗ xe của bãi
+     */
+    Long getTotalParkingSlot();
 }
