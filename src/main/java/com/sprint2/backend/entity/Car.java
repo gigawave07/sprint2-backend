@@ -38,7 +38,7 @@ public class Car {
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "car_type_id", referencedColumnName = "id", columnDefinition = "BIGINT")
     private CarType carType;
-//
+
 
     @OneToOne(mappedBy = "car", cascade = CascadeType.ALL)
     @JsonBackReference

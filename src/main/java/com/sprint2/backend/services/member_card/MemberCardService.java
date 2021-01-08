@@ -16,4 +16,8 @@ public interface MemberCardService {
     MemberCard findByCustomerName(String fullName);
 
     MemberCard findByCustomerMail(String mail);
+
+    // ----------------------------- Vinh Begin ----------------------------------------
+    List<MemberCard> findAllByCarId(Long carId);
+    // ----------------------------- Vinh End ------------------------------------------
 }

@@ -42,4 +42,13 @@ public class MemberCardServiceImpl implements MemberCardService {
     public MemberCard findByCustomerMail(String mail) {
         return this.memberCardRepository.findByCar_Customer_Email(mail);
     }
+
+    // ----------------------------- Vinh Begin ----------------------------------------
+
+    @Override
+    public List<MemberCard> findAllByCarId(Long carId) {
+        return this.memberCardRepository.findAllByCarId(carId);
+    }
+
+    // ----------------------------- Vinh End ------------------------------------------
 }

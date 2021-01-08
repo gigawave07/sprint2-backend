@@ -14,4 +14,8 @@ public interface ParkingSlotService {
     ParkingSlot findByFloor(String floor);
 
     ParkingSlot findByReserved(Boolean reserved);
+
+    // -------------------------------- Vinh Begin ----------------------------------------
+    List<ParkingSlot> findAllByCarId(Long carId);
+    // -------------------------------- Vinh End ------------------------------------------
 }

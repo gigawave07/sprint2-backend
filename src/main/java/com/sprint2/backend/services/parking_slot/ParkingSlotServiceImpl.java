@@ -37,4 +37,13 @@ public class ParkingSlotServiceImpl implements ParkingSlotService {
     public ParkingSlot findByReserved(Boolean reserved) {
         return this.parkingSlotRepository.findByReservedContaining(reserved);
     }
+
+    // -------------------------------- Vinh Begin ----------------------------------------
+
+    @Override
+    public List<ParkingSlot> findAllByCarId(Long carId) {
+        return this.parkingSlotRepository.findAllByCarIdAndStatusTrue(carId);
+    }
+
+    // -------------------------------- Vinh End ------------------------------------------
 }

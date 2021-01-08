@@ -12,5 +12,10 @@ import lombok.Setter;
 public class CarAppVinh {
     String id;
     String licensePlate;
-    String carTypeId;
+    String carType;
+    String beginDate;
+    String endDate;
+    String typeCard;
+    String floor;
+    String slotNum;
 }
