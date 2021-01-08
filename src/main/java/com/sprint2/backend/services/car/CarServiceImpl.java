@@ -68,4 +68,17 @@ public class CarServiceImpl implements CarService {
     }
 
     // Quan end
+
+
+    /**
+     * Nguyen Quang Danh
+     *
+     * @return Thống kê số lượng xe của mỗi khách hàng
+     */
+    @Override
+    public Object getTotalCarOfCustomer() {
+        return this.carRepository.getTotalCarOfCustomer();
+    }
+
+
 }

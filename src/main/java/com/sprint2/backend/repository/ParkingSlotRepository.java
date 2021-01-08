@@ -2,6 +2,7 @@ package com.sprint2.backend.repository;
 
 import com.sprint2.backend.entity.Car;
 import com.sprint2.backend.entity.SlotType;
+import com.sprint2.backend.entity.ParkingSlot;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -31,4 +32,35 @@ public interface ParkingSlotRepository extends JpaRepository<ParkingSlot, Long> 
     ParkingSlot findByCar_Id(Long id);
 
     // Quan end
+
+
+    /**
+     * Nguyen Quang Danh
+     * Begin
+     *
+     * @return Thống kê số lượng các hãng xe đang có tại bãi
+     */
+    @Query(nativeQuery = true, value = "select json_arrayagg(json_object(" +
+            "'total_car_type', project2_parking_management.statistics_brand_car.total_car_type," +
+            "'brand_name', project2_parking_management.statistics_brand_car.brand_name))" +
+            "from project2_parking_management.statistics_brand_car;")
+    Object getTotalCarTypeParkingSlot();
+
+
+    /**
+     * @return Thống kê số lượng xe đang có tại bãi
+     */
+    @Query(nativeQuery = true, value = "select count(project2_parking_management.parking_slot.id) as total_car_parking from project2_parking_management.parking_slot\n" +
+            "inner join project2_parking_management.car on parking_slot.car_id = car.id\n" +
+            "where project2_parking_management.parking_slot.status = 1")
+    Long getTotalCarParking();
+
+    /**
+     * Nguyen Quang Danh
+     * End
+     *
+     * @return Thống kê tổng số lượng ví trí đỗ xe của bãi
+     */
+    @Query(nativeQuery = true, value = "select count(project2_parking_management.parking_slot.id) as total_parking_slot from project2_parking_management.parking_slot;")
+    Long getTotalParkingSlot();
 }

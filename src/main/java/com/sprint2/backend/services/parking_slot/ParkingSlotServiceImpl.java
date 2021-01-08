@@ -5,6 +5,8 @@ import com.sprint2.backend.repository.EntryLogRepository;
 import com.sprint2.backend.repository.ParkingSlotRepository;
 import com.sprint2.backend.repository.SlotTypeRepository;
 import com.sprint2.backend.services.member_card.MemberCardService;
+import com.sprint2.backend.entity.ParkingSlot;
+import com.sprint2.backend.repository.ParkingSlotRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -152,4 +154,35 @@ public class ParkingSlotServiceImpl implements ParkingSlotService {
 
 
     // Quan end
+
+
+    /**
+     * Nguyen Quang Danh
+     * Begin
+     *
+     * @return Thống kê số lượng các hãng xe đang có tại bãi
+     */
+    @Override
+    public Object getTotalCarTypeParkingSlot() {
+        return this.parkingSlotRepository.getTotalCarTypeParkingSlot();
+    }
+
+
+    /**
+     * @return Thống kê số lượng xe đang có tại bãi
+     */
+    @Override
+    public Long getTotalCarParking() {
+        return this.parkingSlotRepository.getTotalCarParking();
+    }
+
+    /**
+     * End
+     *
+     * @return Thống kê số lượng vị trí đỗ xe của bãi
+     */
+    @Override
+    public Long getTotalParkingSlot() {
+        return this.parkingSlotRepository.getTotalParkingSlot();
+    }
 }

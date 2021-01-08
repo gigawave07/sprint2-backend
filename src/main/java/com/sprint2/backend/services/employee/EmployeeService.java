@@ -1,8 +1,8 @@
 package com.sprint2.backend.services.employee;
 
-import java.util.List;
-
 import com.sprint2.backend.entity.Employee;
+
+import java.util.List;
 
 public interface EmployeeService {
     List<Employee> findAll();
@@ -18,4 +18,12 @@ public interface EmployeeService {
     Employee findByFullName(String fullName);
 
     Employee findByPosition(String position);
+
+
+    /**
+     * Nguyen Quang Danh
+     *
+     * @return Thống kê số lượng nhân viên
+     */
+    Long getTotalEmployee();
 }

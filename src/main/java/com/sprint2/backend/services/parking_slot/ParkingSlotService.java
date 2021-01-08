@@ -32,4 +32,27 @@ public interface ParkingSlotService {
     ParkingSlot findByCar_PlateNumber(String plateNumber);
     ParkingSlot findByCar_Id(Long id);
 
+
+
+    /**
+     * Nguyen Quang Danh
+     * Begin
+     *
+     * @return Thống kê số lượng các hãng xe đang có tại bãi
+     */
+    Object getTotalCarTypeParkingSlot();
+
+
+    /**
+     * @return Thống kê số lượng xe đang có tại bãi
+     */
+    Long getTotalCarParking();
+
+
+    /**
+     * End
+     *
+     * @return Thống kê tổng số lượng vị trí đỗ xe của bãi
+     */
+    Long getTotalParkingSlot();
 }
