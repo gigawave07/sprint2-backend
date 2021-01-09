@@ -96,6 +96,7 @@ public class TicketServiceImpl implements TicketService {
             carService.save(ticket.getCar());
             parkingSlot.setCar(car);
             parkingSlot.setStatus(true);
+            ticket.setEnterDate(LocalDateTime.now());
             ticketRepository.save(ticket);
         }
 
@@ -113,7 +114,7 @@ public class TicketServiceImpl implements TicketService {
         List<Ticket> ticketList = car.getTicketList();
         Ticket currentTicket = ticketList.get(ticketList.size() - 1);
         currentTicket.setPrice(ticket.getPrice());
-        currentTicket.setExitDate(ticket.getExitDate());
+        currentTicket.setExitDate(LocalDateTime.now());
         ticketRepository.save(currentTicket);
 
         parkingSlot.setStatus(false);
