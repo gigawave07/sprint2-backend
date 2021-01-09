@@ -34,6 +34,8 @@ public interface ParkingSlotService {
 
     List<ParkingSlot> findByFloor(String floor);
     List<String> getAllFloor();
+    List<ParkingSlot> findByFloorAndStatusAndReserved(String floor, Boolean status, Boolean reserved);
+
     // Quan end
 
     /**

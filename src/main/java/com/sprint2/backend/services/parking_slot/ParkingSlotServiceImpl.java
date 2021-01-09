@@ -157,6 +157,11 @@ public class ParkingSlotServiceImpl implements ParkingSlotService {
         return parkingSlotRepository.getAllFloor();
     }
 
+    @Override
+    public List<ParkingSlot> findByFloorAndStatusAndReserved(String floor, Boolean status, Boolean reserved) {
+        return parkingSlotRepository.findByFloorAndStatusAndReserved(floor, status, reserved);
+    }
+
 
     // Quan end
 

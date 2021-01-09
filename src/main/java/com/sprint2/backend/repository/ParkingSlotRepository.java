@@ -32,6 +32,8 @@ public interface ParkingSlotRepository extends JpaRepository<ParkingSlot, Long> 
 
     List<ParkingSlot> findByFloor(String floor);
 
+    List<ParkingSlot> findByFloorAndStatusAndReserved(String floor, Boolean status, Boolean reserved);
+
     @Query(value = "select floor from parking_slot group by floor", nativeQuery = true)
     List<String> getAllFloor();
 

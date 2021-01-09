@@ -38,7 +38,7 @@ public class ParkingSlotController {
         return parkingSlotService.parkRegisteredCar(car) ? ResponseEntity.ok(new MessageDTO("Xe vào bãi thành công")) :
                 ResponseEntity.ok(new MessageDTO("Xe đang đỗ trong bãi"));
     }
-    
+
     @PostMapping("/checkout-registered-car")
     public ResponseEntity<?> checkoutRegisteredCar(@RequestBody CarDTO carDTO) {
         Car car = carService.findByPlateNumber(carDTO.getPlateNumber());
@@ -64,6 +64,11 @@ public class ParkingSlotController {
     @GetMapping("/find-all-floor")
     public ResponseEntity<?> findAllFloor() {
         return ResponseEntity.ok(parkingSlotService.getAllFloor());
+    }
+
+    @GetMapping("/find-available-slot-by-floor/{floor}")
+    public ResponseEntity<?> findAvailableSlotsByFloor(@PathVariable String floor) {
+        return ResponseEntity.ok(parkingSlotService.findByFloorAndStatusAndReserved(floor, false, false));
     }
     // Quan end
 
