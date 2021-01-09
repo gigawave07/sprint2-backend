@@ -106,6 +106,7 @@ public class TicketServiceImpl implements TicketService {
     public Boolean close(TicketDTO ticketDTO) {
         Ticket ticket = convert(ticketDTO);
         Car car = carService.findByPlateNumber(ticket.getCar().getPlateNumber());
+        if (car == null) return false;
         ParkingSlot parkingSlot = car.getParkingSlot();
         if (parkingSlot == null) return false;
 
