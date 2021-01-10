@@ -3,6 +3,8 @@ package com.sprint2.backend.services.parking_slot;
 import com.sprint2.backend.entity.Car;
 import com.sprint2.backend.entity.ParkingSlot;
 import com.sprint2.backend.entity.SlotType;
+import com.sprint2.backend.model.ParkingSlotDTO;
+import com.sprint2.backend.model.ParkingSlotDTODisplay;
 
 import java.util.List;
 
@@ -12,8 +14,6 @@ public interface ParkingSlotService {
     ParkingSlot findByID(Long id);
 
     void save(ParkingSlot parkingSlot);
-
-    ParkingSlot findByReserved(Boolean reserved);
 
     // Quan start
 
@@ -63,4 +63,12 @@ public interface ParkingSlotService {
     // -------------------------------- Vinh Begin ----------------------------------------
     ParkingSlot findAllByCarId(Long carId);
     // -------------------------------- Vinh End ------------------------------------------
+
+    // mai start
+    List<ParkingSlotDTODisplay> findAllDTO();
+    void save(ParkingSlotDTO parkingSlotDTO);
+    List<ParkingSlotDTODisplay> findParkingSlotByFloor(String floor);
+    ParkingSlot findParkingSlotBySlotNumberAndFloor(String slotNumber, String floor);
+    List<SlotType> findAllSlotType();
+        // mai end
 }

@@ -36,9 +36,6 @@ public class ParkingSlotServiceImpl implements ParkingSlotService {
     @Autowired
     MemberCardService memberCardService;
 
-    @Autowired
-    private SlotTypeRepository slotTypeRepository;
-
     @Override
     public List<ParkingSlot> findAll() {
         return this.parkingSlotRepository.findAll();
@@ -48,6 +45,11 @@ public class ParkingSlotServiceImpl implements ParkingSlotService {
     @Override
     public ParkingSlot findByID(Long id) {
         return this.parkingSlotRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public void save(ParkingSlot parkingSlot) {
+        this.parkingSlotRepository.save(parkingSlot);
     }
 
 
@@ -142,31 +144,6 @@ public class ParkingSlotServiceImpl implements ParkingSlotService {
         return this.parkingSlotRepository.findParkingSlotBySlotNumberAndFloor(slotNumber, floor);
     }
     // MaiHTQ end
-
-    /**
-     * Lành
-     */
-    @Override
-    public List<ParkingSlot> findAllNeed() {
-        List<ParkingSlot> parkingSlotListExists = this.parkingSlotRepository.findAll();
-        List<ParkingSlot> parkingSlotListDisplay = new ArrayList<>();
-        for (ParkingSlot parkingSlot : parkingSlotListExists) {
-            if (!parkingSlot.getReserved() && !parkingSlot.getStatus()) {
-                parkingSlotListDisplay.add(parkingSlot);
-            }
-        }
-        return parkingSlotListDisplay;
-    }
-
-    @Override
-    public ParkingSlot findBySlotNumber(String slotNumber) {
-        return this.parkingSlotRepository.findBySlotNumber(slotNumber);
-    }
-
-    @Override
-    public ParkingSlot findByFloorAndSlotNumber(String floor, String slotNumber) {
-        return this.parkingSlotRepository.findByFloorAndSlotNumber(floor, slotNumber);
-    }
 
     // Quan start
     @Override

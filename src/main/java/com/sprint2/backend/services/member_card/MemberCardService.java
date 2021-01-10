@@ -13,10 +13,6 @@ public interface MemberCardService {
 
     List<MemberCard> findByPlateNumber(String plateNumber);
 
-    MemberCard findByCustomerName(String fullName);
-
-    MemberCard findByCustomerMail(String mail);
-
 
     /**
      * Nguyen Quang Danh

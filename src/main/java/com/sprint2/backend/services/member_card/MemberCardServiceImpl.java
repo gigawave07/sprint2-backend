@@ -1,7 +1,7 @@
 package com.sprint2.backend.services.member_card;
 
 import com.sprint2.backend.entity.MemberCard;
-import com.sprint2.backend.repository.MemberCardRepository;
+import com.sprint2.backend.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -45,16 +45,6 @@ public class MemberCardServiceImpl implements MemberCardService {
     @Override
     public List<MemberCard> findByPlateNumber(String plateNumber) {
         return this.memberCardRepository.findByCar_PlateNumber(plateNumber);
-    }
-
-    @Override
-    public MemberCard findByCustomerName(String fullName) {
-        return this.memberCardRepository.findByCar_Customer_FullName(fullName);
-    }
-
-    @Override
-    public MemberCard findByCustomerMail(String mail) {
-        return this.memberCardRepository.findByCar_Customer_Email(mail);
     }
 
 
