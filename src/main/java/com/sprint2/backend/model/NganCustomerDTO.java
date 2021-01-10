@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CustomerDTO {
+public class NganCustomerDTO {
     private String customerCode;
     private String identityNumber;
     private String fullName;

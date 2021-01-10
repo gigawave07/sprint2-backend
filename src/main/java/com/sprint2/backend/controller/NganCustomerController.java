@@ -3,13 +3,12 @@ package com.sprint2.backend.controller;
 import com.sprint2.backend.entity.CarType;
 import com.sprint2.backend.entity.Customer;
 import com.sprint2.backend.entity.MemberCardType;
-import com.sprint2.backend.model.CustomerDTO;
-import com.sprint2.backend.repository.MemberCardRepository;
-import com.sprint2.backend.services.CarType.CarTypeService;
-import com.sprint2.backend.services.car.CarService;
-import com.sprint2.backend.services.customer.CustomerService;
-import com.sprint2.backend.services.member_card.MemberCardService;
-import com.sprint2.backend.services.member_card_type.MemberCardTypeService;
+import com.sprint2.backend.model.NganCustomerDTO;
+import com.sprint2.backend.services.CarTypeNgan.CarTypeService;
+import com.sprint2.backend.services.carNgan.CarService;
+import com.sprint2.backend.services.customer_ngan.CustomerService;
+import com.sprint2.backend.services.ngan_member_card.MemberCardService;
+import com.sprint2.backend.services.ngan_member_card_type.MemberCardTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -23,7 +22,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/customer")
 @CrossOrigin(allowedHeaders = "*",value = "*")
-public class CustomerController {
+public class NganCustomerController {
     @Autowired
     CustomerService customerService;
     @Autowired
@@ -53,14 +52,14 @@ public class CustomerController {
         return new ResponseEntity<Customer>(customerService.findByID(id),HttpStatus.OK);
     }
     @PostMapping("/addNewCustomer")
-    public ResponseEntity<Void> addCustomer(@RequestBody CustomerDTO customerDTO) {
-        if (customerDTO == null) {
+    public ResponseEntity<Void> addCustomer(@RequestBody NganCustomerDTO nganCustomerDTO) {
+        if (nganCustomerDTO == null) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
-            customerService.saveCustomer(customerDTO);
-            carService.saveCar(customerDTO);
+            customerService.saveCustomer(nganCustomerDTO);
+            carService.saveCar(nganCustomerDTO);
 //            customerDTO.setMemberCardType(memberCardTypeService.findById(customerDTO.getMemberCardTypeId()));
-            memberCardService.saveMemberCard(customerDTO);
+            memberCardService.saveMemberCard(nganCustomerDTO);
             return new ResponseEntity<>(HttpStatus.OK);
         }
     }

@@ -1,6 +1,6 @@
-package com.sprint2.backend.services.car;
+package com.sprint2.backend.services.carNgan;
 import com.sprint2.backend.entity.Customer;
-import com.sprint2.backend.model.CustomerDTO;
+import com.sprint2.backend.model.NganCustomerDTO;
 import com.sprint2.backend.repository.CarTypeRepository;
 import com.sprint2.backend.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,13 +31,13 @@ public class CarServiceImpl implements CarService{
     }
 
     @Override
-    public void saveCar (CustomerDTO customerDTO) {
-        Customer customer1 = customerRepository.findCustomerByCustomerCode(customerDTO.getCustomerCode());
+    public void saveCar (NganCustomerDTO nganCustomerDTO) {
+        Customer customer1 = customerRepository.findCustomerByCustomerCode(nganCustomerDTO.getCustomerCode());
         System.out.println(customer1);
         Car car = new Car();
-        car.setBrandName(customerDTO.getBrandName());
-        car.setPlateNumber(customerDTO.getPlateNumber());
-        car.setCarType(this.carTypeRepository.findById(customerDTO.getCarType()).orElse(null));
+        car.setBrandName(nganCustomerDTO.getBrandName());
+        car.setPlateNumber(nganCustomerDTO.getPlateNumber());
+        car.setCarType(this.carTypeRepository.findById(nganCustomerDTO.getCarType()).orElse(null));
         car.setCustomer(customer1);
         this.carRepository.save(car);
     }

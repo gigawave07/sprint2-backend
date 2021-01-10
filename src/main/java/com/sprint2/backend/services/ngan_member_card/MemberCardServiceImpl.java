@@ -1,6 +1,6 @@
-package com.sprint2.backend.services.member_card;
+package com.sprint2.backend.services.ngan_member_card;
 import com.sprint2.backend.entity.Car;
-import com.sprint2.backend.model.CustomerDTO;
+import com.sprint2.backend.model.NganCustomerDTO;
 import com.sprint2.backend.repository.CarRepository;
 import com.sprint2.backend.repository.MemberCardTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,13 +30,13 @@ public class MemberCardServiceImpl implements MemberCardService {
     }
 
     @Override
-    public void saveMemberCard (CustomerDTO customerDTO) {
-        Car car = carRepository.findCarByPlateNumber(customerDTO.getPlateNumber());
+    public void saveMemberCard (NganCustomerDTO nganCustomerDTO) {
+        Car car = carRepository.findCarByPlateNumber(nganCustomerDTO.getPlateNumber());
         MemberCard memberCard = new MemberCard();
         memberCard.setCar(car);
-        memberCard.setEndDate(customerDTO.getEndDate());
-        memberCard.setStartDate(customerDTO.getStartDate());
-        memberCard.setMemberCardType(this.memberCardTypeRepository.findById(customerDTO.getMemberCardType()).orElse(null));
+        memberCard.setEndDate(nganCustomerDTO.getEndDate());
+        memberCard.setStartDate(nganCustomerDTO.getStartDate());
+        memberCard.setMemberCardType(this.memberCardTypeRepository.findById(nganCustomerDTO.getMemberCardType()).orElse(null));
         this.memberCardRepository.save(memberCard);
 //        this.carRepository.save(car);
     }

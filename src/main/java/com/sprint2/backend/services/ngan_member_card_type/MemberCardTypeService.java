@@ -1,7 +1,6 @@
-package com.sprint2.backend.services.member_card_type;
+package com.sprint2.backend.services.ngan_member_card_type;
 
 import com.sprint2.backend.entity.MemberCardType;
-import com.sprint2.backend.model.CustomerDTO;
 
 import java.util.List;
 

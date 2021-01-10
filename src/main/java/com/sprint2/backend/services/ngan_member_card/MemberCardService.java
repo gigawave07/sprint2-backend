@@ -1,7 +1,7 @@
-package com.sprint2.backend.services.member_card;
+package com.sprint2.backend.services.ngan_member_card;
 import java.util.List;
 import com.sprint2.backend.entity.MemberCard;
-import com.sprint2.backend.model.CustomerDTO;
+import com.sprint2.backend.model.NganCustomerDTO;
 
 public interface MemberCardService {
     //Ngan's tasks
@@ -9,7 +9,7 @@ public interface MemberCardService {
 
     MemberCard findByID(Long id);
 
-    void saveMemberCard(CustomerDTO customerDTO);
+    void saveMemberCard(NganCustomerDTO nganCustomerDTO);
 
     MemberCard findByPlateNumber(String plateNumber);
 

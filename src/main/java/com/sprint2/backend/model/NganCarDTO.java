@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CarDTO {
+public class NganCarDTO {
     private Long id;
     private String carTypeName;
     private String brandName;

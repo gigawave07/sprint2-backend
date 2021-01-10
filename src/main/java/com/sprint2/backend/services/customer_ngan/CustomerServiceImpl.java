@@ -1,10 +1,10 @@
-package com.sprint2.backend.services.customer;
+package com.sprint2.backend.services.customer_ngan;
 
 import com.sprint2.backend.entity.*;
-import com.sprint2.backend.model.CustomerDTO;
+import com.sprint2.backend.model.NganCustomerDTO;
 import com.sprint2.backend.repository.*;
-import com.sprint2.backend.services.CarType.CarTypeService;
-import com.sprint2.backend.services.car.CarService;
+import com.sprint2.backend.services.CarTypeNgan.CarTypeService;
+import com.sprint2.backend.services.carNgan.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -34,37 +34,37 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public void saveCustomer(CustomerDTO customerDTO) {
+    public void saveCustomer(NganCustomerDTO nganCustomerDTO) {
         Customer customer = new Customer();
-        customer.setCustomerCode(customerDTO.getCustomerCode());
-        customer.setIdentityNumber(customerDTO.getIdentityNumber());
-        customer.setFullName(customerDTO.getFullName());
-        if (customerDTO.getGender().equals("Nam")) {
+        customer.setCustomerCode(nganCustomerDTO.getCustomerCode());
+        customer.setIdentityNumber(nganCustomerDTO.getIdentityNumber());
+        customer.setFullName(nganCustomerDTO.getFullName());
+        if (nganCustomerDTO.getGender().equals("Nam")) {
             customer.setGender(true);
         } else {
             customer.setGender(false);
         }
-        customer.setEmail(customerDTO.getEmail());
-        customer.setBirthday(customerDTO.getBirthday());
-        customer.setPhone(customerDTO.getPhone());
-        customer.setAddress(customerDTO.getAddress());
+        customer.setEmail(nganCustomerDTO.getEmail());
+        customer.setBirthday(nganCustomerDTO.getBirthday());
+        customer.setPhone(nganCustomerDTO.getPhone());
+        customer.setAddress(nganCustomerDTO.getAddress());
         this.customerRepository.save(customer);
     }
     @Override
-    public void update(CustomerDTO customerDTO) {
+    public void update(NganCustomerDTO nganCustomerDTO) {
         Customer customer = new Customer();
-        customer.setCustomerCode(customerDTO.getCustomerCode());
-        customer.setIdentityNumber(customerDTO.getIdentityNumber());
-        customer.setFullName(customerDTO.getFullName());
-        if (customerDTO.getGender().equals("Nam")) {
+        customer.setCustomerCode(nganCustomerDTO.getCustomerCode());
+        customer.setIdentityNumber(nganCustomerDTO.getIdentityNumber());
+        customer.setFullName(nganCustomerDTO.getFullName());
+        if (nganCustomerDTO.getGender().equals("Nam")) {
             customer.setGender(true);
         } else {
             customer.setGender(false);
         }
-        customer.setEmail(customerDTO.getEmail());
-        customer.setBirthday(customerDTO.getBirthday());
-        customer.setPhone(customerDTO.getPhone());
-        customer.setAddress(customerDTO.getAddress());
+        customer.setEmail(nganCustomerDTO.getEmail());
+        customer.setBirthday(nganCustomerDTO.getBirthday());
+        customer.setPhone(nganCustomerDTO.getPhone());
+        customer.setAddress(nganCustomerDTO.getAddress());
 //        this.customerRepository.save(customer);
     }
 
