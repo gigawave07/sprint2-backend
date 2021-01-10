@@ -20,7 +20,7 @@ import java.util.HashSet;
 import java.util.List;
 
 import com.sprint2.backend.entity.MemberCard;
-import com.sprint2.backend.services.member_card.MemberCardService;
+import com.sprint2.backend.services.pay.PaySerVice;
 
 @Configuration
 @EnableScheduling
@@ -29,7 +29,7 @@ public class AutoSendMailForCustomer {
     private JavaMailSender emailSender;
 
     @Autowired
-    private MemberCardService memberCardService;
+    private PaySerVice paySerVice;
 
     @Bean
     public TaskScheduler taskScheduler() {
@@ -41,7 +41,7 @@ public class AutoSendMailForCustomer {
     @Scheduled(fixedDelay = 1000 * 3600 * 24)
     private void scheduleFixedDelayTask() throws InterruptedException {
         System.out.println("System auto send mail start.");
-        List<MemberCard> allMemberCard = this.memberCardService.findAll();
+        List<MemberCard> allMemberCard = this.paySerVice.findAll();
         List<MemberCard> listMemberCardNearExpired = new ArrayList<>();
         HashSet<String> mailList = new HashSet<>();
         LocalDateTime now = LocalDateTime.now();

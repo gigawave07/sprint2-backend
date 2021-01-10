@@ -31,9 +31,19 @@ public class PayServiceImpl implements PaySerVice {
     private InvoiceRepository invoiceRepository;
 
     /*
+     * get all member card in database
+     * @param nothing
+     * @return List<MemberCard>
+     * */
+    @Override
+    public List<MemberCard> findAll() {
+        return this.memberCardRepository.findAll();
+    }
+
+    /*
      * get all member card of customer currently logged in database
      * @param idCustomer
-     * @return ResponseEntity<List<MemberCard>>
+     * @return List<MemberCard>
      * */
     @Override
     public List<MemberCard> findByCustomerID(Long id) {
