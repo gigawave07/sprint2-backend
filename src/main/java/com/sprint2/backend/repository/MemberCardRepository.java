@@ -157,4 +157,11 @@ public interface MemberCardRepository extends JpaRepository<MemberCard, Long> {
     List<MemberCard> findAllByCarId(Long carId);
 
     // ----------------------------- Vinh End ------------------------------------------
+
+    /**
+     * Lanh
+     * @param plateNumber
+     * @return MemberCard
+     */
+    MemberCard findByCar_PlateNumber(String plateNumber);
 }
