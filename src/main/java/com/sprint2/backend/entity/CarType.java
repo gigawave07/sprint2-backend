@@ -28,20 +28,4 @@ public class CarType {
     @OneToMany(mappedBy = "carType", cascade = CascadeType.ALL)
     @JsonBackReference
     private List<Car> carList;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getCarTypeName() {
-        return carTypeName;
-    }
-
-    public void setCarTypeName(String carTypeName) {
-        this.carTypeName = carTypeName;
-    }
 }

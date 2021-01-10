@@ -9,9 +9,8 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ParkingSlotDTO {
+public class ParkingSlotDTODisplay {
     private String floor;
-    private Long id;
-    private String slotNumber;
-    private Long slotType;
+    private Long slotNumber;
+    private Long reversed;
 }

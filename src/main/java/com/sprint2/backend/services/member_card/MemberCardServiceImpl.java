@@ -14,6 +14,19 @@ public class MemberCardServiceImpl implements MemberCardService {
     @Autowired
     private MemberCardRepository memberCardRepository;
 
+    @Autowired
+    private MemberCardTypeRepository memberCardTypeRepository;
+
+    @Autowired
+    private CarRepository carRepository;
+
+    @Autowired
+    private CustomerRepository customerRepository;
+
+    @Autowired
+    private ParkingSlotRepository parkingSlotRepository;
+
+
     @Override
     public List<MemberCard> findAll() {
         return this.memberCardRepository.findAll();

@@ -44,4 +44,5 @@ public interface CarRepository extends JpaRepository<Car, Long> {
     // --------------------Vinh begin -----------------------
     List<Car> findAllByCustomerId(Long customerId);
     // --------------------Vinh end -------------------------
+
 }

@@ -13,6 +13,7 @@ import java.util.List;
 
 @Repository
 public interface ParkingSlotRepository extends JpaRepository<ParkingSlot, Long> {
+    ParkingSlot findByFloorContaining(String floor);
 
     ParkingSlot findByReservedContaining(Boolean reserved);
 
