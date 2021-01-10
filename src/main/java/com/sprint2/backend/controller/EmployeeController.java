@@ -1,6 +1,7 @@
 package com.sprint2.backend.controller;
 
 import com.sprint2.backend.entity.Employee;
+import com.sprint2.backend.entity.EntryLog;
 import com.sprint2.backend.model.MessageDTO;
 import com.sprint2.backend.services.employee.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
+
 
     // ------------------------------------ Vinh Begin -------------------------------------
     @GetMapping("/getEmployeeInformation/{employeeId}")
