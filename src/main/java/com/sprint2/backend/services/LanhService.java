@@ -1,4 +1,4 @@
-package com.sprint2.backend.services.lanh_nqn;
+package com.sprint2.backend.services;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ import com.sprint2.backend.entity.ParkingSlot;
 import com.sprint2.backend.model.MemberCardAddDTO;
 import com.sprint2.backend.model.MemberCardListDTO;
 
-public interface MemberCardServiceOfLanh {
+public interface LanhService {
     List<MemberCardListDTO> findAllMemberCardDTO();
 
     void save(MemberCardAddDTO memberCardAddDTO);

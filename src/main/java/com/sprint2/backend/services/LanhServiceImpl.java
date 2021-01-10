@@ -1,4 +1,4 @@
-package com.sprint2.backend.services.lanh_nqn;
+package com.sprint2.backend.services;
 
 import com.sprint2.backend.entity.*;
 import com.sprint2.backend.model.MemberCardAddDTO;
@@ -12,7 +12,7 @@ import java.util.List;
 
 
 @Service
-public class MemberCardServiceOfLanhImpl implements MemberCardServiceOfLanh {
+public class LanhServiceImpl implements LanhService {
     @Autowired
     private MemberCardRepository memberCardRepository;
 
