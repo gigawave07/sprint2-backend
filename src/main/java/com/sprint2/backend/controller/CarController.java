@@ -101,13 +101,17 @@ public class CarController {
         if (customerId != null) {
             carList = this.carService.getListCar(customerId);
             for (Car car : carList) {
+                parkingSlot = this.parkingSlotService.findByCar(car);
+                if (parkingSlot == null || !parkingSlot.getReserved()){
+                    carList.remove(car);
+                    break;
+                }
                 CarAppVinh carAppVinh = new CarAppVinh();
                 carAppVinh.setId(car.getId().toString());
                 carAppVinh.setLicensePlate(car.getPlateNumber());
                 carAppVinh.setCarType(car.getCarType().getCarTypeName());
                 // Lấy dữ liệu ngày hết hạn từ memberCard
                 memberCardList = this.memberCardService.findAllByCarId(car.getId());
-                // Định dạng lại Date Time thành String xóa chữ T ở giữa date và time
                 if (memberCardList.size() != 0) {
                     carAppVinh.setBeginDate(memberCardList.get(memberCardList.size() - 1).getStartDate().
                             toLocalDate().toString());
@@ -120,7 +124,7 @@ public class CarController {
                 }
 
                 // Lấy tầng trong parking slot
-                parkingSlot = this.parkingSlotService.findAllByCarId(car.getId());
+                parkingSlot = this.parkingSlotService.findByCarId(car.getId());
                 if (parkingSlot != null) {
                     carAppVinh.setFloor(parkingSlot.getFloor());
                     carAppVinh.setSlotNum(parkingSlot.getSlotNumber());
@@ -145,8 +149,9 @@ public class CarController {
             carList = this.carService.getListCar(customerId);
         }
         for (int i = 0; i < carList.size(); i++) {
-            if (this.memberCardService.findAllByCarId(carList.get(i).getId()).size() == 0) {
-                carList.remove(carList.get(i));
+            ParkingSlot parkingSlot = this.parkingSlotService.findByCarId(carList.get(i).getId());
+            if (parkingSlot == null || !parkingSlot.getReserved()){
+                carList.remove(i);
                 i--;
             }
         }

@@ -1,10 +1,13 @@
 package com.sprint2.backend.controller;
 
+import com.sprint2.backend.entity.Car;
 import com.sprint2.backend.entity.EntryLog;
 import com.sprint2.backend.entity.MemberCard;
+import com.sprint2.backend.entity.ParkingSlot;
 import com.sprint2.backend.model.MessageDTO;
 import com.sprint2.backend.services.entrylog.EntryLogService;
 import com.sprint2.backend.services.member_card.MemberCardService;
+import com.sprint2.backend.services.parking_slot.ParkingSlotService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,8 +25,10 @@ public class EntryLogController {
     @Autowired
     private MemberCardService memberCardService;
 
-    // --------------------- VInh Begin ---------------------------
+    @Autowired
+    private ParkingSlotService parkingSlotService;
 
+    // --------------------- VInh Begin ---------------------------
     @GetMapping("/check-entry-log/{check}/{memberCardId}")
     public ResponseEntity<?> checkEntryLog(@PathVariable Long memberCardId, @PathVariable Boolean check) {
         List<EntryLog> entryLogList = null;
@@ -42,7 +47,6 @@ public class EntryLogController {
             } else if (entryLog.getExitDate() == null) {
                 if (!check) {
                     result = setEntryLogOut(memberCardId);
-
                 } else {
                     result = " parked";
                 }
@@ -50,25 +54,34 @@ public class EntryLogController {
         }
         return entryLogList != null ? ResponseEntity.ok(new MessageDTO(result)) : ResponseEntity.ok(new MessageDTO("not park"));
     }
-
     public String setEntryLogIn(Long memberCardId) {
         EntryLog entryLog = new EntryLog();
         if (memberCardId != null) {
+            // set entry log
             entryLog.setEnterDate(LocalDateTime.now());
             MemberCard memberCard = this.memberCardService.findByID(memberCardId);
             entryLog.setMemberCard(memberCard);
             this.entryLogService.save(entryLog);
+            // set parking slot
+            ParkingSlot parkingSlot = this.parkingSlotService.findByCarId(memberCard.getCar().getId());
+            parkingSlot.setStatus(true);
+            this.parkingSlotService.save(parkingSlot);
         }
         return "park success";
     }
-
     public String setEntryLogOut(Long memberCardId) {
         EntryLog entryLog = new EntryLog();
         if (memberCardId != null) {
+            // set entry log
             List<EntryLog> entryLogList = this.entryLogService.findByMemberCardId(memberCardId);
+            MemberCard memberCard = this.memberCardService.findByID(memberCardId);
             entryLog = entryLogList.get(entryLogList.size() - 1);
             entryLog.setExitDate(LocalDateTime.now());
             this.entryLogService.save(entryLog);
+            // set Parking slot
+            ParkingSlot parkingSlot = this.parkingSlotService.findByCarId(memberCard.getCar().getId());
+            parkingSlot.setStatus(false);
+            this.parkingSlotService.save(parkingSlot);
         }
         return "car left";
     }

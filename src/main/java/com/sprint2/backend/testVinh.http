@@ -1,10 +1,6 @@
-POST http://localhost:8080/entry-log/setEntryLogIn/1
-Content-Type: application/json
-
-{}
 
 ###
-GET http://localhost:8080/entry-log/check-entry-log/true/11
+GET http://localhost:8080/entry-log/check-entry-log/false/11
 Accept: application/json
 
 ###
@@ -32,7 +28,7 @@ GET http://localhost:8080/account/check-login-mobile/customer1/123123
 Accept: application/json
 
 ###
-GET http://localhost:8080/car/get-list-car/2
+GET http://localhost:8080/car/get-list-car/1
 Accept: application/json
 
 ###

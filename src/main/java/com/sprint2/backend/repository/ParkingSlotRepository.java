@@ -1,13 +1,11 @@
 package com.sprint2.backend.repository;
 
 import com.sprint2.backend.entity.Car;
-import com.sprint2.backend.entity.SlotType;
 import com.sprint2.backend.entity.ParkingSlot;
+import com.sprint2.backend.entity.SlotType;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
-
-import com.sprint2.backend.entity.ParkingSlot;
 
 import java.util.List;
 
@@ -73,6 +71,7 @@ public interface ParkingSlotRepository extends JpaRepository<ParkingSlot, Long> 
     // -------------------------------- Vinh Begin ------------------------------------------
 
     ParkingSlot findByCarIdAndStatusTrue(Long carId);
+    ParkingSlot findByCarId(Long carId);
     // -------------------------------- Vinh End ------------------------------------------
 
 }

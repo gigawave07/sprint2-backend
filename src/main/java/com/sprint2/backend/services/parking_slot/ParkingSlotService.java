@@ -61,6 +61,7 @@ public interface ParkingSlotService {
     Long getTotalParkingSlot();
 
     // -------------------------------- Vinh Begin ----------------------------------------
-    ParkingSlot findAllByCarId(Long carId);
+    ParkingSlot findByStatusTrueAndCarId(Long carId);
+    ParkingSlot findByCarId(Long carId);
     // -------------------------------- Vinh End ------------------------------------------
 }
