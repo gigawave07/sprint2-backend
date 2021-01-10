@@ -2,6 +2,7 @@ package com.sprint2.backend.services.member_card;
 
 import com.sprint2.backend.entity.MemberCard;
 import com.sprint2.backend.repository.*;
+import com.sprint2.backend.repository.ParkingSlotRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

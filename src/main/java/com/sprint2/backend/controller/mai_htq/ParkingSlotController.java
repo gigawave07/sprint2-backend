@@ -1,14 +1,14 @@
-package com.sprint2.backend.controller;
+package com.sprint2.backend.controller.mai_htq;
 
 import com.sprint2.backend.entity.Car;
 import com.sprint2.backend.entity.ParkingSlot;
 import com.sprint2.backend.entity.SlotType;
 import com.sprint2.backend.model.CarDTO;
 import com.sprint2.backend.model.MessageDTO;
-import com.sprint2.backend.model.ParkingSlotDTO;
-import com.sprint2.backend.model.ParkingSlotDTODisplay;
+import com.sprint2.backend.model.mai_htq.ParkingSlotDTO;
+import com.sprint2.backend.model.mai_htq.ParkingSlotDTODisplay;
 import com.sprint2.backend.services.car.CarService;
-import com.sprint2.backend.services.parking_slot.ParkingSlotService;
+import com.sprint2.backend.services.mai_htq.ParkingSlotService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

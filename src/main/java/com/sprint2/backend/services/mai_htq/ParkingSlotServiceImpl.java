@@ -6,7 +6,6 @@ import com.sprint2.backend.repository.ParkingSlotRepository;
 import com.sprint2.backend.repository.SlotTypeRepository;
 import com.sprint2.backend.services.member_card.MemberCardService;
 import com.sprint2.backend.entity.ParkingSlot;
-import com.sprint2.backend.repository.ParkingSlotRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,9 +13,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sprint2.backend.repository.SlotTypeRepository;
-import com.sprint2.backend.repository.mai_htq.ParkingSlotRepository;
-import com.sprint2.backend.entity.ParkingSlot;
 import com.sprint2.backend.entity.SlotType;
 import com.sprint2.backend.model.mai_htq.ParkingSlotDTO;
 import com.sprint2.backend.model.mai_htq.ParkingSlotDTODisplay;

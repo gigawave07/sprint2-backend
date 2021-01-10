@@ -63,7 +63,7 @@ public class AutoSendMailForCustomer {
         for (MemberCard memberCard : allMemberCard) {
             LocalDateTime endDate = memberCard.getEndDate();
             Duration between = Duration.between(now, endDate);
-            if (between.toDays() <= 3 && between.toDays() > 0) {
+            if (between.toHours() <= 72 && between.toHours() > 0) {
                 listMemberCardNearExpired.add(memberCard);
                 mailList.add(memberCard.getCar().getCustomer().getEmail());
             }
