@@ -74,4 +74,8 @@ public interface ParkingSlotRepository extends JpaRepository<ParkingSlot, Long> 
     ParkingSlot findByCarId(Long carId);
     // -------------------------------- Vinh End ------------------------------------------
 
+    // mai start
+    ParkingSlot findParkingSlotBySlotNumberAndFloor(String slot, String floor);
+    // mai end
+
 }
