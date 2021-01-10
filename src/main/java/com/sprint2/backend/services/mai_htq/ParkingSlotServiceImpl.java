@@ -1,4 +1,4 @@
-package com.sprint2.backend.services.mai_htq.parking_slot;
+package com.sprint2.backend.services.mai_htq;
 
 import com.sprint2.backend.entity.*;
 import com.sprint2.backend.repository.EntryLogRepository;
