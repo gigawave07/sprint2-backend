@@ -39,4 +39,8 @@ public interface CustomerRepository extends JpaRepository<Customer, Long> {
             "between (?1)\n" +
             "and (?2)")
     Object getToTalCustomerRegisterPeriod(LocalDate fromDay, LocalDate toDay);
+
+    // ----------------------- Vinh Begin -------------------------
+    Customer findByAppAccountId(Long id);
+    // ----------------------- Vinh End -------------------------
 }

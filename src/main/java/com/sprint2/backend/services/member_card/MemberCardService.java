@@ -81,4 +81,8 @@ public interface MemberCardService {
      */
     Object getTotalMemberCardYear(String yearParam);
 
+
+    // ----------------------------- Vinh Begin ----------------------------------------
+    List<MemberCard> findAllByCarId(Long carId);
+    // ----------------------------- Vinh End ------------------------------------------
 }

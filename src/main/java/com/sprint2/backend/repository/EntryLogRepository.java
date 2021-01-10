@@ -17,4 +17,7 @@ public interface EntryLogRepository extends JpaRepository<EntryLog, Long> {
     // Quan start
     List<EntryLog> findByMemberCard(MemberCard memberCard);
     // Quan end
+    // ------------------------ Vinh Begin ---------------------------------
+    List<EntryLog> findAllByMemberCardId(Long memberCardId);
+    // ------------------------ Vinh End ---------------------------------
 }

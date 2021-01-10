@@ -17,6 +17,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import com.sprint2.backend.entity.Customer;
+import com.sprint2.backend.model.MessageDTO;
+import com.sprint2.backend.services.customer.CustomerService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/customer")
@@ -60,4 +67,18 @@ public class CustomerController {
         return new ResponseEntity<>(this.customerService.findListEntryLog(accountId, pageable), HttpStatus.OK);
     }
     // End
+    // --------------------Vinh begin -----------------------
+    @Autowired
+    private CustomerService customerService;
+
+    @GetMapping("/get-customer-detail/{accountId}")
+    public ResponseEntity<?> getCustomerDetail(@PathVariable Long accountId) {
+        Customer customer = null;
+        if (accountId != null) {
+            customer = this.customerService.findByAccountId(accountId);
+        }
+        return customer != null ? ResponseEntity.ok(customer) : ResponseEntity.ok(new MessageDTO("not found"));
+    }
+
+    // --------------------Vinh end -------------------------
 }

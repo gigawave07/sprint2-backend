@@ -69,4 +69,10 @@ public interface ParkingSlotRepository extends JpaRepository<ParkingSlot, Long> 
      */
     @Query(nativeQuery = true, value = "select count(project2_parking_management.parking_slot.id) as total_parking_slot from project2_parking_management.parking_slot;")
     Long getTotalParkingSlot();
+
+    // -------------------------------- Vinh Begin ------------------------------------------
+
+    ParkingSlot findByCarIdAndStatusTrue(Long carId);
+    // -------------------------------- Vinh End ------------------------------------------
+
 }

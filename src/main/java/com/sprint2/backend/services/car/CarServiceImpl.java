@@ -81,4 +81,11 @@ public class CarServiceImpl implements CarService {
     }
 
 
+
+    // --------------------Vinh begin -----------------------
+    @Override
+    public List<Car> getListCar(Long customerId) {
+        return this.carRepository.findAllByCustomerId(customerId);
+    }
+    // --------------------Vinh end -------------------------
 }

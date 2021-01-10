@@ -5,6 +5,7 @@ import com.sprint2.backend.services.email.EmailServicesImpl;
 import net.bytebuddy.utility.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.io.UnsupportedEncodingException;
@@ -16,8 +17,7 @@ import com.sprint2.backend.repository.AppAccountRepository;
 import javax.mail.MessagingException;
 
 @Service
-public class
-AppAccountServiceImpl implements AppAccountService {
+public class AppAccountServiceImpl implements AppAccountService {
     @Autowired
     private AppAccountRepository appAccountRepository;
     @Autowired
@@ -49,5 +49,13 @@ AppAccountServiceImpl implements AppAccountService {
         emailServices.sendVerificationEmail(appAccount, siteURL);
         return appAccount;
     }
+
+    // ---------------------Vinh Begin-------------------------------
+
+    @Override
+    public AppAccount getAccount(String userName, String password) {
+        return this.appAccountRepository.findAllByAndUsernameAndPassword(userName, password);
+    }
+    // ---------------------Vinh End---------------------------------
 }
 

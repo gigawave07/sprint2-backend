@@ -59,4 +59,8 @@ public interface ParkingSlotService {
      * @return Thống kê tổng số lượng vị trí đỗ xe của bãi
      */
     Long getTotalParkingSlot();
+
+    // -------------------------------- Vinh Begin ----------------------------------------
+    ParkingSlot findAllByCarId(Long carId);
+    // -------------------------------- Vinh End ------------------------------------------
 }

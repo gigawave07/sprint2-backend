@@ -17,4 +17,10 @@ public interface AppAccountService {
     AppAccount setVerifyCode(Long id, String siteURL) throws UnsupportedEncodingException,
             MessagingException;
 
+
+    // ---------------------Vinh Begin-------------------------------
+
+    AppAccount getAccount(String userName, String password);
+
+    // ---------------------Vinh End---------------------------------
 }

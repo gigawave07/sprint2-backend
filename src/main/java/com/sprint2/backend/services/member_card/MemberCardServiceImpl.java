@@ -135,4 +135,13 @@ public class MemberCardServiceImpl implements MemberCardService {
         return this.memberCardRepository.getTotalMemberCardYear(yearParam);
     }
 
+
+    // ----------------------------- Vinh Begin ----------------------------------------
+
+    @Override
+    public List<MemberCard> findAllByCarId(Long carId) {
+        return this.memberCardRepository.findAllByCarId(carId);
+    }
+
+    // ----------------------------- Vinh End ------------------------------------------
 }

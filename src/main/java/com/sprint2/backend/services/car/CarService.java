@@ -38,4 +38,9 @@ public interface CarService {
      */
     Object getTotalCarOfCustomer();
 
+
+    // --------------------Vinh begin -----------------------
+    List<Car> getListCar(Long customerId);
+    // --------------------Vinh end -------------------------
+
 }

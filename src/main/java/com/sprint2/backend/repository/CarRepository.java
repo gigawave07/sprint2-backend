@@ -8,6 +8,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import com.sprint2.backend.entity.Car;
+
+import java.util.List;
+
 @Repository
 public interface CarRepository extends JpaRepository<Car, Long> {
 //    Nhật Kiểm tra xe có trong db ko
@@ -37,4 +41,7 @@ public interface CarRepository extends JpaRepository<Car, Long> {
             "from project2_parking_management.statistics_total_car_customer;")
     Object getTotalCarOfCustomer();
 
+    // --------------------Vinh begin -----------------------
+    List<Car> findAllByCustomerId(Long customerId);
+    // --------------------Vinh end -------------------------
 }

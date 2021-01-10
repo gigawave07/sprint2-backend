@@ -136,4 +136,11 @@ public class CustomerServiceImpl implements CustomerService {
         return new PageImpl<ListEntryLogDTO>(listEntryLogDTOS.subList(start, end), pageable1, listEntryLogDTOS.size());
     }
     // End
+
+    // ----------------------- Vinh Begin -------------------------
+    @Override
+    public Customer findByAccountId(Long id) {
+        return this.customerRepository.findByAppAccountId(id);
+    }
+    // ----------------------- Vinh End ---------------------------
 }

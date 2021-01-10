@@ -143,4 +143,10 @@ public interface MemberCardRepository extends JpaRepository<MemberCard, Long> {
             "where year(project2_parking_management.statistic_member_card_time.date) = :yearParam")
     Object getTotalMemberCardYear(String yearParam);
 
+
+    // ----------------------------- Vinh Begin ----------------------------------------
+
+    List<MemberCard> findAllByCarId(Long carId);
+
+    // ----------------------------- Vinh End ------------------------------------------
 }

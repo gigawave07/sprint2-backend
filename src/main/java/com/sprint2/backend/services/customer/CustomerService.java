@@ -37,4 +37,10 @@ public interface CustomerService {
 
     Page<ListEntryLogDTO> findListEntryLog(Long accountId, int pageable);
     // End
+
+    // ----------------------- Vinh Begin -------------------------
+
+    Customer findByAccountId(Long id);
+
+    // ----------------------- Vinh End -------------------------
 }
