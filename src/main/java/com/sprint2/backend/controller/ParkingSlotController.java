@@ -1,4 +1,4 @@
-package com.sprint2.backend.controller.mai_htq;
+package com.sprint2.backend.controller;
 
 import com.sprint2.backend.entity.Car;
 import com.sprint2.backend.entity.ParkingSlot;

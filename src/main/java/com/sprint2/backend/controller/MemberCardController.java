@@ -12,7 +12,7 @@ import com.sprint2.backend.model.MemberCardListDTO;
 import com.sprint2.backend.entity.Car;
 import com.sprint2.backend.entity.MemberCardType;
 import com.sprint2.backend.entity.ParkingSlot;
-import com.sprint2.backend.services.LanhService;
+import com.sprint2.backend.services.lanh_nqn.LanhService;
 
 @RestController
 @CrossOrigin

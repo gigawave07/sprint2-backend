@@ -1,4 +1,4 @@
-package com.sprint2.backend.services;
+package com.sprint2.backend.services.lanh_nqn;
 
 import java.util.List;
 
