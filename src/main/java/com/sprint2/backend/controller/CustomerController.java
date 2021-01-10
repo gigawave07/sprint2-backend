@@ -68,8 +68,6 @@ public class CustomerController {
     }
     // End
     // --------------------Vinh begin -----------------------
-    @Autowired
-    private CustomerService customerService;
 
     @GetMapping("/get-customer-detail/{accountId}")
     public ResponseEntity<?> getCustomerDetail(@PathVariable Long accountId) {

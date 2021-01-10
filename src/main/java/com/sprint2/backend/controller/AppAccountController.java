@@ -106,8 +106,6 @@ public class AppAccountController {
     }
 
     // ------------------------------Vinh Begin --------------------------------
-    @Autowired
-    private AppAccountService appAccountService;
 
     @GetMapping("check-login-mobile/{userName}/{password}")
     public ResponseEntity<?> checkLoginMobile(@PathVariable String userName, @PathVariable String password) {

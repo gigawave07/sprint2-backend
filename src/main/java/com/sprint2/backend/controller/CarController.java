@@ -2,6 +2,8 @@ package com.sprint2.backend.controller;
 
 import com.sprint2.backend.entity.Car;
 import com.sprint2.backend.entity.MemberCard;
+import com.sprint2.backend.entity.ParkingSlot;
+import com.sprint2.backend.entity.android.CarAppVinh;
 import com.sprint2.backend.model.CarDTO;
 import com.sprint2.backend.model.MessageDTO;
 import com.sprint2.backend.repository.CarTypeRepository;
@@ -10,41 +12,18 @@ import com.sprint2.backend.services.car.CarService;
 import com.sprint2.backend.services.member_card.MemberCardService;
 import com.sprint2.backend.services.parking_slot.ParkingSlotService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import com.sprint2.backend.entity.Car;
-import com.sprint2.backend.services.car.CarService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import com.sprint2.backend.entity.Car;
-import com.sprint2.backend.entity.MemberCard;
-import com.sprint2.backend.entity.ParkingSlot;
-import com.sprint2.backend.entity.android.CarAppVinh;
-import com.sprint2.backend.model.MessageDTO;
-import com.sprint2.backend.services.car.CarService;
-import com.sprint2.backend.services.member_card.MemberCardService;
-import com.sprint2.backend.services.parking_slot.ParkingSlotService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
-@RestController
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 @RequestMapping("/car")
 @CrossOrigin
-@RequestMapping("/car")
 public class CarController {
     @Autowired
     CarService carService;
@@ -57,6 +36,9 @@ public class CarController {
 
     @Autowired
     MemberCardRepository memberCardRepository;
+
+    @Autowired
+    private MemberCardService memberCardService;
 
     // Quan start
     @PostMapping("/get-info")
@@ -96,16 +78,7 @@ public class CarController {
         return ResponseEntity.ok(cars);
     }
 
-}
 
-    @Autowired
-    private CarService carService;
-
-    @Autowired
-    private MemberCardService memberCardService;
-
-    @Autowired
-    private ParkingSlotService parkingSlotService;
     // --------------------Vinh begin -----------------------
 
     @GetMapping("/scan-qr-code/{id}")
