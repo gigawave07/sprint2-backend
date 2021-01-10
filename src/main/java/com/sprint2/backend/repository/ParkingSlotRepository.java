@@ -1,4 +1,4 @@
-package com.sprint2.backend.repository.lanh_nqn;
+package com.sprint2.backend.repository;
 
 import com.sprint2.backend.entity.ParkingSlot;
 import org.springframework.data.jpa.repository.JpaRepository;

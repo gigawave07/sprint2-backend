@@ -1,12 +1,9 @@
-package com.sprint2.backend.services.lanh_nqn.member_card;
+package com.sprint2.backend.services.lanh_nqn;
 
+import com.sprint2.backend.entity.*;
 import com.sprint2.backend.model.MemberCardAddDTO;
 import com.sprint2.backend.model.MemberCardListDTO;
-import com.sprint2.backend.entity.Car;
-import com.sprint2.backend.entity.Customer;
-import com.sprint2.backend.entity.MemberCard;
-import com.sprint2.backend.entity.ParkingSlot;
-import com.sprint2.backend.repository.lanh_nqn.*;
+import com.sprint2.backend.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +12,7 @@ import java.util.List;
 
 
 @Service
-public class MemberCardServiceImpl implements MemberCardService {
+public class MemberCardServiceOfLanhImpl implements MemberCardServiceOfLanh {
     @Autowired
     private MemberCardRepository memberCardRepository;
 
@@ -112,5 +109,38 @@ public class MemberCardServiceImpl implements MemberCardService {
             }
         }
         return memberCardListDTOList;
+    }
+
+    @Override
+    public List<Car> findAllCar() {
+        return this.carRepository.findAll();
+    }
+
+
+    @Override
+    public List<Car> findPlateNumber(String plateNumber) {
+        return this.carRepository.findCarByPlateNumber(plateNumber);
+    }
+
+    @Override
+    public List<MemberCardType> findAllMemberCardType() {
+        return this.memberCardTypeRepository.findAll();
+    }
+
+    @Override
+    public List<ParkingSlot> findAllParkingSlot() {
+        return this.parkingSlotRepository.findAll();
+    }
+
+    @Override
+    public List<ParkingSlot> findAllParkingSlotNeed() {
+        List<ParkingSlot> parkingSlotListExists = this.parkingSlotRepository.findAll();
+        List<ParkingSlot> parkingSlotListDisplay = new ArrayList<>();
+        for (ParkingSlot parkingSlot : parkingSlotListExists) {
+            if (!parkingSlot.getReserved() && !parkingSlot.getStatus()) {
+                parkingSlotListDisplay.add(parkingSlot);
+            }
+        }
+        return parkingSlotListDisplay;
     }
 }
