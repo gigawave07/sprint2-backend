@@ -41,8 +41,8 @@ public class ParkingSlotServiceImpl implements ParkingSlotService {
     // -------------------------------- Vinh Begin ----------------------------------------
 
     @Override
-    public List<ParkingSlot> findAllByCarId(Long carId) {
-        return this.parkingSlotRepository.findAllByCarIdAndStatusTrue(carId);
+    public ParkingSlot findAllByCarId(Long carId) {
+        return this.parkingSlotRepository.findByCarIdAndStatusTrue(carId);
     }
 
     // -------------------------------- Vinh End ------------------------------------------

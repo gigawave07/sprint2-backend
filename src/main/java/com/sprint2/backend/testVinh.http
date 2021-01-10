@@ -1,8 +1,28 @@
-GET http://localhost:8080/account/check-login-mobile/asdasdas/12123123
+GET http://localhost:8080/employee/getEmployeeInformation/1
 Accept: application/json
 
 ###
-GET http://localhost:8080/car/get-list-car/1
+GET http://localhost:8080/admin/getAdminInformation/1
+Accept: application/json
+
+###
+GET http://localhost:8080/account/check-login-mobile/vinhblue97@gmail.com/Aqwerty1
+Accept: application/json
+
+###
+GET http://localhost:8080/customer/get-customer-detail/1
+Accept: application/json
+
+###
+GET http://localhost:8080/car/amount-of-car/1
+Accept: application/json
+
+###
+GET http://localhost:8080/account/check-login-mobile/customer1/123123
+Accept: application/json
+
+###
+GET http://localhost:8080/car/get-list-car/2
 Accept: application/json
 
 ###

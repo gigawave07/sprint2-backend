@@ -12,6 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,44 +44,47 @@ public class CarController {
     }
 
     @GetMapping("/get-list-car/{customerId}")
-    public ResponseEntity<?> getListCar(@PathVariable Long customerId) {
+    public ResponseEntity<?> getListCar(@PathVariable Long customerId) throws ParseException {
         List<Car> carList;
         List<CarAppVinh> carAppVinhList = new ArrayList<>();
         List<MessageDTO> messageDTOList = new ArrayList<>();
         List<MemberCard> memberCardList;
-        List<ParkingSlot> parkingSlotList;
+        ParkingSlot parkingSlot;
         messageDTOList.add(new MessageDTO("not found"));
         if (customerId != null) {
             carList = this.carService.getListCar(customerId);
-            CarAppVinh carAppVinh = new CarAppVinh();
-            CarAppVinh temp = new CarAppVinh();
             for (Car car : carList) {
+                CarAppVinh carAppVinh = new CarAppVinh();
                 carAppVinh.setId(car.getId().toString());
                 carAppVinh.setLicensePlate(car.getPlateNumber());
                 carAppVinh.setCarType(car.getCarType().getCarTypeName());
                 // Lấy dữ liệu ngày hết hạn từ memberCard
                 memberCardList = this.memberCardService.findAllByCarId(car.getId());
                 // Định dạng lại Date Time thành String xóa chữ T ở giữa date và time
-                carAppVinh.setBeginDate(memberCardList.get(memberCardList.size() - 1).
-                        getStartDate().toString().replace('T', ' '));
-                carAppVinh.setEndDate(memberCardList.get(memberCardList.size() - 1).
-                        getEndDate().toString().replace('T', ' '));
-                // -----------------------------------------------------------------------------------------------------
-                carAppVinh.setTypeCard(memberCardList.get(memberCardList.size() - 1).getMemberCardType().
-                        getMemberTypeName());
-                // Lấy tầng trong parking slot
-                parkingSlotList = this.parkingSlotService.findAllByCarId(car.getId());
-                carAppVinh.setFloor(parkingSlotList.get(parkingSlotList.size() - 1).getFloor());
-                // -----------------------------------------------------------------------------------------------------
-                // Lấy vị trí trong parking slot type
+                if (memberCardList.size() != 0) {
+                    carAppVinh.setBeginDate(memberCardList.get(memberCardList.size() - 1).getStartDate().
+                            toLocalDate().toString());
+                    carAppVinh.setEndDate(memberCardList.get(memberCardList.size() - 1).getEndDate().
+                            toLocalDate().toString());
+                    carAppVinh.setTypeCard(memberCardList.get(memberCardList.size() - 1).getMemberCardType().
+                            getMemberTypeName());
+                } else {
+                    break;
+                }
 
+                // Lấy tầng trong parking slot
+                parkingSlot = this.parkingSlotService.findAllByCarId(car.getId());
+                if (parkingSlot != null) {
+                    carAppVinh.setFloor(parkingSlot.getFloor());
+                    carAppVinh.setSlotNum(parkingSlot.getSlotNumber());
+                }
 
                 carAppVinhList.add(carAppVinh);
-                carAppVinh = temp;
             }
         }
         return carAppVinhList.size() != 0 ? ResponseEntity.ok(carAppVinhList) : ResponseEntity.ok(messageDTOList);
     }
+
 
     @GetMapping("/get-list-car/")
     public ResponseEntity<?> getListCarFail() {
@@ -90,8 +97,15 @@ public class CarController {
         if (customerId != null) {
             carList = this.carService.getListCar(customerId);
         }
+        for (int i = 0; i < carList.size(); i++) {
+            if (this.memberCardService.findAllByCarId(carList.get(i).getId()).size() == 0) {
+                carList.remove(carList.get(i));
+                i--;
+            }
+        }
         return ResponseEntity.ok(new MessageDTO("" + carList.size()));
     }
     // --------------------Vinh end -------------------------
 
 }
+

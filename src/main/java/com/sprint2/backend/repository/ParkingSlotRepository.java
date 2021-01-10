@@ -15,7 +15,7 @@ public interface ParkingSlotRepository extends JpaRepository<ParkingSlot, Long> 
 
     // -------------------------------- Vinh Begin ------------------------------------------
 
-    List<ParkingSlot> findAllByCarIdAndStatusTrue(Long carId);
+    ParkingSlot findByCarIdAndStatusTrue(Long carId);
     // -------------------------------- Vinh End ------------------------------------------
 
 }

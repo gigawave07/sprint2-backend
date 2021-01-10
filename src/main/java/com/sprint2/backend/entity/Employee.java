@@ -1,5 +1,6 @@
 package com.sprint2.backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -44,5 +45,6 @@ public class Employee {
 
     @OneToOne
     @JoinColumn(name = "app_account_id", referencedColumnName = "id", columnDefinition = "BIGINT")
+    @JsonBackReference
     private AppAccount appAccount;
 }
