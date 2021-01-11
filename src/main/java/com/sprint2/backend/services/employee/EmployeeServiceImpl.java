@@ -45,9 +45,9 @@ public class EmployeeServiceImpl implements EmployeeService {
         Employee employee = new Employee();
 //        employee.setEmployeeCode(employeeDTO.getEmployeeCode());
         employee.setGender(employeeDTO.getGender());
-        employee.setFullName(employeeDTO.getFullName());
+        employee.setFullName(employeeDTO.getFullName().trim());
         employee.setBirthday(employeeDTO.getBirthday());
-        employee.setAddress(employeeDTO.getAddress());
+        employee.setAddress(employeeDTO.getAddress().trim());
         employee.setPosition(employeeDTO.getPosition());
         employee.setEmail(employeeDTO.getEmail());
         employee.setPhoneNumber(employeeDTO.getPhoneNumber());
@@ -65,31 +65,14 @@ public class EmployeeServiceImpl implements EmployeeService {
        Employee employee = this.employeeRepository.findById(id).orElse(null);
        AppAccount appAccount = employee.getAppAccount();
        this.appAccountRepository.delete(appAccount);
-//       if (employee != null){
-//           employee.setStatus(false);
-//           this.employeeRepository.save(employee);
-//       }
     }
 
-//    @Override
-//    public List<Employee> findEmployeeByCode(String code) {
-//        return this.employeeRepository.findEmployeeByEmployeeCode(code);
-//    }
 
-    @Override
-    public void saveAccount(AppAccount appAccount) {
-        this.appAccountRepository.save(appAccount);
-    }
 
-    @Override
-    public AppAccount findByNameAppAccount(String appAccount) {
-        return null;
-    }
 
-    @Override
-    public AppRole findByNameAppRole(String appRole) {
-        return null;
-    }
+
+
+
 
     @Override
     public List<AppRole> findAllByRole() {
@@ -114,6 +97,11 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public List<Employee> findEmployeeByPositionContaining(String position) {
         return this.employeeRepository.findEmployeeByPositionContaining(position);
+    }
+
+    @Override
+    public List<Employee> searchEmployee(String inputSearch) {
+        return employeeRepository.findAllByFullNameContainingOrPositionContaining(inputSearch, inputSearch);
     }
 
 //    @Override

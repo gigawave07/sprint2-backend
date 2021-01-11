@@ -18,4 +18,6 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
     // ----------------------- Validate ton tai ---------------------------
     List<Employee> findEmployeeByEmployeeCode (String employeeCode);
 //    List<Employee> findAllByStatusTrue();
+
+    List<Employee> findAllByFullNameContainingOrPositionContaining(String fullName, String position);
 }

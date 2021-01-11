@@ -62,49 +62,52 @@ public class EmployeeController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
     // Create by: Đạt _ Edit Employee
-    @PatchMapping("/edit/{id}")
+    @PutMapping("/edit/{id}")
     public ResponseEntity<Void> editUser(@PathVariable Long id, @RequestBody EmployeeDTO employeeDTO) {
         Employee employee = employeeService.findEmployeeById(id);
         if (employee == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
-            employee.setFullName(employeeDTO.getFullName());
-            employee.setAddress(employeeDTO.getAddress());
+            employee.setFullName(employeeDTO.getFullName().trim());
+            employee.setAddress(employeeDTO.getAddress().trim());
             employee.setBirthday(employeeDTO.getBirthday());
             employee.setGender(employeeDTO.getGender());
             employee.setEmail(employeeDTO.getEmail());
             employee.setPhoneNumber(employeeDTO.getPhoneNumber());
             employee.setPosition(employeeDTO.getPosition());
-            employeeService.saveEmployee(employeeDTO);
+            employeeService.editEmployee(employee);
             return new ResponseEntity<>(HttpStatus.OK);
         }
     }
 
     //------------------------------ Search Employee ----------------------------------
     // Create by: Đạt _ Search Employee by full name
-    @GetMapping("/searchFullName/{fullName}")
-    public ResponseEntity<List<Employee>> searchFullNameEmployee(@PathVariable String fullName) {
-        List<Employee> listEmployee = this.employeeService.findEmployeeByFullNameContaining(fullName);
-        return new ResponseEntity<>(listEmployee, HttpStatus.OK);
-    }
-
-    // Create by: Đạt _ Search Employee by phone number
-    @GetMapping("/searchId/{id}")
-    public ResponseEntity<List<Employee>> searchIdEmployee(@PathVariable Long id) {
-        List<Employee> listEmployee = this.employeeService.findEmployeeByIdContaining(id);
-        return new ResponseEntity<>(listEmployee, HttpStatus.OK);
-    }
-
-    // Create by: Đạt _ Search Employee by email
-    @GetMapping("/searchPosition/{position}")
-    public ResponseEntity<List<Employee>> searchPositionEmployee(@PathVariable String position) {
-        List<Employee> listEmployee = this.employeeService.findEmployeeByPositionContaining(position);
-        return new ResponseEntity<>(listEmployee, HttpStatus.OK);
-    }
-
-//    @GetMapping("/search/{inputSearch}")
-//    public ResponseEntity<List<Employee>> searchEmployee(@PathVariable String inputSearch) {
-//        List<Employee> listEmployee = this.employeeService.searchEmployee(inputSearch);
+//    @GetMapping("/searchFullName/{fullName}")
+//    public ResponseEntity<List<Employee>> searchFullNameEmployee(@PathVariable String fullName) {
+//        List<Employee> listEmployee = this.employeeService.findEmployeeByFullNameContaining(fullName);
 //        return new ResponseEntity<>(listEmployee, HttpStatus.OK);
 //    }
+//
+//    // Create by: Đạt _ Search Employee by phone number
+//    @GetMapping("/searchId/{id}")
+//    public ResponseEntity<List<Employee>> searchIdEmployee(@PathVariable Long id) {
+//        List<Employee> listEmployee = this.employeeService.findEmployeeByIdContaining(id);
+//        return new ResponseEntity<>(listEmployee, HttpStatus.OK);
+//    }
+//
+//    // Create by: Đạt _ Search Employee by email
+//    @GetMapping("/searchPosition/{position}")
+//    public ResponseEntity<List<Employee>> searchPositionEmployee(@PathVariable String position) {
+//        List<Employee> listEmployee = this.employeeService.findEmployeeByPositionContaining(position);
+//        return new ResponseEntity<>(listEmployee, HttpStatus.OK);
+//    }
+
+    @GetMapping("/inputSearch")
+    public ResponseEntity<List<Employee>> searchUsers(@RequestParam("valueSearch") String inputSearch) {
+        List<Employee> employeeList = employeeService.searchEmployee(inputSearch);
+        if (employeeList.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(employeeList, HttpStatus.OK);
+    }
 }

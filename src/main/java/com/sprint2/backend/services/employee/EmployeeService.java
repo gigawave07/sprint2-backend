@@ -27,4 +27,5 @@ public interface EmployeeService {
 
     List<Employee> findEmployeeByPositionContaining (String position);
 
+    List<Employee> searchEmployee (String inputSearch);
 }
