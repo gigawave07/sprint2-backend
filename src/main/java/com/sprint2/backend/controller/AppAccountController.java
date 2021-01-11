@@ -40,7 +40,7 @@ import java.util.stream.Collectors;
 @RestController
 public class AppAccountController {
     public static String GOOGLE_CLIENT_ID = "103585693874-0bjkl21cmmjf8d9n09io95ciuveiievl.apps.googleusercontent.com";
-    public static String PASSWORD = "123";
+    public static String PASSWORD = "12345678";
     private static String emailInput;
 
     @Autowired
@@ -194,30 +194,15 @@ public class AppAccountController {
     public ResponseEntity<Boolean> saveUser(@RequestParam("username") String username, @RequestParam("password") String password) {
         if (userRepository.existsByUsername(username)) {
             return new ResponseEntity<>(false, HttpStatus.OK);
+        } else if (customerRepository.findByEmail(username) == null) {
+            return new ResponseEntity<>(false, HttpStatus.OK);
         }
         AppAccount appAccount = new AppAccount();
         appAccount.setPassword(passwordEncoder.encode(password));
         appAccount.setAppRole(roleService.findById(3L));
         appAccount.setUsername(username);
-        appAccount.setVerificationCode("N/A");
-        appAccount.setEnabled(true);
         userRepository.save(appAccount);
 
-        Customer customer = new Customer();
-//        customer.setCustomerCode(null);
-//        customer.setFullName(null);
-        customer.setEmail(username);
-//        customer.setBirthday(null);
-//        customer.setFullName(null);
-//        customer.setPhone(null);
-//        customer.setGender(null);
-//        customer.setIdentityNumber(null);
-//        customer.setImageAvatar(null);
-//        customer.setCreateDate(null);
-        customer.setAppAccount(appAccount);
-//        customer.setInvoiceList(null);
-//        customer.setCarList(null);
-        customerRepository.save(customer);
 
         return new ResponseEntity<>(true, HttpStatus.OK);
     }
