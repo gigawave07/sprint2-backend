@@ -17,6 +17,14 @@ public interface TicketRepository extends JpaRepository<Ticket, Long> {
      * @param toExitDay
      * @return Thống kê doanh thu trong khoảng thời gian (ticket)
      */
+
+    /**
+     * Nguyen Quang Danh
+     *
+     * @param fromEnterDay
+     * @param toExitDay
+     * @return Thống kê doanh thu trong khoảng thời gian (ticket)
+     */
     @Query(nativeQuery = true, value = "select json_arrayagg(json_object" +
             "('exit_date', project2_parking_management.statistic_total_revenue_ticket.date_payment,\n" +
             "'total_price', project2_parking_management.statistic_total_revenue_ticket.total_price))\n" +
