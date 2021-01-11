@@ -40,6 +40,9 @@ public class MemberCardServiceImpl implements MemberCardService {
     @Autowired
     private ParkingSlotRepository parkingSlotRepository;
 
+    @Autowired
+    private EntryLogRepository entryLogRepository;
+
     @Override
     public List<MemberCard> findAll() {
         return this.memberCardRepository.findAll();
@@ -295,6 +298,13 @@ public class MemberCardServiceImpl implements MemberCardService {
             parkingSlot.setCar(null);
             parkingSlot.setReserved(false);
             parkingSlot.setStatus(false);
+            parkingSlotRepository.save(parkingSlot);
+
+            List<EntryLog> entryLogList = entryLogRepository.findAllByMemberCardId(id);
+            if (entryLogList != null && !entryLogList.isEmpty()) {
+                EntryLog entryLog = entryLogList.get(entryLogList.size() - 1);
+                entryLogRepository.delete(entryLog);
+            }
         }
 
         // delete MemberCard

@@ -1,36 +1,26 @@
 package com.sprint2.backend.controller;
 
+import com.sprint2.backend.entity.Car;
 import com.sprint2.backend.entity.MemberCard;
+import com.sprint2.backend.entity.MemberCardType;
+import com.sprint2.backend.entity.ParkingSlot;
+import com.sprint2.backend.model.MemberCardAddDTO;
+import com.sprint2.backend.model.MemberCardEditDTO;
+import com.sprint2.backend.model.MemberCardListDTO;
 import com.sprint2.backend.model.MessageDTO;
 import com.sprint2.backend.services.member_card.MemberCardService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import com.sprint2.backend.entity.MemberCard;
-import com.sprint2.backend.model.MemberCardEditDTO;
-import com.sprint2.backend.model.MessageDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
-@RequestMapping("/member-card")
-import com.sprint2.backend.model.MemberCardAddDTO;
-import com.sprint2.backend.model.MemberCardListDTO;
-import com.sprint2.backend.entity.Car;
-import com.sprint2.backend.entity.MemberCardType;
-import com.sprint2.backend.entity.ParkingSlot;
-import com.sprint2.backend.services.member_card.MemberCardService;
-
-@RestController
 @CrossOrigin
-=public class MemberCardController {
+@RequestMapping("/member-card")
+public class MemberCardController {
     @Autowired
     private MemberCardService memberCardService;
 
@@ -52,8 +42,6 @@ import com.sprint2.backend.services.member_card.MemberCardService;
                 : ResponseEntity.ok(new MessageDTO("not found"));
     }
     // ---------------------------- Vinh Begin ---------------------------------------
-    @Autowired
-    private MemberCardService memberCardService;
 
     /**
      * Lành start
