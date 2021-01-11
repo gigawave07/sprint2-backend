@@ -17,14 +17,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
         <TextView
-                android:text="Biển kiểm soát"
+                android:text="Biển kiểm soát:"
                 android:textSize="30dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         <TextView
                 android:id="@+id/licensePlates"
                 android:textSize="30dp"
-                android:layout_width="match_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
     </LinearLayout>
 
@@ -41,56 +42,88 @@
         <TextView
                 android:id="@+id/typeCar"
                 android:textSize="30dp"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
     </LinearLayout>
 
     <LinearLayout
             android:orientation="horizontal"
-            android:layout_marginTop="360dp"
+            android:layout_marginTop="340dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
         <TextView
-                android:text="Loại vé"
+                android:text="Loại vé:"
+                android:textSize="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        <TextView
+                android:id="@+id/typeCard"
+                android:textSize="30dp"
+                android:layout_marginLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_marginTop="400dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <TextView
+                android:text="Ngày hết hạn:"
+
+                android:textSize="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        <TextView
+                android:textSize="30dp"
+                android:id="@+id/retireDay"
+                android:layout_marginLeft="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_marginTop="460dp"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content">
+        <TextView
+                android:text="Tầng:"
+                android:textSize="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        <TextView
+                android:id="@+id/floor"
+                android:textSize="30dp"
+                android:layout_marginLeft="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_marginTop="460dp"
+            android:layout_marginLeft="210dp"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content">
+        <TextView
+                android:text="Số:"
+                android:textSize="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        <TextView
+                android:id="@+id/numberSlot"
                 android:textSize="30dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
     </LinearLayout>
 
-    <TextView
-            android:text="Tầng:"
-            android:textSize="30dp"
-            android:layout_marginTop="503dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-    <TextView
-            android:id="@+id/floor"
-            android:textSize="30dp"
-            android:layout_marginLeft="80dp"
-            android:layout_marginTop="503dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-    <TextView
-            android:text="Số:"
-            android:textSize="30dp"
-            android:layout_marginLeft="220dp"
-            android:layout_marginTop="503dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-    <TextView
-            android:id="@+id/numberSlot"
-            android:textSize="30dp"
-            android:layout_marginLeft="260dp"
-            android:layout_marginTop="503dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
     <Button
             android:text="Trở lại"
             android:id="@+id/carBack"
             android:textSize="30dp"
-            android:layout_marginTop="580dp"
+            android:layout_marginTop="520dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
-
 </RelativeLayout>

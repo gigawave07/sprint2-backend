@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 
+apply plugin: 'com.google.gms.google-services'
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
@@ -20,6 +21,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
 
 }
 
@@ -35,7 +40,7 @@ dependencies {
     implementation 'com.google.zxing:core:3.2.1'
     implementation 'com.journeyapps:zxing-android-embedded:3.2.0@aar'
     // QR code scanner
-    implementation 'com.journeyapps:zxing-android-embedded:4.0.0'
+
     implementation 'com.squareup.picasso:picasso:2.5.2'
     //Convert to JSON
     implementation 'com.google.code.gson:gson:2.8.6'
@@ -47,4 +52,9 @@ dependencies {
     // RecyclerView
     //noinspection GradleCompatible
     implementation 'com.android.support:recyclerview-v7:24.2.1'
+
+    // Firebase
+    implementation platform('com.google.firebase:firebase-bom:26.2.0')
+    implementation 'com.google.firebase:firebase-database'
+
 }

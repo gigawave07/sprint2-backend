@@ -9,56 +9,130 @@
         tools:context=".activity.EmployeeActivity">
     <ImageView
             android:src="@drawable/ic_launcher_background"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="20dp"
+            android:id="@+id/screenScanner"
             android:layout_centerHorizontal="true"
             android:layout_width="200dp"
             android:layout_height="200dp"/>
     <Button
-            android:id="@+id/btnQrScan"
+            android:id="@+id/btnQrScanCheckIn"
             android:text="Quét QR"
             android:textSize="30dp"
-            android:layout_marginTop="310dp"
+            android:layout_marginTop="230dp"
             android:layout_centerHorizontal="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
-    <TextView
-            android:text="Tầng:"
-            android:textSize="30dp"
-            android:id="@+id/carFoor"
-            android:layout_marginTop="400dp"
-            android:layout_marginLeft="2dp"
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_marginTop="300dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <TextView
+                android:text="Biển số xe:"
+                android:textSize="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        <TextView
+                android:textSize="30dp"
+                android:id="@+id/carId"
+                android:layout_marginLeft="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_marginTop="350dp"
             android:layout_width="200dp"
-            android:layout_height="50dp"/>
+            android:layout_height="wrap_content">
+        <TextView
+                android:text="Tầng:"
+                android:textSize="30dp"
+                android:layout_marginLeft="2dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        <TextView
+                android:textSize="30dp"
+                android:id="@+id/carFoor"
+                android:layout_marginLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+    </LinearLayout>
 
-    <TextView
-            android:text="Số:"
-            android:textSize="30dp"
-            android:id="@+id/carNum"
-            android:layout_marginTop="400dp"
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_marginTop="350dp"
             android:layout_marginLeft="207dp"
             android:layout_width="200dp"
-            android:layout_height="50dp"/>
-    <TextView
-            android:text="Tên:"
-            android:textSize="30dp"
-            android:id="@+id/customerName"
-            android:layout_marginTop="453dp"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"/>
-    <TextView
-            android:text="CMND:"
-            android:textSize="30dp"
-            android:id="@+id/identify"
-            android:layout_marginTop="520dp"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"/>
+            android:layout_height="wrap_content">
+        <TextView
+                android:text="Số:"
+                android:textSize="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        <TextView
+                android:textSize="30dp"
+                android:id="@+id/carNumber"
+                android:layout_marginLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+    </LinearLayout>
 
-    <TextView
-            android:text="Biển số xe:"
-            android:textSize="30dp"
-            android:id="@+id/customerCarId"
-            android:layout_marginTop="590dp"
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_marginTop="400dp"
             android:layout_width="match_parent"
-            android:layout_height="60dp"/>
-
+            android:layout_height="wrap_content">
+        <TextView
+                android:text="Loại vé:"
+                android:textSize="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        <TextView
+                android:layout_marginLeft="20dp"
+                android:textSize="30dp"
+                android:id="@+id/typeTicket"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_marginTop="450dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <TextView
+                android:text="Ngày bắt đầu:"
+                android:textSize="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        <TextView
+                android:textSize="30dp"
+                android:layout_marginLeft="20dp"
+                android:id="@+id/beginDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_marginTop="500dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <TextView
+                android:text="Ngày hết hạn:"
+                android:textSize="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        <TextView
+                android:layout_marginLeft="20dp"
+                android:textSize="30dp"
+                android:id="@+id/retireDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <Button
+            android:layout_marginTop="550dp"
+            android:text="Trở lại"
+            android:textSize="20dp"
+            android:id="@+id/scannerBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 </RelativeLayout>

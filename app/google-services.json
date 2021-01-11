@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "371393774953",
+    "firebase_url": "https://sprint2-mobile-76692-default-rtdb.firebaseio.com",
+    "project_id": "sprint2-mobile-76692",
+    "storage_bucket": "sprint2-mobile-76692.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:371393774953:android:c7b95f3c7f6be99c9729f8",
+        "android_client_info": {
+          "package_name": "com.example.sprin2_mobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "371393774953-39c86cod0saq4cumkgdrbh8dela1i21r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.sprin2_mobile",
+            "certificate_hash": "6791afd7704e8ce413ce19c5e5725be2fe42f29f"
+          }
+        },
+        {
+          "client_id": "371393774953-1fonlk0dbt88onnsp07e8f1c7dpirfeb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVL8eh_4IXLhb6_wIYkg6094fUK-28U34"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "371393774953-1fonlk0dbt88onnsp07e8f1c7dpirfeb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
