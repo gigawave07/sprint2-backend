@@ -15,7 +15,7 @@ public interface ParkingSlotRepository extends JpaRepository<ParkingSlot, Long> 
 
     ParkingSlot findByReservedContaining(Boolean reserved);
 
-//    Nhật đổi parking slot
+    //    Nhật đổi parking slot
     ParkingSlot getParkingSlotByCarId(long idCar);
 
     // Quan start

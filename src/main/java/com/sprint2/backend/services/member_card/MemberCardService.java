@@ -109,4 +109,6 @@ public interface MemberCardService {
     String  deleteMemberCard(Long id);
 
     String editTicket(MemberCardEditDTO memberCardEditDTO);
+
+    List<ParkingSlot> findParkingSlotEdit(Long slotType);
 }

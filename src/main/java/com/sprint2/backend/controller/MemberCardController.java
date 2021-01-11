@@ -46,13 +46,13 @@ public class MemberCardController {
         return new ResponseEntity<>(carList, HttpStatus.OK);
     }
 
-    @GetMapping("/parkingSlot")
+    @GetMapping("/parking-slot")
     public ResponseEntity<List<ParkingSlot>> getParkingSlot() {
         List<ParkingSlot> parkingSlotList = this.memberCardService.findAllParkingSlotNeed();
         return ResponseEntity.ok(parkingSlotList);
     }
 
-    @GetMapping("/memberCardType")
+    @GetMapping("/member-card-type")
     public ResponseEntity<List<MemberCardType>> getAll() {
         List<MemberCardType> memberCardTypeList = this.memberCardService.findAllMemberCardType();
         return ResponseEntity.ok(memberCardTypeList);
@@ -87,6 +87,12 @@ public class MemberCardController {
     public ResponseEntity<MessageDTO> editMemberCard(@RequestBody MemberCardEditDTO memberCardEditDTO) {
         String message = this.memberCardService.editTicket(memberCardEditDTO);
         return ResponseEntity.ok(new MessageDTO(message));
+    }
+
+    @GetMapping("/slot-type-edit/{slotType}")
+    public ResponseEntity<List<ParkingSlot>> getParkingSlotEdit(@PathVariable Long slotType) {
+        List<ParkingSlot> parkingSlotList = this.memberCardService.findParkingSlotEdit(slotType);
+        return ResponseEntity.ok(parkingSlotList);
     }
 
     /*

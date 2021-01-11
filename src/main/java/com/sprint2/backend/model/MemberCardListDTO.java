@@ -19,4 +19,5 @@ public class MemberCardListDTO {
     private String nameCustomer;
     private String floor;
     private String slotNumber;
+    private Long slotType;
 }

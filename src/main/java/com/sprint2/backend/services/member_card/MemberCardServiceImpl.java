@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +24,15 @@ public class MemberCardServiceImpl implements MemberCardService {
 
     @Autowired
     private CarRepository carRepository;
+
+    @Autowired
+    private AppRoleRepository appRoleRepository;
+
+    @Autowired
+    private AppAccountRepository appAccountRepository;
+
+    @Autowired
+    private CarTypeRepository carTypeRepository;
 
     @Autowired
     private CustomerRepository customerRepository;
@@ -170,6 +180,7 @@ public class MemberCardServiceImpl implements MemberCardService {
             memberCardListDTO.setNameCustomer(memberCard.getCar().getCustomer().getFullName());
             memberCardListDTO.setFloor(memberCard.getCar().getParkingSlot().getFloor());
             memberCardListDTO.setSlotNumber(memberCard.getCar().getParkingSlot().getSlotNumber());
+            memberCardListDTO.setSlotType(memberCard.getCar().getParkingSlot().getSlotType().getId());
             memberCardListDTOList.add(memberCardListDTO);
         }
         return memberCardListDTOList;
@@ -182,20 +193,34 @@ public class MemberCardServiceImpl implements MemberCardService {
         Car car = new Car();
         Customer customer = new Customer();
 
+        // create Account :
+        AppAccount appAccount = new AppAccount();
+        appAccount.setUsername("abc@abc.abc");
+        appAccount.setPassword("Aqwerty1");
+        appAccount.setAppRole(this.appRoleRepository.findById(3L).orElse(null));
+        appAccount.setEnabled(false);
+        this.appAccountRepository.save(appAccount);
+
         // create Customer :
         customer.setFullName(memberCardAddDTO.getFullName());
+        customer.setAppAccount(appAccount);
+        customer.setCreateDate(LocalDateTime.now());
+        customer.setEmail("abc@abc.abc");
+        customer.setGender(false);
         this.customerRepository.save(customer);
 
         // create Car :
         car.setPlateNumber(memberCardAddDTO.getPlateNumber());
         car.setCustomer(this.customerRepository.findByFullName(memberCardAddDTO.getFullName()));
+        car.setCarType(this.carTypeRepository.findById(1L).orElse(null));
+        car.setBrandName("Lamborghini");
         this.carRepository.save(car);
 
         // set SlotNumber :
         ParkingSlot parkingSlot;
         parkingSlot = this.parkingSlotRepository.findById(memberCardAddDTO.getSlotNumber()).orElse(null);
         if (parkingSlot != null) {
-            parkingSlot.setStatus(true);
+            parkingSlot.setStatus(false);
             parkingSlot.setReserved(true);
             parkingSlot.setCar(car);
             this.parkingSlotRepository.save(parkingSlot);
@@ -262,6 +287,17 @@ public class MemberCardServiceImpl implements MemberCardService {
     @Override
     public String deleteMemberCard(Long id) {
         MemberCard memberCard = findByID(id);
+
+        // set Parking Slot
+        ParkingSlot parkingSlot =
+                this.parkingSlotRepository.findById(memberCard.getCar().getParkingSlot().getId()).orElse(null);
+        if (parkingSlot != null) {
+            parkingSlot.setCar(null);
+            parkingSlot.setReserved(false);
+            parkingSlot.setStatus(false);
+        }
+
+        // delete MemberCard
         memberCard.setCar(null);
         memberCard.setMemberCardType(null);
         try {
@@ -281,9 +317,21 @@ public class MemberCardServiceImpl implements MemberCardService {
                     memberCard.setPrice(memberCardEditDTO.getPrice());
                     memberCard.setEndDate(memberCardEditDTO.getEndDate());
                     memberCard.setStartDate(memberCardEditDTO.getStartDate());
-                    memberCard.getMemberCardType().setMemberTypeName(memberCardEditDTO.getMemberCardType());
-                    memberCard.getCar().getParkingSlot().setFloor(memberCardEditDTO.getFloor());
-                    memberCard.getCar().getParkingSlot().setSlotNumber(memberCardEditDTO.getNumberSlot());
+                    memberCard.setMemberCardType(
+                            this.memberCardTypeRepository.findById
+                                    (memberCardEditDTO.getMemberCardType()).orElse(null));
+                    ParkingSlot parkingSlotNew =
+                            this.parkingSlotRepository.findById(memberCardEditDTO.getFloor()).orElse(null);
+                    if (parkingSlotNew != null) {
+                        parkingSlotNew.setCar(memberCard.getCar());
+                        parkingSlotNew.setReserved(true);
+                        parkingSlotNew.setStatus(false);
+                        this.parkingSlotRepository.save(parkingSlotNew);
+                    }
+                    ParkingSlot parkingSlot = memberCard.getCar().getParkingSlot();
+                    parkingSlot.setReserved(false);
+                    parkingSlot.setCar(null);
+                    this.parkingSlotRepository.save(parkingSlot);
                     memberCardRepository.save(memberCard);
                 } else {
                     return "Not found";
@@ -295,5 +343,18 @@ public class MemberCardServiceImpl implements MemberCardService {
             return "Failed";
         }
         return "Succeed";
+    }
+
+    @Override
+    public List<ParkingSlot> findParkingSlotEdit(Long slotType) {
+        List<ParkingSlot> parkingSlotListEdit = new ArrayList<>();
+        List<ParkingSlot> parkingSlotListExists = this.parkingSlotRepository.findAll();
+        for (ParkingSlot parkingSlot : parkingSlotListExists) {
+            if (!parkingSlot.getReserved() && parkingSlot.getSlotType().getId().equals(slotType)
+                    && !parkingSlot.getStatus() && parkingSlot.getCar() == null) {
+                parkingSlotListEdit.add(parkingSlot);
+            }
+        }
+        return parkingSlotListEdit;
     }
 }
