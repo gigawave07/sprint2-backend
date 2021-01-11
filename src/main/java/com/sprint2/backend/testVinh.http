@@ -1,3 +1,7 @@
+GET http://localhost:8080/member-card/get-member-card-id-by-car-id/55
+Accept: application/json
+
+###
 GET http://localhost:8080/entry-log/check-entry-log/true/11
 Accept: application/json
 
