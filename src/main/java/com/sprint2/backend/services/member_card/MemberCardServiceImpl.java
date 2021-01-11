@@ -2,6 +2,7 @@ package com.sprint2.backend.services.member_card;
 
 import com.sprint2.backend.entity.*;
 import com.sprint2.backend.model.MemberCardAddDTO;
+import com.sprint2.backend.model.MemberCardEditDTO;
 import com.sprint2.backend.model.MemberCardListDTO;
 import com.sprint2.backend.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -253,5 +254,46 @@ public class MemberCardServiceImpl implements MemberCardService {
             }
         }
         return parkingSlotListDisplay;
+    }
+
+    /**
+     * Hoat start
+     */
+    @Override
+    public String deleteMemberCard(Long id) {
+        MemberCard memberCard = findByID(id);
+        memberCard.setCar(null);
+        memberCard.setEntryLogList(null);
+        memberCard.setMemberCardType(null);
+        try {
+            this.memberCardRepository.deleteById(id);
+        } catch (RuntimeException runtime) {
+            return "Failed";
+        }
+        return "Succeed";
+    }
+
+    @Override
+    public String editTicket(MemberCardEditDTO memberCardEditDTO) {
+        try {
+            if (memberCardEditDTO != null) {
+                MemberCard memberCard = findByID(memberCardEditDTO.getId());
+                if (memberCard != null) {
+                    memberCard.setPrice(memberCardEditDTO.getPrice());
+                    memberCard.setEndDate(memberCardEditDTO.getEndDate());
+                    memberCard.setStartDate(memberCardEditDTO.getStartDate());
+                    memberCard.getMemberCardType().setMemberTypeName(memberCardEditDTO.getMemberCardType());
+                    memberCard.getCar().getParkingSlot().setFloor(memberCardEditDTO.getFloor());
+                    memberCardRepository.save(memberCard);
+                } else {
+                    return "Not found";
+                }
+            } else {
+                return "DTO null";
+            }
+        } catch (RuntimeException runtime) {
+            return "Failed";
+        }
+        return "Succeed";
     }
 }

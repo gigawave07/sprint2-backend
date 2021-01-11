@@ -1,5 +1,7 @@
 package com.sprint2.backend.controller;
 
+import com.sprint2.backend.model.MemberCardEditDTO;
+import com.sprint2.backend.model.MessageDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,7 +31,6 @@ public class MemberCardController {
         this.memberCardService.saveDTO(memberCardAddDTO);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
 
 
     @GetMapping("/list")
@@ -64,5 +65,24 @@ public class MemberCardController {
 
     /**
      * Lành end
+     */
+
+    /**
+     * Hoat start
+     */
+    @DeleteMapping("/deleteMemberCard/{id}")
+    public ResponseEntity<MessageDTO> deleteMemberCard(@PathVariable Long id) {
+        String message = this.memberCardService.deleteMemberCard(id);
+        return ResponseEntity.ok(new MessageDTO(message));
+    }
+
+    @PutMapping("/edit")
+    public ResponseEntity<MessageDTO> editMemberCard(@RequestBody MemberCardEditDTO memberCardEditDTO) {
+        String message = this.memberCardService.editTicket(memberCardEditDTO);
+        return ResponseEntity.ok(new MessageDTO(message));
+    }
+
+    /**
+     * Hoat end
      */
 }

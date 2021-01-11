@@ -7,6 +7,7 @@ import com.sprint2.backend.entity.MemberCard;
 import com.sprint2.backend.entity.MemberCardType;
 import com.sprint2.backend.entity.ParkingSlot;
 import com.sprint2.backend.model.MemberCardAddDTO;
+import com.sprint2.backend.model.MemberCardEditDTO;
 import com.sprint2.backend.model.MemberCardListDTO;
 
 public interface MemberCardService {
@@ -101,4 +102,11 @@ public interface MemberCardService {
     List<MemberCardType> findAllMemberCardType();
 
     List<ParkingSlot> findAllParkingSlotNeed();
+
+    /**
+     * Hoat start
+     */
+    String  deleteMemberCard(Long id);
+
+    String editTicket(MemberCardEditDTO memberCardEditDTO);
 }
