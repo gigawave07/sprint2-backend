@@ -89,7 +89,6 @@ public class CarController {
         }
         return car != null ? ResponseEntity.ok(car) : ResponseEntity.ok(new MessageDTO("not found"));
     }
-
     @GetMapping("/get-list-car/{customerId}")
     public ResponseEntity<?> getListCar(@PathVariable Long customerId) throws ParseException {
         List<Car> carList;
@@ -101,13 +100,17 @@ public class CarController {
         if (customerId != null) {
             carList = this.carService.getListCar(customerId);
             for (Car car : carList) {
+                parkingSlot = this.parkingSlotService.findByCar(car);
+                if (parkingSlot == null || !parkingSlot.getReserved()){
+                    carList.remove(car);
+                    break;
+                }
                 CarAppVinh carAppVinh = new CarAppVinh();
                 carAppVinh.setId(car.getId().toString());
                 carAppVinh.setLicensePlate(car.getPlateNumber());
                 carAppVinh.setCarType(car.getCarType().getCarTypeName());
                 // Lấy dữ liệu ngày hết hạn từ memberCard
                 memberCardList = this.memberCardService.findAllByCarId(car.getId());
-                // Định dạng lại Date Time thành String xóa chữ T ở giữa date và time
                 if (memberCardList.size() != 0) {
                     carAppVinh.setBeginDate(memberCardList.get(memberCardList.size() - 1).getStartDate().
                             toLocalDate().toString());
@@ -118,26 +121,21 @@ public class CarController {
                 } else {
                     break;
                 }
-
                 // Lấy tầng trong parking slot
-                parkingSlot = this.parkingSlotService.findAllByCarId(car.getId());
+                parkingSlot = this.parkingSlotService.findByCar_Id(car.getId());
                 if (parkingSlot != null) {
                     carAppVinh.setFloor(parkingSlot.getFloor());
                     carAppVinh.setSlotNum(parkingSlot.getSlotNumber());
                 }
-
                 carAppVinhList.add(carAppVinh);
             }
         }
         return carAppVinhList.size() != 0 ? ResponseEntity.ok(carAppVinhList) : ResponseEntity.ok(messageDTOList);
     }
-
-
     @GetMapping("/get-list-car/")
     public ResponseEntity<?> getListCarFail() {
         return ResponseEntity.ok(new MessageDTO("not found"));
     }
-
     @GetMapping("amount-of-car/{customerId}")
     public ResponseEntity<?> countCar(@PathVariable Long customerId) {
         List<Car> carList = null;
@@ -145,8 +143,9 @@ public class CarController {
             carList = this.carService.getListCar(customerId);
         }
         for (int i = 0; i < carList.size(); i++) {
-            if (this.memberCardService.findAllByCarId(carList.get(i).getId()).size() == 0) {
-                carList.remove(carList.get(i));
+            ParkingSlot parkingSlot = this.parkingSlotService.findByCar_Id(carList.get(i).getId());
+            if (parkingSlot == null || !parkingSlot.getReserved()){
+                carList.remove(i);
                 i--;
             }
         }

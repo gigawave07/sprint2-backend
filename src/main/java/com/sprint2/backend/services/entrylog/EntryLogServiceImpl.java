@@ -17,5 +17,11 @@ public class EntryLogServiceImpl implements EntryLogService{
     public List<EntryLog> findByMemberCardId(Long memberCardId) {
         return this.entryLogRepository.findAllByMemberCardId(memberCardId);
     }
+
+    @Override
+    public void save(EntryLog entryLog) {
+        entryLogRepository.save(entryLog);
+    }
+
     // ------------------------ VInh Begin -----------------------------
 }

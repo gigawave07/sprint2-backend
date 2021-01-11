@@ -1,4 +1,4 @@
-GET http://localhost:8080/entry-log/check-entry-log/11
+GET http://localhost:8080/entry-log/check-entry-log/true/11
 Accept: application/json
 
 ###
