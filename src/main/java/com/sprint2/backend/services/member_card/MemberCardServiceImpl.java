@@ -263,10 +263,9 @@ public class MemberCardServiceImpl implements MemberCardService {
     public String deleteMemberCard(Long id) {
         MemberCard memberCard = findByID(id);
         memberCard.setCar(null);
-        memberCard.setEntryLogList(null);
         memberCard.setMemberCardType(null);
         try {
-            this.memberCardRepository.deleteById(id);
+            this.memberCardRepository.delete(memberCard);
         } catch (RuntimeException runtime) {
             return "Failed";
         }
@@ -284,6 +283,7 @@ public class MemberCardServiceImpl implements MemberCardService {
                     memberCard.setStartDate(memberCardEditDTO.getStartDate());
                     memberCard.getMemberCardType().setMemberTypeName(memberCardEditDTO.getMemberCardType());
                     memberCard.getCar().getParkingSlot().setFloor(memberCardEditDTO.getFloor());
+                    memberCard.getCar().getParkingSlot().setSlotNumber(memberCardEditDTO.getNumberSlot());
                     memberCardRepository.save(memberCard);
                 } else {
                     return "Not found";

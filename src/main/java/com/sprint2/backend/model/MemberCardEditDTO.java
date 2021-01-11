@@ -18,7 +18,7 @@ public class MemberCardEditDTO {
     private LocalDateTime startDate;
     private LocalDateTime endDate;
     private Double price;
-    private Long numberSlot;
+    private String numberSlot;
     private String floor;
     private String memberCardType;
 }
