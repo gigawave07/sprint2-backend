@@ -7,8 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import com.sprint2.backend.entity.ParkingSlot;
-
 import java.util.List;
 
 @Repository
@@ -17,7 +15,7 @@ public interface ParkingSlotRepository extends JpaRepository<ParkingSlot, Long> 
 
     ParkingSlot findByReservedContaining(Boolean reserved);
 
-//    Nhật đổi parking slot
+    //    Nhật đổi parking slot
     ParkingSlot getParkingSlotByCarId(long idCar);
 
     // Quan start

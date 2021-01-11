@@ -1,12 +1,11 @@
 package com.sprint2.backend.services.app_admin;
 
+import com.sprint2.backend.entity.AppAdmin;
+import com.sprint2.backend.repository.AppAdminRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
-import com.sprint2.backend.entity.AppAdmin;
-import com.sprint2.backend.repository.AppAdminRepository;
 
 @Service
 public class AppAdminServiceImpl implements AppAdminService {

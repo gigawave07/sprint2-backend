@@ -5,6 +5,8 @@ import java.util.List;
 import com.sprint2.backend.entity.MemberCard;
 
 public interface PaySerVice {
+    List<MemberCard> findAll();
+
     List<MemberCard> findByCustomerID(Long id);
 
     void updateMemberCardAndSendMailAfterCustomerPay(Double money, List<Long> listIDMemberCard);

@@ -45,4 +45,12 @@ public interface CarRepository extends JpaRepository<Car, Long> {
     List<Car> findAllByCustomerId(Long customerId);
     // --------------------Vinh end -------------------------
 
+    /**
+     * Lành start
+     */
+    List<Car> findCarByPlateNumber(String plateNumber);
+
+    /**
+     * Lành end
+     */
 }
