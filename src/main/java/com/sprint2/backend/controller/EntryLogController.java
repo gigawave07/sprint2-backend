@@ -26,9 +26,7 @@ public class EntryLogController {
 
     @Autowired
     ParkingSlotService parkingSlotService;
-
-    // --------------------- VInh Begin ---------------------------
-
+    
     // --------------------- VInh Begin ---------------------------
     @GetMapping("/check-entry-log/{check}/{memberCardId}")
     public ResponseEntity<?> checkEntryLog(@PathVariable Long memberCardId, @PathVariable Boolean check) {
@@ -104,6 +102,4 @@ public class EntryLogController {
         return "car left";
     }
 // --------------------- VInh End ---------------------------
-
-    // --------------------- VInh End ---------------------------
 }
