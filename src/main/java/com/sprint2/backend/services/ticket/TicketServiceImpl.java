@@ -13,9 +13,8 @@ import java.time.LocalDateTime;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-
 @Service
-public class TicketServiceImpl implements TicketService {
+public class TicketServiceImpl implements TicketService{
     @Autowired
     TicketRepository ticketRepository;
 
