@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/employee")
 @CrossOrigin
@@ -17,7 +19,7 @@ public class EmployeeController {
 
 
     // ------------------------------------ Vinh Begin -------------------------------------
-    @GetMapping("/getEmployeeInformation/{employeeId}")
+    @GetMapping("/get-employee-information/{employeeId}")
     public ResponseEntity<?> getEmployeeInformation(@PathVariable Long employeeId){
         Employee employee = null;
         if (employeeId != null) {
@@ -25,5 +27,6 @@ public class EmployeeController {
         }
         return (employee != null) ? ResponseEntity.ok(employee) : ResponseEntity.ok(new MessageDTO("not found"));
     }
+
     // ------------------------------------ Vinh Begin -------------------------------------
 }

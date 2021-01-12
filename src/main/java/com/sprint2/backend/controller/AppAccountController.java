@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 
 @RestController
 @RequestMapping("/account")
@@ -24,9 +25,9 @@ public class AppAccountController {
 
     /**
      * nguyen quoc khanh
+     *
      * @param id
-     * @return
-     * get account by id
+     * @return get account by id
      */
     @GetMapping("/findAppAccountById/{id}")
     public ResponseEntity<AppAccount> getAppAccountById(@PathVariable Long id) {
@@ -39,8 +40,7 @@ public class AppAccountController {
      * @param request
      * @return
      * @throws UnsupportedEncodingException
-     * @throws MessagingException
-     * set verifycode when user change their password
+     * @throws MessagingException           set verifycode when user change their password
      */
     @PostMapping("/setVerifyCode/{id}")
     public ResponseEntity<AppAccount> confirmEmail(@PathVariable Long id, HttpServletRequest request) throws UnsupportedEncodingException, MessagingException {
@@ -51,8 +51,7 @@ public class AppAccountController {
     /**
      * @param id
      * @param changePasswordUserDTO
-     * @return
-     * confirm veryficode when user change their password
+     * @return confirm veryficode when user change their password
      */
     @PutMapping("/veryficode/{id}")
     public boolean verifyAccount(@PathVariable Long id,
@@ -69,8 +68,7 @@ public class AppAccountController {
     /**
      * @param id
      * @param changePasswordUserDTO
-     * @return
-     * save new password
+     * @return save new password
      */
     @PutMapping("/savePassword/{id}")
     public ResponseEntity<AppAccount> savePassword(@PathVariable Long id, @RequestBody ChangePasswordUserDTO changePasswordUserDTO) {
@@ -83,8 +81,7 @@ public class AppAccountController {
     /**
      * @param changePasswordUserDTO
      * @param id
-     * @return
-     * confirm old password
+     * @return confirm old password
      */
     @PutMapping("/confirmPassword/{id}")
     public ResponseEntity<?> getAccountByUsername(@RequestBody ChangePasswordUserDTO changePasswordUserDTO,
@@ -110,12 +107,19 @@ public class AppAccountController {
     @GetMapping("check-login-mobile/{userName}/{password}")
     public ResponseEntity<?> checkLoginMobile(@PathVariable String userName, @PathVariable String password) {
         AppAccount appAccount = null;
-        System.out.println(userName!=null);
-        System.out.println(password!=null);
-        if (userName!=null && password != null){
+        System.out.println(userName != null);
+        System.out.println(password != null);
+        if (userName != null && password != null) {
             appAccount = this.appAccountService.getAccount(userName, password);
         }
-        return appAccount != null ? ResponseEntity.ok(appAccount) : ResponseEntity.ok(new MessageDTO("not found")) ;
+        return appAccount != null ? ResponseEntity.ok(appAccount) : ResponseEntity.ok(new MessageDTO("not found"));
+    }
+
+    @GetMapping("/get-all-account")
+    public ResponseEntity<?> getAllAccount() {
+        List<AppAccount> appAccountList = null;
+        appAccountList = this.appAccountService.findAll();
+        return appAccountList !=null? ResponseEntity.ok(appAccountList): ResponseEntity.ok(new MessageDTO("not found"));
     }
     // ------------------------------Vinh End ----------------------------------
 }

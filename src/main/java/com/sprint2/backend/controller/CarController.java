@@ -62,10 +62,10 @@ public class CarController {
 
     /**
      * nguyen quoc khanh
+     *
      * @param id
      * @param page
-     * @return
-     * get list car with sort and pagination
+     * @return get list car with sort and pagination
      */
     @GetMapping("/find-all-car-by-customerId/{id}")
     public ResponseEntity<Page<Car>> getAllCarByCustomerId(@PathVariable Long id,
@@ -89,6 +89,7 @@ public class CarController {
         }
         return car != null ? ResponseEntity.ok(car) : ResponseEntity.ok(new MessageDTO("not found"));
     }
+
     @GetMapping("/get-list-car/{customerId}")
     public ResponseEntity<?> getListCar(@PathVariable Long customerId) throws ParseException {
         List<Car> carList;
@@ -101,7 +102,7 @@ public class CarController {
             carList = this.carService.getListCar(customerId);
             for (Car car : carList) {
                 parkingSlot = this.parkingSlotService.findByCar(car);
-                if (parkingSlot == null || !parkingSlot.getReserved()){
+                if (parkingSlot == null || !parkingSlot.getReserved()) {
                     carList.remove(car);
                     break;
                 }
@@ -132,10 +133,12 @@ public class CarController {
         }
         return carAppVinhList.size() != 0 ? ResponseEntity.ok(carAppVinhList) : ResponseEntity.ok(messageDTOList);
     }
+
     @GetMapping("/get-list-car/")
     public ResponseEntity<?> getListCarFail() {
         return ResponseEntity.ok(new MessageDTO("not found"));
     }
+
     @GetMapping("amount-of-car/{customerId}")
     public ResponseEntity<?> countCar(@PathVariable Long customerId) {
         List<Car> carList = null;
@@ -144,7 +147,7 @@ public class CarController {
         }
         for (int i = 0; i < carList.size(); i++) {
             ParkingSlot parkingSlot = this.parkingSlotService.findByCar_Id(carList.get(i).getId());
-            if (parkingSlot == null || !parkingSlot.getReserved()){
+            if (parkingSlot == null || !parkingSlot.getReserved()) {
                 carList.remove(i);
                 i--;
             }

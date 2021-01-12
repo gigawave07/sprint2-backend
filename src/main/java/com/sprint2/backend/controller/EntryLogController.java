@@ -36,19 +36,36 @@ public class EntryLogController {
         LocalDateTime toDay = LocalDateTime.now();
         if (memberCardId != null) {
             entryLogList = this.entryLogService.findByMemberCardId(memberCardId);
-            EntryLog entryLog = entryLogList.get(entryLogList.size() - 1);
-            boolean isPark = entryLog.getExitDate() != null && entryLog.getExitDate().isBefore(toDay);
-            if (isPark) {
-                if (check) {
-                    result = setEntryLogIn(memberCardId);
-                } else {
-                    result = "not park";
+            if (entryLogList.size() != 0){
+                EntryLog entryLog = entryLogList.get(entryLogList.size() - 1);
+                boolean isPark = entryLog.getExitDate() != null && entryLog.getExitDate().isBefore(toDay);
+                if (isPark) {
+                    if (check) {
+                        result = setEntryLogIn(memberCardId);
+                    } else {
+                        result = "Xe chưa được đổ";
+                    }
+                } else if (entryLog.getExitDate() == null) {
+                    if (!check) {
+                        result = setEntryLogOut(memberCardId);
+                    } else {
+                        result = " Xe đã được đổ";
+                    }
                 }
-            } else if (entryLog.getExitDate() == null) {
-                if (!check) {
-                    result = setEntryLogOut(memberCardId);
+            } else {
+                if (check) {
+                    EntryLog entryLog = new EntryLog();
+                    entryLog.setEnterDate(LocalDateTime.now());
+                    MemberCard memberCard = this.memberCardService.findByID(memberCardId);
+                    entryLog.setMemberCard(memberCard);
+                    entryLog.getMemberCard().setId(memberCardId);
+                    this.entryLogService.save(entryLog);
+                    ParkingSlot parkingSlot = this.parkingSlotService.findByCar_Id(memberCard.getCar().getId());
+                    parkingSlot.setStatus(true);
+                    this.parkingSlotService.save(parkingSlot);
+                    result = "Xe đổ thành công";
                 } else {
-                    result = " parked";
+                    result = "Xe chưa được đỗ";
                 }
             }
         }
@@ -67,7 +84,7 @@ public class EntryLogController {
             parkingSlot.setStatus(true);
             this.parkingSlotService.save(parkingSlot);
         }
-        return "park success";
+        return "Xe đỗ thành công";
     }
     public String setEntryLogOut(Long memberCardId) {
         EntryLog entryLog = new EntryLog();
@@ -83,7 +100,7 @@ public class EntryLogController {
             parkingSlot.setStatus(false);
             this.parkingSlotService.save(parkingSlot);
         }
-        return "car left";
+        return "Xe rời bãi thành công";
     }
 
     // --------------------- VInh End ---------------------------
