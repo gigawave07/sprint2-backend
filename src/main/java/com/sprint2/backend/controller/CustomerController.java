@@ -4,6 +4,7 @@ import com.sprint2.backend.entity.*;
 import com.sprint2.backend.model.CustomerDTO;
 import com.sprint2.backend.services.car.CarService;
 import com.sprint2.backend.services.customer.CustomerService;
+import com.sprint2.backend.services.mai_htq.ParkingSlotService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,6 +39,9 @@ public class CustomerController {
 
     @Autowired
     private CarService carService;
+
+    @Autowired
+    private ParkingSlotService parkingSlotService;
 
     /**
      * nguyen quoc khanh
@@ -97,10 +101,15 @@ public class CustomerController {
             if (customer != null) {
                 List<Car> carList = this.carService.getListCar(customerId);
                 customer.setAppAccount(null);
+                ParkingSlot parkingSlot;
                 this.customerService.save(customer);
                 for (Car car : carList) {
                     car.setCustomer(null);
                     this.carService.save(car);
+                    parkingSlot = this.parkingSlotService.findByCar(car);
+                    parkingSlot.setReserved(false);
+                    parkingSlot.setStatus(false);
+                    this.parkingSlotService.save(parkingSlot);
                 }
             }
         }
@@ -108,7 +117,7 @@ public class CustomerController {
     }
 
     @DeleteMapping("/delete-customer/{customerId}")
-    public ResponseEntity<?> deleteCustomer(@PathVariable Long customerId){
+    public ResponseEntity<?> deleteCustomer(@PathVariable Long customerId) {
         this.customerService.deleteByID(customerId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
