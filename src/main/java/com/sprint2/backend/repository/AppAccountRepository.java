@@ -10,4 +10,10 @@ public interface AppAccountRepository extends JpaRepository<AppAccount, Long> {
     // ---------------------Vinh Begin---------------------------------
     AppAccount findAllByAndUsernameAndPassword(String userName, String password);
     // ---------------------Vinh End---------------------------------
+
+    AppAccount findByUsername(String username);
+
+    AppAccount findAppAccountByEmail(String email);
+
+    Boolean existsByUsername(String username);
 }
