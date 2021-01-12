@@ -1,6 +1,7 @@
 package com.sprint2.backend.repository;
 
 
+import com.sprint2.backend.entity.Customer;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import com.sprint2.backend.entity.Car;
@@ -53,4 +54,5 @@ public interface CarRepository extends JpaRepository<Car, Long> {
     /**
      * Lành end
      */
+    List<Car> findAllByPlateNumberContainingAndCustomer(String plate, Customer customer);
 }

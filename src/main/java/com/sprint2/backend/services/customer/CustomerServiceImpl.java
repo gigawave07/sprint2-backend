@@ -4,6 +4,7 @@ import com.sprint2.backend.entity.*;
 import com.sprint2.backend.model.InformationCustomerDTO;
 import com.sprint2.backend.model.ListEntryLogDTO;
 import com.sprint2.backend.repository.AppAccountRepository;
+import com.sprint2.backend.repository.CarRepository;
 import com.sprint2.backend.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -17,6 +18,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
@@ -27,6 +29,8 @@ public class CustomerServiceImpl implements CustomerService {
     @Autowired
     private AppAccountRepository appAccountRepository;
 
+    @Autowired
+    private CarRepository carRepository;
     // Update Customer
     @Override
     public void updateCustomer(InformationCustomerDTO customerDTO) {
@@ -98,14 +102,19 @@ public class CustomerServiceImpl implements CustomerService {
 
     // Lấy page phân trang của lịch sử xe ra vào
     @Override
-    public Page<ListEntryLogDTO> findListEntryLog(Long accountId, int pageable) {
+    public Page<ListEntryLogDTO> findListEntryLog(Long accountId, int pageable, Optional<String> plateNumber) {
         List<ListEntryLogDTO> listEntryLogDTOS = new ArrayList<>();
         AppAccount appAccount = this.appAccountRepository.findById(accountId).orElse(null);
         // Sử dụng if appAccount không null thì lấy thông tin của customer theo tài appAccount
         if (appAccount != null) {
             Customer customer = appAccount.getCustomer();
             //   Lấy danh sách xe của customer
-            List<Car> listCar = customer.getCarList();
+            List<Car> listCar =null;
+            if (plateNumber.isPresent()){
+               listCar =  this.carRepository.findAllByPlateNumberContainingAndCustomer(plateNumber.get() , customer);
+            }else {
+                listCar = customer.getCarList();
+            }
             List<MemberCard> listMemberCar;
             List<EntryLog> listEntryLog;
             // Duyệt qua danh sách xe để lấy thẻ thành viên tương ứng với từng xe
