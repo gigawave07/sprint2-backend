@@ -1,11 +1,11 @@
-package com.sprint2.backend.services.parking_slot;
+package com.sprint2.backend.services.mai_htq.parking_slot;
 
 import java.util.List;
 
 import com.sprint2.backend.entity.ParkingSlot;
 import com.sprint2.backend.entity.SlotType;
-import com.sprint2.backend.model.ParkingSlotDTO;
-import com.sprint2.backend.model.ParkingSlotDTODisplay;
+import com.sprint2.backend.model.mai_htq.ParkingSlotDTO;
+import com.sprint2.backend.model.mai_htq.ParkingSlotDTODisplay;
 
 public interface ParkingSlotService {
     List<ParkingSlot> findAll();
