@@ -82,7 +82,7 @@ public class ParkingSlotServiceImpl implements ParkingSlotService {
      * @param floor
      * @return list
      * Create by MaiHTQ
-     */ 
+     */
     @Override
     public List<ParkingSlotDTODisplay> findParkingSlotByFloor(String floor) {
         List<ParkingSlotDTODisplay> parkingSlotDTOList = new ArrayList<>();
