@@ -1,59 +1,57 @@
-GET http://localhost:8080/invoice/find-all-invoice-by-customerId/1
+GET http://localhost:8080/car/find-all-type
 Accept: application/json
 
 ###
-GET http://localhost:8080/customer/find-customer-by-accountId/1
+POST http://localhost:8080/ticket/close
+Content-Type: application/json
+
+{
+  "enterDate": "02021-01-06T03:19",
+  "exitDate": "2021-01-07T03:19",
+  "price": 1000,
+  "car": {
+    "plateNumber": "74G - 12607",
+    "carType": {
+      "id": 1
+    }
+  }
+}
+
+###
+POST http://localhost:8080/ticket/save
+Content-Type: application/json
+
+{
+  "enterDate": null,
+  "exitDate": null,
+  "price": 0,
+  "car": {
+    "plateNumber": "74G - 12607",
+    "carType": {
+      "id": 1
+    }
+  }
+}
+
+###
+POST http://localhost:8080/parking-slot/find-by-floor-slot-number
+Content-Type: application/json
+
+{
+  "floor": "5",
+  "slotNumber": "50"
+}
+
+###
+POST http://localhost:8080/car/get-info
+Content-Type: application/json
+
+{
+  "plateNumber": "55S - 55555"
+}
+
+###
+GET http://localhost:8080/parking-slot/get-all
 Accept: application/json
-
-###
-GET http://localhost:8080/car/find-all-car-by-customerId/1
-Accept: application/json
-
-###
-GET http://localhost:8080/account/findAll
-Accept: application/json
-
-###
-GET http://localhost:8080/account/confirmPassword/1
-Content-Type: application/json
-
-{
-  "passwordOld": "456"
-}
-
-###
-
-POST http://localhost:8080/account/setVerifyCode/1
-Content-Type: application/json
-
-{
-  "verificationCode": "AOa70kgy"
-}
-
-###
-PUT http://localhost:8080/account/changePassword/1
-Content-Type: application/json
-
-{
-  "verificationCode": "WzINCkS6",
-  "passwordNew": "1322"
-}
-
-###
-PUT http://localhost:8080/account/savePassword/1
-Content-Type: application/json
-
-{
-  "passwordNew": "123"
-}
-
-
-###
-PUT http://localhost:8080/account/changePassword/1
-Content-Type: application/json
-
-{
-  "verificationCode": "ykTNj1U8"
-}
 
 ###

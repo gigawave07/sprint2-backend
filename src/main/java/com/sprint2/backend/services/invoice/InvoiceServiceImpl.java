@@ -14,7 +14,7 @@ import com.sprint2.backend.repository.InvoiceRepository;
 
 @Service
 public class InvoiceServiceImpl implements InvoiceService {
-    Sort sort = Sort.by(Sort.Direction.ASC, "total_amount");
+    Sort sort = Sort.by(Sort.Direction.ASC, "pay_date");
     Pageable pageable = PageRequest.of(0,3, sort);
     @Autowired
     private InvoiceRepository invoiceRepository;

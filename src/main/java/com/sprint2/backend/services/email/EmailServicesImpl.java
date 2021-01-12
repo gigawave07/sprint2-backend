@@ -28,7 +28,7 @@ public class EmailServicesImpl implements EmailServices {
         String subject = "Email xác nhận đổi mật khẩu";
         String senderName = "C06 Parking team";
         String mailContent = "<div>";
-        mailContent += "<img src=\"https://firebasestorage.googleapis.com/v0/b/sprint2-72d39.appspot.com/o/avatar%2Fyour-logo_1610003482974?alt=media&token=27846c7c-d5e5-4b0e-a01d-a855b7d8fec0\"/>";
+        mailContent += "<img src=\"https://firebasestorage.googleapis.com/v0/b/sprint2-72d39.appspot.com/o/avatar%2Fyour-logo_1610339257848?alt=media&token=d71d6eae-cbef-4b74-bb7b-f7d2477b0c8a\"/>";
         mailContent += "</div>";
         mailContent += " <h1 style=\"color: #26bb84\"> Chào " + appAccount.getCustomer().getFullName() + "</h1>";
         mailContent += "<p style=\"font-weight: bolder\">Bạn đã yêu cầu đổi mật khẩu trên hệ thống quản lý bãi đỗ xe của C06 Parking team. Nếu\n" +
