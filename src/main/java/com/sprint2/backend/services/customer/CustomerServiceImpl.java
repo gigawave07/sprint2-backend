@@ -143,4 +143,35 @@ public class CustomerServiceImpl implements CustomerService {
         return this.customerRepository.findByAppAccountId(id);
     }
     // ----------------------- Vinh End ---------------------------
+
+    // ------------------------ Hoàng Begin -----------------------------
+    @Override
+    public void save(Customer customer) {
+        this.customerRepository.save(customer);
+    }
+
+    @Override
+    public List<Customer> findAll() {
+        return this.customerRepository.findAll();
+    }
+
+    @Override
+    public void deleteByID(Long id) {
+//        Customer customer = customerRepository.findById(id).orElse(null);
+//        if (customer != null) {
+//            customer.setAppAccount(null);
+//        }
+//        customerRepository.save(customer);
+        customerRepository.deleteById(id);
+    }
+
+//    @Override
+//    public  void deleteByID(Long id); {
+//        Customer customer = customerRepository.findById(id).orElse(null);
+//        if(customer!=null){
+//            customer.setAppAccount(null);
+//        }
+//       customerRepository.save(customer);
+//    }
+// ------------------------ Hoàng ENd -----------------------------
 }

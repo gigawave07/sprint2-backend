@@ -43,4 +43,12 @@ public interface CustomerService {
     Customer findByAccountId(Long id);
 
     // ----------------------- Vinh End -------------------------
+
+    // ------------------------ Hoàng Begin -----------------------------
+    void save(Customer customer);
+
+    List<Customer> findAll();
+
+    void deleteByID(Long id);
+    // ------------------------ Hoàng ENd -----------------------------
 }
