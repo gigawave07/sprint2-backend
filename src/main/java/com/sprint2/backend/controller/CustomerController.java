@@ -1,6 +1,8 @@
 package com.sprint2.backend.controller;
 
+import com.sprint2.backend.entity.Car;
 import com.sprint2.backend.entity.Customer;
+import com.sprint2.backend.model.CustomerDTO;
 import com.sprint2.backend.services.customer.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -79,4 +81,41 @@ public class CustomerController {
     }
 
     // --------------------Vinh end -------------------------
+
+    // ---------------- Hoàng begin ----------------------
+
+    //Delete customer by id
+    @DeleteMapping("/deleteCustomer/{id}")
+    public ResponseEntity<Void> deleteCustomer(@PathVariable Long id) {
+        customerService.deleteByID(id);
+        System.err.println("xoa dc roi");
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    //get customer by id
+    @GetMapping("/findCustomerById/{id}")
+    public ResponseEntity<Customer> findCustomerById(@PathVariable long id) {
+        return new ResponseEntity<>(customerService.findByID(id), HttpStatus.OK);
+    }
+
+    //edit customer
+    @PutMapping("/editCustomer/{id}")
+    public ResponseEntity<Void> editCustomer(@RequestBody CustomerDTO customerDTO, @PathVariable long id) {
+        Customer customer = customerService.findByID(id);
+        if (customer == null) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            customer.setCustomerCode(customerDTO.getCustomerCode());
+            customer.setFullName(customerDTO.getFullName().trim());
+            customer.setBirthday(customerDTO.getBirthday());
+            customer.setGender(customerDTO.getGender());
+            customer.setIdentityNumber(customerDTO.getIdentityNumber().trim());
+            customer.setPhone(customerDTO.getPhone().trim());
+            customer.setEmail(customerDTO.getEmail().trim());
+            customer.setAddress(customerDTO.getAddress().trim());
+            customerService.save(customer);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+    }
+    // ---------------- Hoàng end ------------------------
 }
