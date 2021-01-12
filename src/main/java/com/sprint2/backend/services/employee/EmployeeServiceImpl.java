@@ -43,7 +43,6 @@ public class EmployeeServiceImpl implements EmployeeService {
         appAccount.setAppRole(this.appRoleRepository.findById(2L).orElse(null));
         this.appAccountRepository.save(appAccount);
         Employee employee = new Employee();
-//        employee.setEmployeeCode(employeeDTO.getEmployeeCode());
         employee.setGender(employeeDTO.getGender());
         employee.setFullName(employeeDTO.getFullName().trim());
         employee.setBirthday(employeeDTO.getBirthday());
@@ -70,10 +69,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 
 
-
-
-
-
     @Override
     public List<AppRole> findAllByRole() {
         try {
@@ -83,36 +78,12 @@ public class EmployeeServiceImpl implements EmployeeService {
         }
         return null;
     }
-
-    @Override
-    public List<Employee> findEmployeeByFullNameContaining(String fullName) {
-        return this.employeeRepository.findEmployeeByFullNameContaining(fullName);
-    }
-
-    @Override
-    public List<Employee> findEmployeeByIdContaining(Long id) {
-        return this.employeeRepository.findEmployeeByIdContaining(id);
-    }
-
-    @Override
-    public List<Employee> findEmployeeByPositionContaining(String position) {
-        return this.employeeRepository.findEmployeeByPositionContaining(position);
-    }
-
     @Override
     public List<Employee> searchEmployee(String inputSearch) {
         return employeeRepository.findAllByFullNameContainingOrPositionContaining(inputSearch, inputSearch);
     }
 
-//    @Override
-//    public List<Employee> findAllEmployeeByStatus() {
-//        return this.employeeRepository.findAllByStatusTrue();
-//    }
-//
-//    @Override
-//    public List<Employee> searchEmployee(String fullName, String position) {
-//        return this.employeeRepository.findAllByStatusTrueAndFullNameContainingOrPositionContaining(fullName, position);
-//    }
+
 
 
 }

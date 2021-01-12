@@ -9,15 +9,5 @@ import java.util.List;
 
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee, Long> {
-    List<Employee> findEmployeeByFullNameContaining(String fullName);
-    List <Employee> findEmployeeByPositionContaining(String position);
-    List <Employee> findEmployeeByIdContaining(Long id);
-
-//    List<Employee> findAllByStatusTrueAndFullNameContainingOrPositionContaining(String fullName, String position);
-
-    // ----------------------- Validate ton tai ---------------------------
-    List<Employee> findEmployeeByEmployeeCode (String employeeCode);
-//    List<Employee> findAllByStatusTrue();
-
     List<Employee> findAllByFullNameContainingOrPositionContaining(String fullName, String position);
 }

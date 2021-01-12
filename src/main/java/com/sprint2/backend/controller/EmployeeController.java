@@ -1,6 +1,4 @@
 package com.sprint2.backend.controller;
-
-import com.sprint2.backend.entity.AppAccount;
 import com.sprint2.backend.entity.AppRole;
 import com.sprint2.backend.entity.Employee;
 import com.sprint2.backend.model.EmployeeDTO;
@@ -9,8 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -80,27 +76,6 @@ public class EmployeeController {
         }
     }
 
-    //------------------------------ Search Employee ----------------------------------
-    // Create by: Đạt _ Search Employee by full name
-//    @GetMapping("/searchFullName/{fullName}")
-//    public ResponseEntity<List<Employee>> searchFullNameEmployee(@PathVariable String fullName) {
-//        List<Employee> listEmployee = this.employeeService.findEmployeeByFullNameContaining(fullName);
-//        return new ResponseEntity<>(listEmployee, HttpStatus.OK);
-//    }
-//
-//    // Create by: Đạt _ Search Employee by phone number
-//    @GetMapping("/searchId/{id}")
-//    public ResponseEntity<List<Employee>> searchIdEmployee(@PathVariable Long id) {
-//        List<Employee> listEmployee = this.employeeService.findEmployeeByIdContaining(id);
-//        return new ResponseEntity<>(listEmployee, HttpStatus.OK);
-//    }
-//
-//    // Create by: Đạt _ Search Employee by email
-//    @GetMapping("/searchPosition/{position}")
-//    public ResponseEntity<List<Employee>> searchPositionEmployee(@PathVariable String position) {
-//        List<Employee> listEmployee = this.employeeService.findEmployeeByPositionContaining(position);
-//        return new ResponseEntity<>(listEmployee, HttpStatus.OK);
-//    }
 
     @GetMapping("/inputSearch")
     public ResponseEntity<List<Employee>> searchUsers(@RequestParam("valueSearch") String inputSearch) {

@@ -18,7 +18,7 @@ public class EmployeeDTO {
     @Size(min = 10, max = 45,  message = "Vui lòng nhập đúng định dạng")
     private String fullName;
     private Boolean gender;
-    @Pattern(regexp = "^[a-z][a-z0-9_\\.]{3,32}@[a-z0-9]{2,}(\\.[a-z0-9]{2,4}){1,2}$", message = "Địa chỉ không hợp lệ")
+    @Pattern(regexp = "^[a-z][a-z0-9_\\.]{3,32}@[a-z0-9]{2,}(\\.[a-z0-9]{2,4}){1,2}$", message = "Email không hợp lệ")
     private String email;
     private String address;
     private LocalDate birthday;

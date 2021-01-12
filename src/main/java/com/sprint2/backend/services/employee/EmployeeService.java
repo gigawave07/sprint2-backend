@@ -21,11 +21,7 @@ public interface EmployeeService {
 
     List<AppRole> findAllByRole();
     //-------------------------- Search -------------------------------
-    List<Employee> findEmployeeByFullNameContaining (String fullName);
 
-    List<Employee> findEmployeeByIdContaining (Long id);
-
-    List<Employee> findEmployeeByPositionContaining (String position);
 
     List<Employee> searchEmployee (String inputSearch);
 }
