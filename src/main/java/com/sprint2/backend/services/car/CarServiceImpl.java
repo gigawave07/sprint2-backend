@@ -1,5 +1,6 @@
 package com.sprint2.backend.services.car;
 
+import com.sprint2.backend.entity.Customer;
 import com.sprint2.backend.model.CarDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -86,6 +87,11 @@ public class CarServiceImpl implements CarService {
     @Override
     public List<Car> getListCar(Long customerId) {
         return this.carRepository.findAllByCustomerId(customerId);
+    }
+
+    @Override
+    public List<Car> findAllByPlateNumberAndCustomer(String plateNumber, Customer customer) {
+        return this.carRepository.findAllByPlateNumberContainingAndCustomer(plateNumber,customer);
     }
     // --------------------Vinh end -------------------------
 }

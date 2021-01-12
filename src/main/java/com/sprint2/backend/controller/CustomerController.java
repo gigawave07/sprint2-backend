@@ -25,6 +25,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/customer")
 @CrossOrigin
@@ -62,9 +64,10 @@ public class CustomerController {
     }
 
     // Hiển thị lịch sử xe ra vào của khách hàng và phân trang
-    @GetMapping("/list-entry-log/{accountId}/{pageable}")
-    public ResponseEntity<Page<ListEntryLogDTO>> getListEntryLog(@PathVariable Long accountId, @PathVariable int pageable) {
-        return new ResponseEntity<>(this.customerService.findListEntryLog(accountId, pageable), HttpStatus.OK);
+    @GetMapping({"/list-entry-log/{accountId}/{pageable}","/list-entry-log/{accountId}/{pageable}/{plateNumber}"})
+    public ResponseEntity<Page<ListEntryLogDTO>> getListEntryLog(@PathVariable Long accountId, @PathVariable int pageable,
+                                                                 @PathVariable Optional<String> plateNumber) {
+        return new ResponseEntity<>(this.customerService.findListEntryLog(accountId, pageable, plateNumber), HttpStatus.OK);
     }
     // End
     // --------------------Vinh begin -----------------------
