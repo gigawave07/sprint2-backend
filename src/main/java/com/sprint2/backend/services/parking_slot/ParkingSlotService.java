@@ -12,8 +12,13 @@ public interface ParkingSlotService {
 
     void save(ParkingSlot parkingSlot);
 
+    List<ParkingSlot> findBySlotNumber(String slotNumber);
+
+    ParkingSlot findBySlotNumberAndFloor(String slotNumber, String floor);
+
     ParkingSlot findByFloor(String floor);
 
     ParkingSlot findByReserved(Boolean reserved);
+
     List<SlotType> findAllSlotType();
 }

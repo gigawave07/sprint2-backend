@@ -15,18 +15,25 @@ public class ParkingSlotConverter {
     }
     public ParkingSlotDTO toParkingSlotDTO(ParkingSlot parkingSlot){
         ParkingSlotDTO parkingSlotDTO = new ParkingSlotDTO();
-        parkingSlotDTO.setId(parkingSlot.getId());
-        parkingSlotDTO.setFloor(parkingSlot.getFloor());
-        parkingSlotDTO.setSlotNumber(parkingSlot.getSlotNumber());
-        parkingSlotDTO.setFullName(parkingSlot.getCar().getCustomer().getFullName());
-        parkingSlotDTO.setEmail(parkingSlot.getCar().getCustomer().getEmail());
-        parkingSlotDTO.setBirthDay(parkingSlot.getCar().getCustomer().getBirthday());
-        parkingSlotDTO.setPhone(parkingSlot.getCar().getCustomer().getPhone());
-        parkingSlotDTO.setPlate_number(parkingSlot.getCar().getPlateNumber());
-        parkingSlotDTO.setBrandName(parkingSlot.getCar().getBrandName());
-        parkingSlotDTO.setWidth(parkingSlot.getSlotType().getWidth());
-        parkingSlotDTO.setHeight(parkingSlot.getSlotType().getHeight());
-        parkingSlotDTO.setSlotName(parkingSlot.getSlotType().getSlotName());
+        try{
+            parkingSlotDTO.setId(parkingSlot.getId());
+            parkingSlotDTO.setFloor(parkingSlot.getFloor());
+            parkingSlotDTO.setSlotNumber(parkingSlot.getSlotNumber());
+            parkingSlotDTO.setWidth(parkingSlot.getSlotType().getWidth());
+            parkingSlotDTO.setHeight(parkingSlot.getSlotType().getHeight());
+            parkingSlotDTO.setSlotName(parkingSlot.getSlotType().getSlotName());
+            parkingSlotDTO.setFullName(parkingSlot.getCar().getCustomer().getFullName());
+            parkingSlotDTO.setEmail(parkingSlot.getCar().getCustomer().getEmail());
+            parkingSlotDTO.setBirthDay(parkingSlot.getCar().getCustomer().getBirthday());
+            parkingSlotDTO.setPhone(parkingSlot.getCar().getCustomer().getPhone());
+            parkingSlotDTO.setPlate_number(parkingSlot.getCar().getPlateNumber());
+            parkingSlotDTO.setBrandName(parkingSlot.getCar().getBrandName());
+            return parkingSlotDTO;
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
         return parkingSlotDTO;
     }
 }

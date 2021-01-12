@@ -32,9 +32,33 @@ public class ParkingSlotServiceImpl implements ParkingSlotService {
     }
 
     @Override
-    public ParkingSlot findByFloor(String floor) {
-        return this.parkingSlotRepository.findByFloorContaining(floor);
+    public List<ParkingSlot> findBySlotNumber(String slotNumber) {
+        return this.parkingSlotRepository.findBySlotNumber(slotNumber);
     }
+
+    @Override
+    public ParkingSlot findBySlotNumberAndFloor(String slotNumber, String floor) {
+        return this.parkingSlotRepository.findBySlotNumberAndFloor(slotNumber,floor);
+    }
+
+
+    @Override
+    public ParkingSlot findByFloor(String floor) {
+        return null;
+    }
+
+
+//    @Override
+//    public ParkingSlot findByFloor(String floor) {
+//        return this.parkingSlotRepository.findByFloor(floor);
+//    }
+
+
+//    @Override
+//    public List<ParkingSlot> findBySlotNumber(String slotNumber) {
+//        return this.parkingSlotRepository.findBySlotNumber(slotNumber);
+//    }
+
 
     @Override
     public ParkingSlot findByReserved(Boolean reserved) {
@@ -45,4 +69,5 @@ public class ParkingSlotServiceImpl implements ParkingSlotService {
     public List<SlotType> findAllSlotType() {
         return this.slotTypeRepository.findAll();
     }
+
 }

@@ -27,12 +27,14 @@ public class ParkingSlotController {
         List<ParkingSlot> parkingSlotList = this.parkingSlotService.findAll();
         return new ResponseEntity<>(parkingSlotList, HttpStatus.OK);
     }
+
     @GetMapping("/parkingSlot/{parkingSlotId}")
     public ParkingSlotDTO getParkingSlotById(@PathVariable("parkingSlotId") Long id) {
         ParkingSlot parkingSlot = this.parkingSlotService.findByID(id);
         ParkingSlotDTO parkingSlotDTO = this.parkingSlotConverter.toParkingSlotDTO(parkingSlot);
         return parkingSlotDTO;
     }
+
     @GetMapping("/slot-type")
     public ResponseEntity<List<SlotType>> getListSlotType() {
         List<SlotType> slotTypeList = this.parkingSlotService.findAllSlotType();
@@ -42,15 +44,32 @@ public class ParkingSlotController {
     @PutMapping(value = "/updateParkingSlot/{parkingSlotId}", produces = {MediaType.APPLICATION_JSON_VALUE})
     public int updateParkingSlot(@RequestBody ParkingSlotDTO parkingSlotDTO, @PathVariable(value = "parkingSlotId") Long id) {
         try {
+            List<ParkingSlot> parkingSlots = this.parkingSlotService.findAll();
             ParkingSlot parkingSlot = this.parkingSlotService.findByID(id);
-            parkingSlot.setFloor(parkingSlotDTO.getFloor());
-            parkingSlot.setSlotNumber(parkingSlotDTO.getSlotNumber());
-            SlotType slotType = parkingSlot.getSlotType();
-            slotType.setHeight(parkingSlotDTO.getHeight());
-            slotType.setWidth(parkingSlotDTO.getWidth());
-            slotType.setSlotName(parkingSlotDTO.getSlotName());
-            this.parkingSlotService.save(parkingSlot);
-            return 1;
+            parkingSlots.remove(parkingSlot);
+            String slotNumber = parkingSlotDTO.getSlotNumber();
+            String floor = parkingSlotDTO.getFloor();
+            boolean check = true;
+            for (int i = 0; i < parkingSlots.size(); i++) {
+                if(!parkingSlots.get(i).getSlotNumber().equals(slotNumber) || !parkingSlots.get(i).getFloor().equals(floor) )
+                {
+                    check = false;
+                }else {
+                    check = true;
+                    break;
+                };
+            }
+            if (check == false) {
+                parkingSlot.setFloor(parkingSlotDTO.getFloor());
+                parkingSlot.setSlotNumber(parkingSlotDTO.getSlotNumber());
+            }else {return 0;}
+                SlotType slotType = parkingSlot.getSlotType();
+                slotType.setHeight(parkingSlotDTO.getHeight());
+                slotType.setWidth(parkingSlotDTO.getWidth());
+                slotType.setSlotName(parkingSlotDTO.getSlotName());
+
+                this.parkingSlotService.save(parkingSlot);
+                return 1;
         } catch (Exception e) {
             e.getMessage();
         }
