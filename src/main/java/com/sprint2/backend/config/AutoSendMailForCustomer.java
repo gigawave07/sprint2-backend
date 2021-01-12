@@ -103,6 +103,8 @@ public class AutoSendMailForCustomer {
                             "<head>\n" +
                             "  <meta charset=\"UTF-8\">\n" +
                             "  <title>Mail</title>\n" +
+                            "<link rel=\"stylesheet\" " +
+                            "href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css\">" +
                             "  <style>\n" +
                             "    * {\n" +
                             "      font-family: \"Varela Round\";\n" +
@@ -127,9 +129,13 @@ public class AutoSendMailForCustomer {
                             "      width: 100%\n" +
                             "    }\n" +
                             "\n" +
-                            "    td, th {\n" +
+                            "    th {\n" +
                             "      border: 1px solid;\n" +
                             "      text-align: center;\n" +
+                            "    }\n" +
+                            "    td {\n" +
+                            "      border: 1px solid;\n" +
+                            "      text-align: left;\n" +
                             "    }\n" +
                             "\n" +
                             "    span {\n" +
@@ -159,8 +165,8 @@ public class AutoSendMailForCustomer {
                             "        <div class=\"container-xl\">\n" +
                             "          <div class=\"table-responsive\">\n" +
                             "            <div class=\"table-wrapper\">\n" +
-                            "              <table>\n" +
-                            "                <tr>\n" +
+                            "              <table class=\"table table-striped\">\n" +
+                            "                <tr style=\"background-color: rgba(0,123,255,0.67)\">\n" +
                             "                  <th>Hãng xe</th>\n" +
                             "                  <th>Biển số xe</th>\n" +
                             "                  <th>Loại vé</th>\n" +
@@ -182,7 +188,7 @@ public class AutoSendMailForCustomer {
                 mailContent.append(memberCard.getEndDate()
                         .format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
                 mailContent.append("</td>");
-                mailContent.append("<td>");
+                mailContent.append("<td style=\"text-align: right;\">");
                 mailContent.append(memberCard.getPrice());
                 mailContent.append("</td>");
                 mailContent.append("</tr>");

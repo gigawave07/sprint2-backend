@@ -137,12 +137,16 @@ public class PayServiceImpl implements PaySerVice {
                             "    table {\n" +
                             "      border: 1px solid;\n" +
                             "      border-collapse: separate;\n" +
-                            "      width: 100%\n" +
+                            "      width: 50%\n" +
                             "    }\n" +
                             "\n" +
-                            "    td, th {\n" +
+                            "    th {\n" +
                             "      border: 1px solid;\n" +
                             "      text-align: center;\n" +
+                            "    }\n" +
+                            "    td {\n" +
+                            "      border: 1px solid;\n" +
+                            "      text-align: left;\n" +
                             "    }\n" +
                             "\n" +
                             "    span {\n" +
@@ -173,7 +177,7 @@ public class PayServiceImpl implements PaySerVice {
                             "          <div class=\"table-responsive\">\n" +
                             "            <div class=\"table-wrapper\">\n" +
                             "              <table>\n" +
-                            "                <tr>\n" +
+                            "                <tr style=\"background-color: rgba(0,123,255,0.67)\">\n" +
                             "                  <th>Biển số xe</th>\n" +
                             "                  <th>Loại vé</th>\n" +
                             "                  <th>Ngày hết hạn sau khi cập nhật</th>\n" +
