@@ -191,19 +191,23 @@ public class AppAccountController {
     }
 
     @GetMapping("/register")
-    public ResponseEntity<Boolean> saveUser(@RequestParam("username") String username, @RequestParam("password") String password) {
+    public ResponseEntity<Integer> saveUser(@RequestParam("username") String username, @RequestParam("password") String password) {
         if (userRepository.existsByUsername(username)) {
-            return new ResponseEntity<>(false, HttpStatus.OK);
-        } else if (customerRepository.findByEmail(username) == null) {
-            return new ResponseEntity<>(false, HttpStatus.OK);
+            return new ResponseEntity<>(1, HttpStatus.OK);
+        } else if (!customerRepository.existsByEmail(username)) {
+            return new ResponseEntity<>(2, HttpStatus.OK);
         }
         AppAccount appAccount = new AppAccount();
         appAccount.setPassword(passwordEncoder.encode(password));
         appAccount.setAppRole(roleService.findById(3L));
         appAccount.setUsername(username);
         userRepository.save(appAccount);
+        Customer customer =  customerRepository.findByEmail(username);
+        customer.setAppAccount(appAccount);
+        customerRepository.save(customer);
 
 
-        return new ResponseEntity<>(true, HttpStatus.OK);
+        return new ResponseEntity<>(3, HttpStatus.OK);
     }
+
 }
