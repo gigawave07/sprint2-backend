@@ -5,6 +5,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+
+import java.util.List;
+
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee, Long> {
     Employee findByFullNameContaining(String fullName);
@@ -18,4 +21,6 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
      */
     @Query(nativeQuery = true, value = "select count(*) as total_employee from project2_parking_management.employee")
     Long getTotalEmployee();
+//    Đạt
+    List<Employee> findAllByFullNameContainingOrPositionContaining(String fullName, String position);
 }
