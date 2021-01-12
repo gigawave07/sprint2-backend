@@ -31,6 +31,7 @@ public class ParkingSlotController {
         List<ParkingSlotDTODisplay> parkingSlotList = this.parkingSlotService.findAllDTO();
         return new ResponseEntity<>(parkingSlotList, HttpStatus.OK);
     }
+    
 
     /**
      * Display slot type list
