@@ -49,4 +49,8 @@ public interface CustomerRepository extends JpaRepository<Customer, Long> {
      * @return Customer
      */
     Customer findByFullName(String fullName);
+
+    Boolean existsByEmail(String email);
+
+    Customer findByEmail(String email);
 }

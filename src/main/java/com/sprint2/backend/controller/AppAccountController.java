@@ -1,13 +1,18 @@
 package com.sprint2.backend.controller;
 
+import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
+import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
+import com.google.api.client.http.javanet.NetHttpTransport;
+import com.google.api.client.json.jackson2.JacksonFactory;
+import com.sprint2.backend.config.JwtTokenProvider;
 import com.sprint2.backend.entity.AppAccount;
 import com.sprint2.backend.entity.AppRole;
 import com.sprint2.backend.entity.Customer;
-import com.sprint2.backend.model.ChangePasswordUserDTO;
-import com.sprint2.backend.model.MessageDTO;
+import com.sprint2.backend.model.*;
 import com.sprint2.backend.repository.AppAccountRepository;
 import com.sprint2.backend.repository.CustomerRepository;
 import com.sprint2.backend.services.app_account.AppAccountService;
+import com.sprint2.backend.services.app_role.AppRoleService;
 import com.sprint2.backend.services.ticket.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.Repository;
@@ -15,6 +20,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.social.facebook.api.Facebook;
+import org.springframework.social.facebook.api.impl.FacebookTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import javax.mail.MessagingException;
