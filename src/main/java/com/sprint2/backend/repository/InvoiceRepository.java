@@ -16,6 +16,6 @@ public interface InvoiceRepository extends JpaRepository<Invoice, Long> {
      * @param pageable
      * @return
      */
-    @Query( value = "select * from invoice where customer_id = 1",nativeQuery = true)
+    @Query( value = "select * from invoice where customer_id =?",nativeQuery = true)
     Page<Invoice> aaa(Long id, Pageable pageable);
 }
