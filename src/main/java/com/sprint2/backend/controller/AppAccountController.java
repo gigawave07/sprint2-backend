@@ -13,9 +13,7 @@ import com.sprint2.backend.repository.AppAccountRepository;
 import com.sprint2.backend.repository.CustomerRepository;
 import com.sprint2.backend.services.app_account.AppAccountService;
 import com.sprint2.backend.services.app_role.AppRoleService;
-import com.sprint2.backend.services.ticket.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.Repository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.SimpleMailMessage;
@@ -45,11 +43,14 @@ public class AppAccountController {
     @Autowired
     AppAccountService appAccountService;
 
+    @Autowired
+    PasswordEncoder bcryptEncoder;
+
     /**
      * nguyen quoc khanh
+     *
      * @param id
-     * @return
-     * get account by id
+     * @return get account by id
      */
     @GetMapping("/findAppAccountById/{id}")
     public ResponseEntity<AppAccount> getAppAccountById(@PathVariable Long id) {
@@ -62,8 +63,7 @@ public class AppAccountController {
      * @param request
      * @return
      * @throws UnsupportedEncodingException
-     * @throws MessagingException
-     * set verifycode when user change their password
+     * @throws MessagingException           set verifycode when user change their password
      */
     @PostMapping("/setVerifyCode/{id}")
     public ResponseEntity<AppAccount> confirmEmail(@PathVariable Long id, HttpServletRequest request) throws UnsupportedEncodingException, MessagingException {
@@ -74,8 +74,7 @@ public class AppAccountController {
     /**
      * @param id
      * @param changePasswordUserDTO
-     * @return
-     * confirm veryficode when user change their password
+     * @return confirm veryficode when user change their password
      */
     @PutMapping("/veryficode/{id}")
     public boolean verifyAccount(@PathVariable Long id,
@@ -92,13 +91,12 @@ public class AppAccountController {
     /**
      * @param id
      * @param changePasswordUserDTO
-     * @return
-     * save new password
+     * @return save new password
      */
     @PutMapping("/savePassword/{id}")
     public ResponseEntity<AppAccount> savePassword(@PathVariable Long id, @RequestBody ChangePasswordUserDTO changePasswordUserDTO) {
         AppAccount appAccount = this.appAccountService.findByID(id);
-        appAccount.setPassword(changePasswordUserDTO.getPasswordNew());
+        appAccount.setPassword(bcryptEncoder.encode(changePasswordUserDTO.getPasswordNew()));
         this.appAccountService.save(appAccount);
         return new ResponseEntity<AppAccount>(appAccount, HttpStatus.OK);
     }
@@ -106,26 +104,25 @@ public class AppAccountController {
     /**
      * @param changePasswordUserDTO
      * @param id
-     * @return
-     * confirm old password
+     * @return confirm old password
      */
     @PutMapping("/confirmPassword/{id}")
     public ResponseEntity<?> getAccountByUsername(@RequestBody ChangePasswordUserDTO changePasswordUserDTO,
                                                   @PathVariable Long id) {
         AppAccount appAccount = this.appAccountService.findByID(id);
-        boolean isMatch = changePasswordUserDTO.getPasswordOld().equals(appAccount.getPassword());
+//        boolean isMatch = changePasswordUserDTO.getPasswordOld().equals(appAccount.getPassword());
+//        if (isMatch) {
+//            return ResponseEntity.ok(new MessageDTO("Wright password"));
+//        } else {
+//            return ResponseEntity.ok(new MessageDTO("Wrong password"));
+//        }
+        boolean isMatch = bcryptEncoder.matches(changePasswordUserDTO.getPasswordOld(), appAccount.getPassword());
         if (isMatch) {
+
             return ResponseEntity.ok(new MessageDTO("Wright password"));
         } else {
             return ResponseEntity.ok(new MessageDTO("Wrong password"));
         }
-//        boolean isMatch = bcryptEncoder.matches(changePasswordAdminDTO.getPasswordOld(), appAccount.getPassword());
-//        if (isMatch) {
-//            appAccount.setPassword(bcryptEncoder.encode(changePasswordAdminDTO.getPasswordNew()));
-//            return ResponseEntity.ok(new MessageDTO("Wright password));
-//        } else {
-//            return ResponseEntity.ok(new MessageDTO("Wrong password"));
-//        }
     }
 
     // ------------------------------Vinh Begin --------------------------------
@@ -133,12 +130,14 @@ public class AppAccountController {
     @GetMapping("check-login-mobile/{userName}/{password}")
     public ResponseEntity<?> checkLoginMobile(@PathVariable String userName, @PathVariable String password) {
         AppAccount appAccount = null;
-        System.out.println(userName!=null);
-        System.out.println(password!=null);
-        if (userName!=null && password != null){
+        System.out.println(userName != null);
+        System.out.println(password != null);
+        boolean isMatch = false;
+        if (userName != null && password != null) {
             appAccount = this.appAccountService.getAccount(userName, password);
+            isMatch = bcryptEncoder.matches(password, appAccount.getPassword());
         }
-        return appAccount != null ? ResponseEntity.ok(appAccount) : ResponseEntity.ok(new MessageDTO("not found")) ;
+        return appAccount != null && isMatch ? ResponseEntity.ok(appAccount) : ResponseEntity.ok(new MessageDTO("not found"));
     }
     // ------------------------------Vinh End ----------------------------------
 
@@ -306,7 +305,7 @@ public class AppAccountController {
         appAccount.setAppRole(roleService.findById(3L));
         appAccount.setUsername(username);
         userRepository.save(appAccount);
-        Customer customer =  customerRepository.findByEmail(username);
+        Customer customer = customerRepository.findByEmail(username);
         customer.setAppAccount(appAccount);
         customerRepository.save(customer);
 

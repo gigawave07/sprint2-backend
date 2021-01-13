@@ -147,7 +147,7 @@ public class PayServiceImpl implements PaySerVice {
                             "    table {\n" +
                             "      border: 1px solid;\n" +
                             "      border-collapse: separate;\n" +
-                            "      width: 50%\n" +
+                            "      width: 100%\n" +
                             "    }\n" +
                             "\n" +
                             "    th {\n" +

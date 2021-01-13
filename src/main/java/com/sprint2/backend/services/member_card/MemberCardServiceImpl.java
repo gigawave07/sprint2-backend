@@ -199,16 +199,16 @@ public class MemberCardServiceImpl implements MemberCardService {
         // create Account :
         AppAccount appAccount = new AppAccount();
         appAccount.setUsername("abc@abc.abc");
-        appAccount.setPassword("Aqwerty1");
+        appAccount.setPassword("$2a$10$BuU4GIP9cNBHWZVG6CiU.e3e84oYJsaWikgs.LuF0mxuIFw3AHTcm");
         appAccount.setAppRole(this.appRoleRepository.findById(3L).orElse(null));
-        appAccount.setEnabled(false);
+        appAccount.setEnabled(true);
         this.appAccountRepository.save(appAccount);
 
         // create Customer :
         customer.setFullName(memberCardAddDTO.getFullName());
         customer.setAppAccount(appAccount);
         customer.setCreateDate(LocalDateTime.now());
-        customer.setEmail("abc@abc.abc");
+        customer.setEmail((Math.random() * 1000) + "abc@abc.abc");
         customer.setGender(false);
         this.customerRepository.save(customer);
 

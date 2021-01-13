@@ -8,7 +8,7 @@ import com.sprint2.backend.entity.AppAccount;
 @Repository
 public interface AppAccountRepository extends JpaRepository<AppAccount, Long> {
     // ---------------------Vinh Begin---------------------------------
-    AppAccount findAllByAndUsernameAndPassword(String userName, String password);
+    AppAccount findAllByUsername(String userName);
     // ---------------------Vinh End---------------------------------
 
     AppAccount findByUsername(String username);
