@@ -18,6 +18,8 @@ import com.sprint2.backend.entity.Invoice;
 import com.sprint2.backend.entity.MemberCard;
 import com.sprint2.backend.repository.InvoiceRepository;
 import com.sprint2.backend.repository.MemberCardRepository;
+import com.sprint2.backend.entity.AppAccount;
+import com.sprint2.backend.repository.AppAccountRepository;
 
 @Service
 public class PayServiceImpl implements PaySerVice {
@@ -26,6 +28,9 @@ public class PayServiceImpl implements PaySerVice {
 
     @Autowired
     private MemberCardRepository memberCardRepository;
+
+    @Autowired
+    private AppAccountRepository appAccountRepository;
 
     @Autowired
     private InvoiceRepository invoiceRepository;
@@ -47,7 +52,12 @@ public class PayServiceImpl implements PaySerVice {
      * */
     @Override
     public List<MemberCard> findByCustomerID(Long id) {
-        return this.memberCardRepository.findByCustomerId(id);
+        Long idCustomer = null;
+        AppAccount appAccount = this.appAccountRepository.findById(id).orElse(null);
+        if (appAccount != null) {
+            idCustomer = appAccount.getCustomer().getId();
+        }
+        return this.memberCardRepository.findByCustomerId(idCustomer);
     }
 
     /*
