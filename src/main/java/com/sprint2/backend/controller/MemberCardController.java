@@ -8,6 +8,7 @@ import com.sprint2.backend.model.MemberCardAddDTO;
 import com.sprint2.backend.model.MemberCardEditDTO;
 import com.sprint2.backend.model.MemberCardListDTO;
 import com.sprint2.backend.model.MessageDTO;
+import com.sprint2.backend.repository.MemberCardRepository;
 import com.sprint2.backend.services.member_card.MemberCardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,6 +24,9 @@ import java.util.List;
 public class MemberCardController {
     @Autowired
     private MemberCardService memberCardService;
+
+    @Autowired
+    MemberCardRepository memberCardRepository;
 
     // ---------------------------- Vinh Begin ---------------------------------------
     @GetMapping("/get-member-card-id-by-car-id/{carId}")
@@ -117,4 +121,29 @@ public class MemberCardController {
     /*
      * Hoat end
      */
+
+    // Quan start
+    @GetMapping("/extend-duration/{id}")
+    public ResponseEntity<?> extendDuration(@PathVariable Long id) {
+        MemberCard memberCard = memberCardRepository.findById(id).orElse(null);
+        memberCard.setStartDate(LocalDateTime.now());
+        switch (memberCard.getMemberCardType().getMemberTypeName()) {
+            case "Tuần":
+                memberCard.setEndDate(memberCard.getStartDate().plusDays(7));
+                memberCardRepository.save(memberCard);
+                return ResponseEntity.ok(new MessageDTO("Updated week"));
+            case "Tháng":
+                memberCard.setEndDate(memberCard.getStartDate().plusMonths(1));
+                memberCardRepository.save(memberCard);
+                return ResponseEntity.ok(new MessageDTO("Updated month"));
+            case "Năm":
+                memberCard.setEndDate(memberCard.getStartDate().plusYears(1));
+                memberCardRepository.save(memberCard);
+                return ResponseEntity.ok(new MessageDTO("Updated year"));
+            default:
+                return ResponseEntity.ok(new MessageDTO("Updated failed"));
+        }
+
+    }
+    // Quan end
 }
