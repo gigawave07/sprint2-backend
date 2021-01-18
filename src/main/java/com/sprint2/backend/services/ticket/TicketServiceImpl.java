@@ -5,7 +5,7 @@ import com.sprint2.backend.model.TicketDTO;
 import com.sprint2.backend.repository.CarTypeRepository;
 import com.sprint2.backend.repository.TicketRepository;
 import com.sprint2.backend.services.car.CarService;
-import com.sprint2.backend.services.parking_slot.ParkingSlotService;
+import com.sprint2.backend.services.mai_htq.ParkingSlotService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,9 +13,8 @@ import java.time.LocalDateTime;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-
 @Service
-public class TicketServiceImpl implements TicketService {
+public class TicketServiceImpl implements TicketService{
     @Autowired
     TicketRepository ticketRepository;
 

@@ -1,0 +1,4 @@
+GET http://localhost:8080/car/find-all-car-by-customerId/2
+Accept: application/json
+
+###

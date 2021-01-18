@@ -1,4 +1,4 @@
-package com.sprint2.backend.model;
+package com.sprint2.backend.model.mai_htq;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,8 +9,9 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ParkingSlotDTODisplay {
+public class ParkingSlotDTO {
     private String floor;
-    private Long slotNumber;
-    private Long reversed;
+    private Long id;
+    private String slotNumber;
+    private Long slotType;
 }

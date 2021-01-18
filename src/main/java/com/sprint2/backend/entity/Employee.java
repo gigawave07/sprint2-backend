@@ -26,6 +26,9 @@ public class Employee {
     @Column(name = "full_name", columnDefinition = "VARCHAR(50)")
     private String fullName;
 
+    @Column(name = "address", columnDefinition = "VARCHAR(50)")
+    private String address;
+
     @Column(name = "gender", columnDefinition = "BIT")
     private Boolean gender = false;
 
@@ -35,8 +38,8 @@ public class Employee {
     @Column(name = "birthday", columnDefinition = "DATE")
     private LocalDate birthday;
 
-    @Column(name = "phone", columnDefinition = "VARCHAR(50)")
-    private String phone;
+    @Column(name = "phoneNumber", columnDefinition = "VARCHAR(50)")
+    private String phoneNumber;
 
     @Column(name = "position", columnDefinition = "VARCHAR(50)")
     private String position;
@@ -47,4 +50,5 @@ public class Employee {
     @JoinColumn(name = "app_account_id", referencedColumnName = "id", columnDefinition = "BIGINT")
     @JsonBackReference
     private AppAccount appAccount;
+
 }

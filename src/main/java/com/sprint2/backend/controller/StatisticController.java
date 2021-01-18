@@ -6,7 +6,7 @@ import com.sprint2.backend.services.car.CarService;
 import com.sprint2.backend.services.customer.CustomerService;
 import com.sprint2.backend.services.employee.EmployeeService;
 import com.sprint2.backend.services.member_card.MemberCardService;
-import com.sprint2.backend.services.parking_slot.ParkingSlotService;
+import com.sprint2.backend.services.mai_htq.ParkingSlotService;
 import com.sprint2.backend.services.ticket.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

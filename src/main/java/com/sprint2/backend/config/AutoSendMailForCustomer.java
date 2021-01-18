@@ -20,7 +20,7 @@ import java.util.HashSet;
 import java.util.List;
 
 import com.sprint2.backend.entity.MemberCard;
-import com.sprint2.backend.services.member_card.MemberCardService;
+import com.sprint2.backend.services.pay.PaySerVice;
 
 @Configuration
 @EnableScheduling
@@ -29,7 +29,7 @@ public class AutoSendMailForCustomer {
     private JavaMailSender emailSender;
 
     @Autowired
-    private MemberCardService memberCardService;
+    private PaySerVice paySerVice;
 
     @Bean
     public TaskScheduler taskScheduler() {
@@ -41,7 +41,7 @@ public class AutoSendMailForCustomer {
     @Scheduled(fixedDelay = 1000 * 3600 * 24)
     private void scheduleFixedDelayTask() throws InterruptedException {
         System.out.println("System auto send mail start.");
-        List<MemberCard> allMemberCard = this.memberCardService.findAll();
+        List<MemberCard> allMemberCard = this.paySerVice.findAll();
         List<MemberCard> listMemberCardNearExpired = new ArrayList<>();
         HashSet<String> mailList = new HashSet<>();
         LocalDateTime now = LocalDateTime.now();
@@ -63,7 +63,7 @@ public class AutoSendMailForCustomer {
         for (MemberCard memberCard : allMemberCard) {
             LocalDateTime endDate = memberCard.getEndDate();
             Duration between = Duration.between(now, endDate);
-            if (between.toDays() <= 3 && between.toDays() > 0) {
+            if (between.toHours() <= 72 && between.toHours() > 0) {
                 listMemberCardNearExpired.add(memberCard);
                 mailList.add(memberCard.getCar().getCustomer().getEmail());
             }
@@ -103,6 +103,8 @@ public class AutoSendMailForCustomer {
                             "<head>\n" +
                             "  <meta charset=\"UTF-8\">\n" +
                             "  <title>Mail</title>\n" +
+                            "<link rel=\"stylesheet\" " +
+                            "href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css\">" +
                             "  <style>\n" +
                             "    * {\n" +
                             "      font-family: \"Varela Round\";\n" +
@@ -127,9 +129,13 @@ public class AutoSendMailForCustomer {
                             "      width: 100%\n" +
                             "    }\n" +
                             "\n" +
-                            "    td, th {\n" +
+                            "    th {\n" +
                             "      border: 1px solid;\n" +
                             "      text-align: center;\n" +
+                            "    }\n" +
+                            "    td {\n" +
+                            "      border: 1px solid;\n" +
+                            "      text-align: left;\n" +
                             "    }\n" +
                             "\n" +
                             "    span {\n" +
@@ -159,8 +165,8 @@ public class AutoSendMailForCustomer {
                             "        <div class=\"container-xl\">\n" +
                             "          <div class=\"table-responsive\">\n" +
                             "            <div class=\"table-wrapper\">\n" +
-                            "              <table>\n" +
-                            "                <tr>\n" +
+                            "              <table class=\"table table-striped\">\n" +
+                            "                <tr style=\"background-color: rgba(0,123,255,0.67)\">\n" +
                             "                  <th>Hãng xe</th>\n" +
                             "                  <th>Biển số xe</th>\n" +
                             "                  <th>Loại vé</th>\n" +
@@ -182,7 +188,7 @@ public class AutoSendMailForCustomer {
                 mailContent.append(memberCard.getEndDate()
                         .format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
                 mailContent.append("</td>");
-                mailContent.append("<td>");
+                mailContent.append("<td style=\"text-align: right;\">");
                 mailContent.append(memberCard.getPrice());
                 mailContent.append("</td>");
                 mailContent.append("</tr>");

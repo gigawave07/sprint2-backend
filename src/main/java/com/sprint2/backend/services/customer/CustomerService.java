@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 
 import java.text.ParseException;
 import java.util.List;
+import java.util.Optional;
 
 public interface CustomerService {
     // Đin
@@ -35,7 +36,7 @@ public interface CustomerService {
     Object getToTalCustomerRegisterPeriod(String fromDay, String toDay) throws ParseException;
     Customer findByAppAccount(Long accountId);
 
-    Page<ListEntryLogDTO> findListEntryLog(Long accountId, int pageable);
+    Page<ListEntryLogDTO> findListEntryLog(Long accountId, int pageable, Optional<String> plateNumber);
     // End
 
     // ----------------------- Vinh Begin -------------------------
@@ -43,4 +44,12 @@ public interface CustomerService {
     Customer findByAccountId(Long id);
 
     // ----------------------- Vinh End -------------------------
+
+    // ------------------------ Hoàng Begin -----------------------------
+    void save(Customer customer);
+
+    List<Customer> findAll();
+
+    void deleteByID(Long id);
+    // ------------------------ Hoàng ENd -----------------------------
 }

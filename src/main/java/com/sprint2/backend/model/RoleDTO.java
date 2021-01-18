@@ -9,9 +9,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ParkingSlotDTO {
-    private String floor;
-    private Long id;
-    private String slotNumber;
-    private Long slotType;
+public class RoleDTO {
+    Long idRole;
+    String nameRole;
 }

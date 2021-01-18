@@ -10,7 +10,7 @@ import com.sprint2.backend.repository.CarTypeRepository;
 import com.sprint2.backend.repository.MemberCardRepository;
 import com.sprint2.backend.services.car.CarService;
 import com.sprint2.backend.services.member_card.MemberCardService;
-import com.sprint2.backend.services.parking_slot.ParkingSlotService;
+import com.sprint2.backend.services.mai_htq.ParkingSlotService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;

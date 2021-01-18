@@ -2,6 +2,7 @@ package com.sprint2.backend.services.car;
 
 import com.sprint2.backend.entity.Car;
 import com.sprint2.backend.entity.CarType;
+import com.sprint2.backend.entity.Customer;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import com.sprint2.backend.model.CarDTO;
@@ -42,5 +43,5 @@ public interface CarService {
     // --------------------Vinh begin -----------------------
     List<Car> getListCar(Long customerId);
     // --------------------Vinh end -------------------------
-
+    List<Car> findAllByPlateNumberAndCustomer(String plateNumber, Customer customer);
 }

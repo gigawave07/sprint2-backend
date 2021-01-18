@@ -42,4 +42,15 @@ public interface CustomerRepository extends JpaRepository<Customer, Long> {
     // ----------------------- Vinh Begin -------------------------
     Customer findByAppAccountId(Long id);
     // ----------------------- Vinh End -------------------------
+
+    /**
+     * Lanh
+     * @param fullName
+     * @return Customer
+     */
+    Customer findByFullName(String fullName);
+
+    Boolean existsByEmail(String email);
+
+    Customer findByEmail(String email);
 }

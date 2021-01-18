@@ -1,4 +1,4 @@
-package com.sprint2.backend.controller.chau_lp;
+package com.sprint2.backend.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -35,7 +35,7 @@ public class PayRestController {
      * */
     @GetMapping("/pay/{money}/{listIDMemberCard}")
     public void updateMemberCardAndSendMailAfterCustomerPay(@PathVariable Double money,
-                                                    @PathVariable List<Long> listIDMemberCard) {
+                                                            @PathVariable List<Long> listIDMemberCard) {
         this.paySerVice.updateMemberCardAndSendMailAfterCustomerPay(money, listIDMemberCard);
     }
 }

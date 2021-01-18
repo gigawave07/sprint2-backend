@@ -18,6 +18,8 @@ import com.sprint2.backend.entity.Invoice;
 import com.sprint2.backend.entity.MemberCard;
 import com.sprint2.backend.repository.InvoiceRepository;
 import com.sprint2.backend.repository.MemberCardRepository;
+import com.sprint2.backend.entity.AppAccount;
+import com.sprint2.backend.repository.AppAccountRepository;
 
 @Service
 public class PayServiceImpl implements PaySerVice {
@@ -28,16 +30,34 @@ public class PayServiceImpl implements PaySerVice {
     private MemberCardRepository memberCardRepository;
 
     @Autowired
+    private AppAccountRepository appAccountRepository;
+
+    @Autowired
     private InvoiceRepository invoiceRepository;
+
+    /*
+     * get all member card in database
+     * @param nothing
+     * @return List<MemberCard>
+     * */
+    @Override
+    public List<MemberCard> findAll() {
+        return this.memberCardRepository.findAll();
+    }
 
     /*
      * get all member card of customer currently logged in database
      * @param idCustomer
-     * @return ResponseEntity<List<MemberCard>>
+     * @return List<MemberCard>
      * */
     @Override
     public List<MemberCard> findByCustomerID(Long id) {
-        return this.memberCardRepository.findByCustomerId(id);
+        Long idCustomer = null;
+        AppAccount appAccount = this.appAccountRepository.findById(id).orElse(null);
+        if (appAccount != null) {
+            idCustomer = appAccount.getCustomer().getId();
+        }
+        return this.memberCardRepository.findByCustomerId(idCustomer);
     }
 
     /*
@@ -130,9 +150,13 @@ public class PayServiceImpl implements PaySerVice {
                             "      width: 100%\n" +
                             "    }\n" +
                             "\n" +
-                            "    td, th {\n" +
+                            "    th {\n" +
                             "      border: 1px solid;\n" +
                             "      text-align: center;\n" +
+                            "    }\n" +
+                            "    td {\n" +
+                            "      border: 1px solid;\n" +
+                            "      text-align: left;\n" +
                             "    }\n" +
                             "\n" +
                             "    span {\n" +
@@ -163,7 +187,7 @@ public class PayServiceImpl implements PaySerVice {
                             "          <div class=\"table-responsive\">\n" +
                             "            <div class=\"table-wrapper\">\n" +
                             "              <table>\n" +
-                            "                <tr>\n" +
+                            "                <tr style=\"background-color: rgba(0,123,255,0.67)\">\n" +
                             "                  <th>Biển số xe</th>\n" +
                             "                  <th>Loại vé</th>\n" +
                             "                  <th>Ngày hết hạn sau khi cập nhật</th>\n" +

@@ -1,11 +1,8 @@
 package com.sprint2.backend.services.app_account;
 
 import com.sprint2.backend.services.email.EmailServices;
-import com.sprint2.backend.services.email.EmailServicesImpl;
 import net.bytebuddy.utility.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.io.UnsupportedEncodingException;
@@ -54,7 +51,7 @@ public class AppAccountServiceImpl implements AppAccountService {
 
     @Override
     public AppAccount getAccount(String userName, String password) {
-        return this.appAccountRepository.findAllByAndUsernameAndPassword(userName, password);
+        return this.appAccountRepository.findByUsername(userName);
     }
     // ---------------------Vinh End---------------------------------
 }
